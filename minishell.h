@@ -23,11 +23,11 @@ char	*spaces(char *str, char *set);
 /* * * * * * * linked list * * * * * * * * */
 
 
-t_list *str_to_lst(int argc, char **argv);
-t_list *new_list(int value);
+t_list	*str_to_lst(char *str);
+t_list	*new_list(char *str);
 void	add_back(t_list **head, t_list *new);
-void print_list(t_list *begin_list);
-void free_list(t_list *lst);
+void	print_list(t_list *begin_list);
+void	free_list(t_list *lst);
 
 
 

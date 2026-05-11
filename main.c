@@ -14,8 +14,9 @@ int main()
 	char *trim2;
 	char c;
 	int i;
+	t_list *lst;
 
-	c = '|';
+	c = ' ';
 	i = 0;
 	
 	while (1)
@@ -26,20 +27,25 @@ int main()
 		if(!line)
 			return (0);
 
-	arr = ft_split (line, c);
+		arr = ft_split(line, c);
 
-	while (arr[i] != NULL)
-	{
-		trim = ft_strtrim(arr[i], set);
-		trim2 = spaces(arr[i],set);
-		//printf ("%s\n", trim2);
-		free(arr[i]);
-		free(trim);
-		free(trim2);
-		
-		++i;
-	}
-	free(arr);
-	free(line);
+		while (arr[i] != NULL)
+		{
+			
+
+			trim = ft_strtrim(arr[i], set);
+			trim2 = spaces(trim, set);
+			lst = str_to_lst(trim2);
+			printf ("list %s \n", lst -> str);
+			// print_list (lst);
+			free(arr[i]);
+			free(trim);
+			free(trim2);
+			
+			++i;
+		}
+		free(arr);
+		free(line);
+		free_list (lst);
 	}
 }

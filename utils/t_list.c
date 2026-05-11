@@ -1,33 +1,27 @@
 #include "../minishell.h"
 
-t_list *str_to_lst(int argc, char **argv)
+t_list *str_to_lst(char *str)
 {
-	int i;
-	long int n;
+	
 	t_list *lst;
 	t_list *lst1;
 
-	i = 1;
-	n = 0;
 	lst = NULL;
 	lst1 = NULL;
-	while(i < argc)
-	{
 
-		lst1 = new_list(n);
-		add_back(&lst, lst1);
-		++i;
-	}
+	lst1 = new_list(str);
+	add_back(&lst, lst1);
+
 	return(lst);
 }
 
-t_list *new_list(int value)
+t_list *new_list(char *str)
 {
 	t_list *lst;
 	lst = malloc (sizeof (t_list));
 	if (!lst)
 		return (NULL);
-
+	lst -> str = str;
 	lst -> next = NULL;
 	return (lst);
 }
@@ -56,7 +50,7 @@ void print_list(t_list *begin_list)
  	print = begin_list;
     while (print != NULL)
     {
-       ft_printf("list %d \n",print -> str);
+       printf("list %s \n", print -> str);
 	   print = print -> next;
     }
 }
