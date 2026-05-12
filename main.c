@@ -31,17 +31,13 @@ int main()
 
 		while (arr[i] != NULL)
 		{
-			
-
 			trim = ft_strtrim(arr[i], set);
 			trim2 = spaces(trim, set);
 			lst = str_to_lst(trim2);
 			printf ("list %s \n", lst -> str);
-			// print_list (lst);
 			free(arr[i]);
 			free(trim);
 			free(trim2);
-			
 			++i;
 		}
 		free(arr);
