@@ -41,6 +41,7 @@ static int	count_words(const char *str, char c)
 		if (*str == '\"' && *str != '\0')
 		{
 			++str;
+			
 			while (*str != '\"')
 			{
 				++str;
@@ -49,34 +50,38 @@ static int	count_words(const char *str, char c)
 			{
 				++str;
 				++count;
-				printf ("druha zavorka\n");
+				in_word = 0;
+				//printf ("count druha zavorka %d\n",count);
 			}
 			else
 				return (0);
 		}
 	
 		
-		printf ("pocet slov uprostred %d\n", count);
-		printf ("string %s\n", str);
-		printf ("in_word %d\n", in_word);
-		printf ("c %c\n", c);
-		while (*str != c && *str != '\''  && *str != '\"'  && *str != '\0')
+		// printf ("pocet slov uprostred %d\n", count);
+		// printf ("string %s\n", str);
+		// printf ("in_word %d\n", in_word);
+		// printf ("c %c\n", c);
+
+
+		if (*str != c && *str != '\''  && *str != '\n' && *str !='\t'  && *str != '\0')
 		{
 			if (in_word == 0)
 			{
+				
 				in_word = 1;
 				count++;
+				//printf("druhy count >>> %d <<< \n", count);
 			}
-			str++;
+			//++str;
 		}
-		if (*str == c)
+		else if (*str == c)
 		{
 			in_word = 0;
-			++str;
 		}
-		
+		++str;	
 	}
-	printf ("pocet slov %d\n", count);
+	//printf ("pocet slov %d\n", count);
 	return (count);
 }
 
@@ -97,11 +102,8 @@ static int	world_len(const char *s, char c)
 static int	world_len2(const char *s, char c)
 {
 	int	len;
-    
 
 	len = 0;
-
-  
     while (s[len] != '\0' && s[len] != c  && s[len] != '\''  && s[len] != '\"' )
         ++len;
     return (len);
@@ -124,16 +126,16 @@ static int	copy_word(char **result, int i, const char *s, char c)
 {
 	int	j;
 	int	len;
+	char *str;
+	char *set;
 
 	j = 0;
-    
-	len = (world_len(s, c));
+    set = " \n\t";
+	str = spaces(s, set);
+	len = (world_len(str, c));
 	result[i] = malloc(sizeof(char) * (len + 1));
 	if (!result[i])
 		return (0);
-
-    // while(*s == ' ' || *s == '\t' || *s == '\n')
-    //     ++s;
     
     while (j < len)
 	{
@@ -156,9 +158,6 @@ static int	copy_word2(char **result, int i, const char *s, char c)
 	if (!result[i])
 		return (0);
 
-    // while(*s == ' ' || *s == '\t' || *s == '\n')
-    //     ++s;
-    
     while (j < len)
 	{
 		result[i][j] = s[j];
@@ -186,40 +185,43 @@ char	**ft_split(char const *s, char c)
 		if(*s == '\'')
 		{
 			++s;
-			copy = copy_word(words, i, s, '\'');
+			copy = copy_word2(words, i, s, '\'');
 			if (!copy)
 			{
 				free_split(words, i);
 				return (NULL);
 			}
 			--count;
-			printf ("%d\n", count);
+			//printf ("%d\n", count);
 			s = s + world_len(s, '\'');
 			++i;
 		}
 		else if(*s == '\"')
 		{
 			++s;
-			copy = copy_word(words, i, s, '\"');
+			copy = copy_word2(words, i, s, '\"');
+			//printf ("copy_word >>>>> %s\n", s);
 			if (!copy)
 			{
 				free_split(words, i);
 				return (NULL);
 			}
 			--count;
-			printf ("%d\n", count);
-			s = s + world_len(s, '\"');
+			//printf ("%d\n", count);
+			//printf (">>>>>>>>>>>> >>>>> %s\n", s);
+			s = s + world_len2(s, '\"');
+			
 			++i;
 		}
 		else if (*s != c && *s != '\'' && *s != '\"')
 		{
-			copy = copy_word2(words, i, s, c);
+			copy = copy_word(words, i, s, c);
 			if (!copy)
 			{
 				free_split(words, i);
 				return (NULL);
 			}
-			s = s + world_len2(s, c);
+			s = s + world_len(s, c);
 			i++;
 		}
 		else

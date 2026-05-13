@@ -16,9 +16,9 @@ typedef struct s_list
 } t_list;
 
 
-char	**ft_split(char const *s, char c);
-char	*ft_strtrim(char const *s1, char const *set);
-char	*spaces(char *str, char *set);
+char	**ft_split(const char *s, char c);
+char	*ft_strtrim(char const *s1, const char  *set);
+char	*spaces(const char *str, char *set);
 
 /* * * * * * * linked list * * * * * * * * */
 

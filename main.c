@@ -11,7 +11,7 @@ int main()
 	char **arr;
 	char *set = " \n\t";
 	char *trim;
-	char *trim2;
+	//char *trim2;
 	char c;
 	int i;
 	t_list *lst;
@@ -32,12 +32,14 @@ int main()
 		while (arr[i] != NULL)
 		{
 			trim = ft_strtrim(arr[i], set);
-			trim2 = spaces(trim, set);
-			lst = str_to_lst(trim2);
-			printf ("list %s \n", lst -> str);
+			//trim2 = spaces(trim, set);
+			//printf("str[i] >>>>> %s\n", trim);
+			lst = str_to_lst(trim);
+			
+			printf ("%s \n", lst -> str);
 			free(arr[i]);
 			free(trim);
-			free(trim2);
+			//free(trim2);
 			++i;
 		}
 		free(arr);

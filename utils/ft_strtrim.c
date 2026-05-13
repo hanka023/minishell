@@ -38,7 +38,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	return (trimmed);
 }
 
-char *spaces(char *str, char *set)
+char *spaces(const char *str, char *set)
 {
 	size_t	start;
 	size_t	i;
