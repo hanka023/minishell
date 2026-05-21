@@ -28,7 +28,6 @@ int main()
 
 		line = ft_strtrim(line, set);
 		line = spaces(line, set);
-
 		lst = my_split(line);
 
 		//arr = ft_split(line, c);

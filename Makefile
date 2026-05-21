@@ -3,7 +3,7 @@ NAME = mini
 
 # Překladač a příznaky
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I gnl -I utils -I fPie
+CFLAGS = -Wall -Wextra -Werror -I gnl -I utils -I fPie -g
 
 # Seznam všech .c souborů
 SRC = main.c \
@@ -14,7 +14,9 @@ SRC = main.c \
 	  utils/split_utils.c \
 	  utils/ft_split.c \
 	  utils/my_lst.c \
-	  utils/my_split.c
+	  utils/my_split.c \
+	  utils/my_split_utils.c \
+	  utils/metachar.c
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)

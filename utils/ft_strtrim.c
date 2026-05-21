@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-static int	is_in_set(char c, char *set)
+int	is_in_set(char c, char *set)
 {
 	while (*set)
 	{
@@ -38,48 +38,51 @@ char	*ft_strtrim(char *s1, char *set)
 	return (trimmed);
 }
 
-char *spaces( char *str, char *set)
+int trimmed_len(char *str, char *set)
 {
-	size_t	start;
-	size_t	i;
-	char	*trimmed;
-	int		space;
 	int		len;
+	int		space;
 
 	space = 0;
-	start = 0;
-	i = 0;
 	len = 0;
-
-	while (str[start] != '\0')
+	while (*str != '\0')
 	{
-		if (is_in_set(str[start], set))
+		if (is_in_set(*str, set))
 		{
 			if (space == 0)
 			{
-				++start;
+				++str;
 				++len;
 				space = 1;
 			}
 			else if (space == 1)
-			{
-				++start;
-			}
+				++str;
 		}
 		else 
 		{		
-			++start;
+			++str;
 			++len;
 			space = 0;
 		}
 	}
+	return (len);
+}
+
+char *spaces( char *str, char *set)
+{
+	size_t	i;
+	char	*trimmed;
+	int		start;
+	int		len;
+	int		space;
+	
+	i = 0;
+	len = trimmed_len(str, set);
 	trimmed = malloc(sizeof(char) * (len + 1));
 	if (!trimmed)
 		return (NULL);
-
 	start = 0;
 	space = 0;
-	
 	while (str[start] != '\0')
 	{
 		if (is_in_set(str[start], set))
@@ -95,9 +98,7 @@ char *spaces( char *str, char *set)
 				space = 1;
 			}
 			else if (space == 1)
-			{
 				++start;
-			}
 		}
 		else 
 		{

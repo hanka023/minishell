@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/05/12 17:27:27 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/05/21 21:16:47 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,6 @@ int	world_len(char *s, char c)
     return (len);
 }
 
-int	world_len2(char *s, char c)
-{
-	int	len;
-
-	len = 0;
-    while (s[len] != '\0' && s[len] != c  && s[len] != '\''  && s[len] != '\"' )
-        ++len;
-    return (len);
-}
-
 void	free_split(char **result, int count)
 {
 	int	i;
@@ -79,113 +69,19 @@ int	copy_word(char **result, int i, char *s, char c)
     set = " \n\t";
 	str0 = ft_strtrim(s, set);
 	str = spaces(str0, set);
-
 	len = (world_len(str, c));
 	result[i] = malloc(sizeof(char) * (len + 1));
 	if (!result[i])
-		return (0);
-    
+		return (0);   
     while (j < len)
 	{
 		result[i][j] = s[j];
 		j++;
 	}
 	result[i][len] = '\0';
-
 	printf ("split@copy_word %s\n", result[i]);
 	return (1);
 }
-
-int	copy_word2(char **result, int i, char *s, char c)
-{
-	int	j;
-	int	len;
-
-	j = 0;
-    
-	len = (world_len2(s, c));
-	result[i] = malloc(sizeof(char) * (len + 1));
-	if (!result[i])
-		return (0);
-
-    while (j < len)
-	{
-		result[i][j] = s[j];
-		j++;
-	}
-
-	
-	result[i][len] = '\0';
-	return (1);
-}
-
-// char	**my_split(char *s)
-// {
-// 	char	**words;
-// 	int		i;
-// 	int count = 0;
-// 	int copy;
-// 	//char *set = " \t\n";
-// 	char c = ' ';
-
-// 	i = 0;
-// 	count = count_words(s, c);
-// 	words = (char **)malloc(sizeof(char *) * (count + 1));
-// 	if (!s || !words)
-// 		return (NULL);
-		
-// 	while (*s)
-// 	{
-// 		if(*s == '\'')
-// 		{
-// 			++s;
-// 			copy = copy_word2(words, i, s, '\'');
-// 			if (!copy)
-// 			{
-// 				free_split(words, i);
-// 				return (NULL);
-// 			}
-// 			--count;
-// 			//printf ("%d\n", count);
-// 			s = s + world_len(s, '\'');
-// 			++i;
-// 		}
-// 		else if(*s == '\"')
-// 		{
-// 			++s;
-// 			copy = copy_word2(words, i, s, '\"');
-// 			//printf ("copy_word >>>>> %s\n", s);
-// 			if (!copy)
-// 			{
-// 				free_split(words, i);
-// 				return (NULL);
-// 			}
-// 			--count;
-// 			//printf ("%d\n", count);
-// 			//printf (">>>>>>>>>>>> >>>>> %s\n", s);
-// 			s = s + world_len2(s, '\"');
-			
-// 			++i;
-// 		}
-// 		else if (*s != ' ' && *s != '\'' && *s != '\"')
-// 		{
-// 			copy = copy_word(words, i, s, c);
-// 			if (!copy)
-// 			{
-// 				free_split(words, i);
-// 				return (NULL);
-// 			}
-// 			s = s + world_len(s, c);
-// 			i++;
-// 		}
-// 		else
-// 			s++;
-// 	}
-// 	words[i] = (NULL);
-// 	return (words);
-// }
-
-
 
 char	**ft_split(char  *s, char c)
 {
@@ -205,7 +101,6 @@ char	**ft_split(char  *s, char c)
 				free_split(words, i);
 				return (NULL);
 			}
-			
 			s = s + world_len(s, c);
 			i++;
 		}
