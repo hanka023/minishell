@@ -2,43 +2,6 @@
 #include "../minishell.h"
 
 
-// char	*my_copy_word(char *start, char *end)
-// {
-// 	int	j;
-// 	int i;
-// 	int	len;
-// 	char *str0;
-// 	char *str;
-// 	char *set;
-// 	char *copy;
-// 	char c;
-
-// 	i = 0;
-// 	j = 0;
-// 	c = ' ';
-//     set = " \n\t";
-// 	copy = NULL;
-// 	str0 = ft_strtrim(copy, set);
-// 	str = spaces(str0, set);
-
-// 	len = (world_len(str, c));
-// 	copy = malloc(sizeof(char) * (len + 1));
-// 	if (!copy)
-// 		return (0);
-    
-//     while (j < len)
-// 	{
-// 		copy[i] = start[j];
-// 		++i;
-// 		++j;
-// 	}
-// 	copy[i] = '\0';
-
-// 	printf ("split@copy_word %s\n", copy);
-// 	printf ("split@copy_word %s\n", end);
-// 	return (copy);
-// }
-
 t_list *my_split(char  *str)
 {
 	char	*copy;
@@ -82,7 +45,6 @@ t_list *my_split(char  *str)
 		}
 		else if (is_in_set(*str, metachar_set))
 			metachar(str);
-
 	}
 	return (head);
 }

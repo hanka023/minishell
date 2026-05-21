@@ -15,7 +15,11 @@ typedef struct s_list
 	struct s_list	*next;
 } t_list;
 
-typedef struct 
+// typedef struct s_spaces
+// {
+// 	int len;
+// 	int space;
+// } t_spaces
 
 
 /* * * * * * * ft_split * * * * * * * * */
@@ -39,7 +43,6 @@ char	*spaces( char *str, char *set); //?????
 /* * * * * * * my_split * * * * * * * * */
 
 
-int		is_in_set(char c, char *set);
 t_list *my_split(char *s);
 t_list *my_str_to_lst(t_list **head, char *str);
 char	*my_copy_word(char *start, char *end);
