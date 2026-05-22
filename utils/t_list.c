@@ -56,29 +56,32 @@ void	add_back(t_list **head, t_list *lst)
 	while (tmp -> next != NULL)
 		tmp = tmp -> next;
 	tmp -> next = lst;
+	return;
 }
 
-void print_list(t_list *lst)
+void print_list(t_list **lst)
 {
 	t_list *print;
 
- 	print = lst;
+ 	print = *lst;
 
     while (print != NULL)
     {
       	printf("%s\n", print -> str);
 	   	print = print -> next;
     }
+	return;
 }
 
-void free_list(t_list *lst)
+void free_list(t_list **lst)
 {
 	t_list *free_list;
 
-	while (lst != NULL)
+	while (*lst != NULL)
 	{
-		free_list = (lst) -> next;
-		free(lst);
-		lst = free_list;
+		free_list = (*lst) -> next;
+		free(*lst);
+		*lst = free_list;
 	}
+	return;
 }

@@ -2,10 +2,10 @@
 #include "../minishell.h"
 
 
-t_list *my_split(char  *str)
+t_list **my_split(char  *str)
 {
 	char	*copy;
-	t_list *head;
+	t_list **head;
 	t_list *lst;
 	char *set;
 	char *metachar_set;
@@ -39,12 +39,13 @@ t_list *my_split(char  *str)
 			if (!scpy)
 				return (0);
 			lst = new_list(copy);
-			add_back(&head, lst); 
+			printf("list v my_split %s\n", lst->str);
+			add_back(head, lst); 
 			free (copy);
 			++token;
 		}
 		else if (is_in_set(*str, metachar_set))
-			metachar(str);
+			metachar(str, head);
 	}
 	return (head);
 }

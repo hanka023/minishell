@@ -13,7 +13,6 @@ SRC = main.c \
 	  utils/t_list.c \
 	  utils/split_utils.c \
 	  utils/ft_split.c \
-	  utils/my_lst.c \
 	  utils/my_split.c \
 	  utils/my_split_utils.c \
 	  utils/metachar.c

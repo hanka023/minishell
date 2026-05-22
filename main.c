@@ -8,7 +8,7 @@
 int main()
 {
 	char *line;
-	t_list *lst;
+	t_list **lst;
 	//int nb;
 	//char **arr;
 	char *set;
@@ -29,7 +29,7 @@ int main()
 		line = ft_strtrim(line, set);
 		line = spaces(line, set);
 		lst = my_split(line);
-
+		//printf("line v main %s\n", line);
 		//arr = ft_split(line, c);
 		// nb = count_words(line, c);
 		// lst = str_to_lst( nb,arr);
@@ -42,4 +42,5 @@ int main()
 		free(line);
 		free_list (lst);
 	}
+	return(0);
 }

@@ -43,7 +43,7 @@ char	*spaces( char *str, char *set); //?????
 /* * * * * * * my_split * * * * * * * * */
 
 
-t_list *my_split(char *s);
+t_list **my_split(char *s);
 t_list *my_str_to_lst(t_list **head, char *str);
 char	*my_copy_word(char *start, char *end);
 
@@ -62,13 +62,14 @@ char	*ft_strtrim(char *s1, char  *set);
 char	*spaces(char *str, char *set);
 
 
-/* * * * * * * linked list * * * * * * * * */
+/* * * * * * * t_list.c * * * * * * * * */
 
 t_list	*str_to_lst(int argc, char **argv);
 t_list	*new_list(char *str);
 void	add_back(t_list **head, t_list *new);
-void	print_list(t_list *begin_list);
-void	free_list(t_list *lst);
+
+void	print_list(t_list **begin_list);
+void	free_list(t_list **lst);
 
 
 /* * * * * * split_utils * * * * * */
@@ -87,8 +88,8 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 /* * * * * * * metachar * * * * * * * * */
 
 
-void	metachar(char *str);
-void	pipe_char(char *str);
+void	metachar(char *str, t_list **head);
+void	pipe_char(char *str, t_list **head);
 void	red_in(char *str);
 void	red_out(char *str);
 
