@@ -109,10 +109,10 @@ int print_word(char *str, t_list **head)
 	len = str - start;
 	copy = malloc (sizeof (char) * (len + 1));
 	if (copy == NULL)
-	   	return;	
+	   	return(0);	
 	scpy = ft_strlcpy (copy, start, len + 1);
 	if (!scpy)
-		return;
+		return(0);
 	lst = new_list(copy);
 	printf("list v my_split %s\n", lst -> str);
 	add_back(head, lst); 

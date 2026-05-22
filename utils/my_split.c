@@ -34,10 +34,10 @@ t_list *my_split(char  *str)
 			++str;
 
 		if (!is_in_set(*str, set) && !is_in_set(*str, metachar_set))
-			{
-				len = print_word(str, &head);
-				str = str + len;
-			}
+		{
+			len = print_word(str, &head);
+			str = str + len;
+		}
 		else if (is_in_set(*str, metachar_set))
 			metachar(str, &head);
 		++str;
