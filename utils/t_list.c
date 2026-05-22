@@ -73,15 +73,15 @@ void print_list(t_list **lst)
 	return;
 }
 
-void free_list(t_list **lst)
+void free_list(t_list *lst)
 {
 	t_list *free_list;
 
-	while (*lst != NULL)
+	while (lst != NULL)
 	{
-		free_list = (*lst) -> next;
-		free(*lst);
-		*lst = free_list;
+		free_list = (lst) -> next;
+		free(lst);
+		lst = free_list;
 	}
 	return;
 }

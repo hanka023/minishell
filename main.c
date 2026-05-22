@@ -8,9 +8,7 @@
 int main()
 {
 	char *line;
-	t_list **lst;
-	//int nb;
-	//char **arr;
+	t_list *lst;
 	char *set;
 	//char c;
 
@@ -20,7 +18,6 @@ int main()
 	//c = ' ';
 	while (1)
 	{
-		
 		write(1, "minishell$ ", 11);
 		line = get_next_line(0);
 		if(!line)
@@ -34,7 +31,7 @@ int main()
 		// nb = count_words(line, c);
 		// lst = str_to_lst( nb,arr);
 		
-		print_list(lst);
+		print_list(&lst);
 
 		//my_lst(line);
 
