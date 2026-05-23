@@ -7,15 +7,12 @@ CFLAGS = -Wall -Wextra -Werror -I gnl -I utils -I fPie -g -fsanitize=address
 
 # Seznam všech .c souborů
 SRC = main.c \
-      gnl/get_next_line.c \
-      gnl/get_next_line_utils.c \
-	  utils/ft_strtrim.c \
-	  utils/t_list.c \
-	  utils/split_utils.c \
-	  utils/ft_split.c \
-	  utils/my_split.c \
-	  utils/my_split_utils.c \
-	  utils/metachar.c
+		gnl/get_next_line_utils.c \
+		gnl/get_next_line.c \
+		utils/metachar.c \
+		utils/my_split_utils.c \
+		utils/my_split.c \
+		utils/t_list.c 
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)

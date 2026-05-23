@@ -7,35 +7,17 @@
 
 int main()
 {
-	char *line;
-	t_list *lst;
-	//char *set;
-	//char c;
+	char	*line;
+	t_list	*lst;
 
-	
-	//arr = NULL;
-	//set = " \n\t";
-	//c = ' ';
 	while (1)
 	{
 		write(1, "minishell$ ", 11);
 		line = get_next_line(0);
 		if(!line)
 			return (0);
-
-		// line = ft_strtrim(line, set);
-		// line = spaces(line, set);
 		lst = my_split(line);
-		//printf("line v main %s\n", line);
-		//arr = ft_split(line, c);
-		// nb = count_words(line, c);
-		// lst = str_to_lst( nb,arr);
-		
 		print_list(&lst);
-
-		//my_lst(line);
-
-
 		free(line);
 		free_list (lst);
 	}

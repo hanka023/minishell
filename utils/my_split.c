@@ -1,18 +1,6 @@
  //ft_split na steroidech
 #include "../minishell.h"
 
- void word(char *str)
- {
-	while (*str)
-	{
-		*str = 'o';
-		write (1, str, 1);
-		++str;
-	}
-	write (1, "\n", 1);
-
-	return;
- }
 
 t_list *my_split(char  *str)
 {
@@ -25,9 +13,6 @@ t_list *my_split(char  *str)
 	metachar_set = "|<>";
 	head = NULL;
 	len = 0;
-
-	//printf ("string *str v my_split %s",str);
-
 	while (*str && *str != '\0')
 	{
 		while (*str && is_in_set(*str, set))

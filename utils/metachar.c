@@ -1,17 +1,15 @@
 #include "../minishell.h"
 
-
 int metachar(char *str, t_list **head)
 {
 	int len;
 
-
 	if (*str == '|')
 		len = pipe_char(str, head);
 	else if (*str == '<')
-		red_in(str, head);
+		len = red_in(str, head);
 	else if (*str == '>')
-		red_out(str, head);
+		len = red_out(str, head);
 	return(len);
 }
 
@@ -36,7 +34,6 @@ int pipe_char(char *str, t_list **head)
 	lst = new_list(copy);
 	add_back(head, lst); 
 	free (copy);
-
 	str = str + len;
 	return(len);
 }
@@ -62,7 +59,6 @@ int red_in(char *str, t_list **head)
 	lst = new_list(copy);
 	add_back(head, lst); 
 	free (copy);
-
 	str = str + len;
 	return(len);
 }
@@ -88,26 +84,23 @@ int red_out(char *str, t_list **head)
 	lst = new_list(copy);
 	add_back(head, lst); 
 	free (copy);
-
 	str = str + len;
 	return (len);
 }
 
 int print_word(char *str, t_list **head)
 {
-	int len;
-	char *set;
-	char *start;
-	char *metachar_set;
-	char *copy;
-	ssize_t scpy;
-	t_list *lst;
+	int		len;
+	char	*set;
+	char	*start;
+	char	*copy;
+	ssize_t	scpy;
+	t_list	*lst;
 
-	set = " \t\n";
-	metachar_set = "|<>";
+	set = " \t\n|<>";
 	len = 0;
 	start = str;
-	while(!is_in_set(*str, set) && !is_in_set(*str, metachar_set) && *str !='\0')
+	while(!is_in_set(*str, set) && *str !='\0')
 		++str;	
 	len = str - start;
 	copy = malloc (sizeof (char) * (len + 1));
@@ -120,6 +113,5 @@ int print_word(char *str, t_list **head)
 	add_back(head, lst); 
 	free (copy);	
 	str = str + len;
-
 	return(len);
 }

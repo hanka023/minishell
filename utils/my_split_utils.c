@@ -1,5 +1,15 @@
 #include "../minishell.h"
 
+int	is_in_set(char c, char *set)
+{
+	while (*set)
+	{
+		if (c == *set)
+			return (1);
+		set++;
+	}
+	return (0);
+}
 
 size_t	ft_strlcpy(char *dest, const char *src, size_t n)
 {
