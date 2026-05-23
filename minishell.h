@@ -35,9 +35,17 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 /* * * * * * * my_split * * * * * * * * */
 
 
-t_list *my_split(char *s);
-t_list *my_str_to_lst(t_list **head, char *str);
+t_list	*my_split(char *s);
+t_list	*my_str_to_lst(t_list **head, char *str);
 char	*my_copy_word(char *start, char *end);
+
+
+/* * * * * * * quotes * * * * * * * * */
+
+
+int quotes(char *str, t_list **head);
+int single_quote(char *str, t_list **head);
+int double_quotes(char *str, t_list **head);
 
 
 /* * * * * * * t_list.c * * * * * * * * */

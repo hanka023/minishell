@@ -12,6 +12,7 @@ SRC = main.c \
 		utils/metachar.c \
 		utils/my_split_utils.c \
 		utils/my_split.c \
+		utils/quotes.c \
 		utils/t_list.c 
 
 # Změna koncovek .c na .o pro objekty

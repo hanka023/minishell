@@ -17,6 +17,11 @@ t_list *my_split(char  *str)
 	{
 		while (*str && is_in_set(*str, set))
 			++str;
+		if(*str == '\'' || *str == '"')
+		{
+			len = quotes(str, &head);
+			str = str + len;
+		}
 		if (!is_in_set(*str, set) && !is_in_set(*str, metachar_set))
 		{
 			len = print_word(str, &head);
