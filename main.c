@@ -9,12 +9,12 @@ int main()
 {
 	char *line;
 	t_list *lst;
-	char *set;
+	//char *set;
 	//char c;
 
 	
 	//arr = NULL;
-	set = " \n\t";
+	//set = " \n\t";
 	//c = ' ';
 	while (1)
 	{
@@ -23,8 +23,8 @@ int main()
 		if(!line)
 			return (0);
 
-		line = ft_strtrim(line, set);
-		line = spaces(line, set);
+		// line = ft_strtrim(line, set);
+		// line = spaces(line, set);
 		lst = my_split(line);
 		//printf("line v main %s\n", line);
 		//arr = ft_split(line, c);

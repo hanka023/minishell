@@ -1,18 +1,21 @@
 #include "../minishell.h"
 
 
-void metachar(char *str, t_list **head)
+int metachar(char *str, t_list **head)
 {
+	int len;
+
+
 	if (*str == '|')
-		pipe_char(str, head);
-	// else if (*str == '<')
-	// 	red_in(str);
-	// else if (*str == '>')
-	// 	red_out(str);
-	return;
+		len = pipe_char(str, head);
+	else if (*str == '<')
+		red_in(str, head);
+	else if (*str == '>')
+		red_out(str, head);
+	return(len);
 }
 
-void pipe_char(char *str, t_list **head)
+int pipe_char(char *str, t_list **head)
 {
 	int len;
 	char *start;
@@ -26,19 +29,19 @@ void pipe_char(char *str, t_list **head)
 		len = 2;
 	copy = malloc (sizeof (char) * (len + 1));
 	if (copy == NULL)
-	   	return;
+	   	return(0);
 	scpy = ft_strlcpy (copy, start, len + 1);
 	if (!scpy)
-		return ;
+		return (0);
 	lst = new_list(copy);
 	add_back(head, lst); 
 	free (copy);
 
 	str = str + len;
-	return;
+	return(len);
 }
 
-void red_in(char *str, t_list **head)
+int red_in(char *str, t_list **head)
 {
 	int len;
 	char *start;
@@ -52,19 +55,19 @@ void red_in(char *str, t_list **head)
 		len = 2;
 	copy = malloc (sizeof (char) * (len + 1));
 	if (copy == NULL)
-	   	return;
+	   	return(0);
 	scpy = ft_strlcpy (copy, start, len + 1);
 	if (!scpy)
-		return ;
+		return (0);
 	lst = new_list(copy);
 	add_back(head, lst); 
 	free (copy);
 
 	str = str + len;
-	return;
+	return(len);
 }
 
-void red_out(char *str, t_list **head)
+int red_out(char *str, t_list **head)
 {
 	int len;
 	char *start;
@@ -78,16 +81,16 @@ void red_out(char *str, t_list **head)
 		len = 2;
 	copy = malloc (sizeof (char) * (len + 1));
 	if (copy == NULL)
-	   	return;
+	   	return(0);
 	scpy = ft_strlcpy (copy, start, len + 1);
 	if (!scpy)
-		return ;
+		return(0);
 	lst = new_list(copy);
 	add_back(head, lst); 
 	free (copy);
 
 	str = str + len;
-	return;
+	return (len);
 }
 
 int print_word(char *str, t_list **head)
@@ -114,10 +117,9 @@ int print_word(char *str, t_list **head)
 	if (!scpy)
 		return(0);
 	lst = new_list(copy);
-	printf("list v my_split %s\n", lst -> str);
 	add_back(head, lst); 
 	free (copy);	
 	str = str + len;
-	len = 10;
+
 	return(len);
 }

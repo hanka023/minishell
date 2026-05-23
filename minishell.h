@@ -81,21 +81,18 @@ char	*z2(char *str);
 
 /* * * * * * my_split_utils * * * * * */
 
-int is_in_set(char c, char *set);
+int		is_in_set(char c, char *set);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 
 
 /* * * * * * * metachar * * * * * * * * */
 
 
-void	metachar(char *str, t_list **head);
-void	pipe_char(char *str, t_list **head);
-void	red_in(char *str, t_list **head);
-void	red_out(char *str, t_list **head);
+int		metachar(char *str, t_list **head);
+int		pipe_char(char *str, t_list **head);
+int		red_in(char *str, t_list **head);
+int		red_out(char *str, t_list **head);
 int		print_word(char *str, t_list **head);
-
-
-
 
 #endif
 
