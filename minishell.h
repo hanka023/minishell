@@ -22,7 +22,12 @@ int		metachar(char *str, t_list **head);
 int		pipe_char(char *str, t_list **head);
 int		red_in(char *str, t_list **head);
 int		red_out(char *str, t_list **head);
-int		print_word(char *str, t_list **head);
+
+
+/* * * * * * * word * * * * * * * * */
+
+
+int		word(char *str, t_list **head);
 
 
 /* * * * * * my_split_utils * * * * * */
@@ -43,9 +48,9 @@ char	*my_copy_word(char *start, char *end);
 /* * * * * * * quotes * * * * * * * * */
 
 
-int quotes(char *str, t_list **head);
-int single_quote(char *str, t_list **head);
-int double_quotes(char *str, t_list **head);
+int quotes(char *str);
+int single_quote(char *str);
+int double_quotes(char *str);
 
 
 /* * * * * * * t_list.c * * * * * * * * */

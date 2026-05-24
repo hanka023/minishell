@@ -2,25 +2,23 @@
 
 
 
-int quotes(char *str, t_list **head)
+int quotes(char *str)
 {
 	int len;
 
 	if (*str == '\'')
-		len = single_quote(str, head);
+		len = single_quote(str);
 	else if (*str == '"')
-		len = double_quotes(str, head);
+		len = double_quotes(str);
 	return(len);
 }
 
-int single_quote(char *str, t_list **head)
+
+
+int single_quote(char *str)
 {
 	int len;
 	char *start;
-	char *copy;
-	char scpy;
-	t_list *lst;
-	
 	start = str;
 	len = 0;
 	++str;
@@ -29,26 +27,13 @@ int single_quote(char *str, t_list **head)
 	if (*str == '\'')
 		++str;
 	len = str - start;
-	copy = malloc (sizeof (char) * (len + 1));
-	if (copy == NULL)
-	   	return(0);
-	scpy = ft_strlcpy (copy, start, len + 1);
-	if (!scpy)
-		return (0);
-	lst = new_list(copy);
-	add_back(head, lst); 
-	free (copy);
 	return(len);
 }
 
-int double_quotes(char *str, t_list **head)
+int double_quotes(char *str)
 {
 	int len;
 	char *start;
-	char *copy;
-	char scpy;
-	t_list *lst;
-	
 	start = str;
 	len = 0;
 	++str;
@@ -57,15 +42,6 @@ int double_quotes(char *str, t_list **head)
 	if (*str == '\"')
 		++str;
 	len = str - start;
-	copy = malloc (sizeof (char) * (len + 1));
-	if (copy == NULL)
-	   	return(0);
-	scpy = ft_strlcpy (copy, start, len + 1);
-	if (!scpy)
-		return (0);
-	lst = new_list(copy);
-	add_back(head, lst); 
-	free (copy);
 	return(len);
 }
 

@@ -88,30 +88,3 @@ int red_out(char *str, t_list **head)
 	return (len);
 }
 
-int print_word(char *str, t_list **head)
-{
-	int		len;
-	char	*set;
-	char	*start;
-	char	*copy;
-	ssize_t	scpy;
-	t_list	*lst;
-
-	set = " \t\n|<>";
-	len = 0;
-	start = str;
-	while(!is_in_set(*str, set) && *str !='\0')
-		++str;	
-	len = str - start;
-	copy = malloc (sizeof (char) * (len + 1));
-	if (copy == NULL)
-	   	return(0);	
-	scpy = ft_strlcpy (copy, start, len + 1);
-	if (!scpy)
-		return(0);
-	lst = new_list(copy);
-	add_back(head, lst); 
-	free (copy);	
-	str = str + len;
-	return(len);
-}

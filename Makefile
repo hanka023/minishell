@@ -13,7 +13,8 @@ SRC = main.c \
 		utils/my_split_utils.c \
 		utils/my_split.c \
 		utils/quotes.c \
-		utils/t_list.c 
+		utils/t_list.c \
+		utils/word.c
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)

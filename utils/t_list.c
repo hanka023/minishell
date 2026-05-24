@@ -1,8 +1,6 @@
 #include "../minishell.h"
 
 
-
-
 t_list *str_to_lst(int argc, char **argv)
 {
 	int i;
