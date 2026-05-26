@@ -9,12 +9,13 @@ CFLAGS = -Wall -Wextra -Werror -I gnl -I utils -I fPie -g -fsanitize=address
 SRC = main.c \
 		gnl/get_next_line_utils.c \
 		gnl/get_next_line.c \
-		utils/metachar.c \
-		utils/my_split_utils.c \
-		utils/my_split.c \
-		utils/quotes.c \
-		utils/t_list.c \
-		utils/word.c
+		lexer/metachar.c \
+		lexer/my_split_utils.c \
+		lexer/my_split.c \
+		lexer/quotes.c \
+		lexer/t_list.c \
+		lexer/word.c \
+		src/checker.c
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)

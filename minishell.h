@@ -63,5 +63,11 @@ void	print_list(t_list **begin_list);
 void	free_list(t_list *lst);
 
 
+
+/* * * * * * * t_list.c * * * * * * * * */
+
+
+int checker(t_list *lst);
+
 #endif
 

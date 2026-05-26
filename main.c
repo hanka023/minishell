@@ -9,6 +9,8 @@ int main()
 {
 	char	*line;
 	t_list	*lst;
+	int check = 0;
+	//int bullshit = 0;
 
 	while (1)
 	{
@@ -17,7 +19,11 @@ int main()
 		if(!line)
 			return (0);
 		lst = my_split(line);
-		print_list(&lst);
+		check = checker(lst);
+		if (check == 0)
+			print_list(&lst);
+		else if (check == 1)
+			printf("bullshit detected \n");
 		free(line);
 		free_list (lst);
 	}
