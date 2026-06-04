@@ -57,11 +57,11 @@ void	add_back(t_list **head, t_list *lst)
 	return;
 }
 
-void print_list(t_list **lst)
+void print_list(t_list *lst)
 {
 	t_list *print;
 
- 	print = *lst;
+ 	print = lst;
 
     while (print != NULL)
     {

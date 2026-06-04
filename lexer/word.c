@@ -19,7 +19,7 @@ int word(char *str, t_list **head)
 		len = 0;
 		if (*str == '\'' || *str == '"')
 		{ 
-			len = quotes(str, head); 
+			len = quotes(str); 
 			str = str + len;
 		}
 		

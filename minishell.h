@@ -4,8 +4,11 @@
 
 #include <stdio.h>
 #include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 #include "gnl/get_next_line.h"
-
+#include "libft/libft.h"
+#include "src/parser.h"
 
 typedef struct s_list
 {
@@ -59,15 +62,18 @@ int double_quotes(char *str);
 t_list	*str_to_lst(int argc, char **argv);
 t_list	*new_list(char *str);
 void	add_back(t_list **head, t_list *new);
-void	print_list(t_list **begin_list);
+void	print_list(t_list *begin_list);
 void	free_list(t_list *lst);
-
 
 
 /* * * * * * * t_list.c * * * * * * * * */
 
 
 int checker(t_list *lst);
+
+void expander(t_list *lst);
+void expand(char *string);
+
 
 #endif
 

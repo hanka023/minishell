@@ -3,7 +3,12 @@ NAME = mini
 
 # Překladač a příznaky
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -I gnl -I utils -I fPie -g -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils -I fPie -g -fsanitize=address
+
+LDFLAGS     = -Llibft -lft 
+LIBFT_DIR   = libft
+LIBFT       = $(LIBFT_DIR)/libft.a
+
 
 # Seznam všech .c souborů
 SRC = main.c \
@@ -15,7 +20,9 @@ SRC = main.c \
 		lexer/quotes.c \
 		lexer/t_list.c \
 		lexer/word.c \
-		src/checker.c
+		src/checker.c \
+		src/expander.c	\
+		src/getenv.c
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)
