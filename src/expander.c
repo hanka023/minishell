@@ -66,23 +66,14 @@ char *get_env(char *str)
 	t_env *env;
 	char *argument;
 
-	//str = NULL;
 	argument = NULL;
 	env = env_to_lst();
-// printf (".......get env jede.......\n");
 
-// printf (".....*str ..%s.......\n",str);
-//printf (".....value ..%s.......\n",env -> value);
 	while (env != NULL)
 	{
-
-		//printf ("......while jede.......\n");
 		if (ft_strcmp (str, env -> name) != 0)
-			//printf (".......%s.......\n",env -> value);
 		env = env -> next;
-		
 	}
-
 	return(argument);
 }
 
@@ -92,7 +83,6 @@ void check_str (char *str)
 	char *copy;
 	int stav;
 
-	// copy = NULL;
 	stav = 0;
 	while (*str)
 	{
@@ -121,14 +111,10 @@ void expander(t_list *lst)  // *lst je hlavicka
 	//copy = NULL;
 	while (lst != NULL)
 	{
-
 		str = lst -> str;
 		check_str (str);
 		lst = lst -> next;
-		//printf("expander lst -----%s \n", lst -> str);
-	
 	}
-	//printf("expander: str co posilam z input -----%s \n", str);
-
+	
 	return;
 }
