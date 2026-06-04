@@ -5,51 +5,54 @@ t_env *env_to_lst()
 {
 	//int i;
 	t_env *head;
-	//t_env *env;
-	static char **environ;
-	char **env = environ;
+	t_env *env;
+	extern char **environ;
+	char **copy_environ = environ;
 
 	head = NULL;
 	//env = NULL;
 	printf ("......en to lst jede......\n");
 
 
-	while(*env)
+	while(*copy_environ)
 	{
-
 		printf ("......while jede......\n");
-		// env = new_env(*environ);
+		env = new_env(*copy_environ);
+		printf ("......env %s......\n", env -> str);
 		// env_add_back(&head, env); 
-		++env;
+		++copy_environ;
 	}
 	return(head);
 }
 
 void env_name(char *str, t_env *env)
 {
-	int stav;
-	int i;
-	char *name;
+	
 
-	stav = 0;
-	i = 0;
-	name = NULL;
-	while (str[i] != '\0')
+	char *name;
+	
+	int len; 
+
+	len = 0;
+
+	name  = str;
+	printf ("  ....env_name jede ....\n");
+
+	while (name[len] != '=' && name[len] != '\0')
+		++len;
+	if (len == 0)
 	{
-		if (str[i] == '=')
-			stav = 1;
-		++i;
-	}
-	i = 0;
-	if (stav == 1)
-	{
-		while (str[i] != '=' && str[i] != '\0')
-			name[i] = str[i];
-		name[i] = '\0';
-		env -> name = ft_strdup(name);
-	}
-	else
 		env -> name = NULL;
+		return;
+	}
+	name[len] = '\0';
+
+	env -> name = ft_strdup(name);
+
+	printf ("  ....env_name: %s....\n", name);
+	if (len == 0)
+		env -> name = NULL;
+
 	return;
 }
 
