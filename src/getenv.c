@@ -16,10 +16,10 @@ t_env *env_to_lst()
 
 	while(*copy_environ)
 	{
-		printf ("......while jede......\n");
+	//	printf ("......while jede......\n");
 		env = new_env(*copy_environ);
-		printf ("......env %s......\n", env -> str);
-		// env_add_back(&head, env); 
+		//printf ("env %s    \n", env -> str);
+		env_add_back(&head, env); 
 		++copy_environ;
 	}
 	return(head);
@@ -36,7 +36,7 @@ void env_name(char *str, t_env *env)
 	len = 0;
 
 	name  = str;
-	printf ("  ....env_name jede ....\n");
+	//printf ("  ....env_name jede ....\n");
 
 	while (name[len] != '=' && name[len] != '\0')
 		++len;
@@ -49,7 +49,7 @@ void env_name(char *str, t_env *env)
 
 	env -> name = ft_strdup(name);
 
-	printf ("  ....env_name: %s....\n", name);
+	printf ("  ....env_name: %s....\n", env -> name);
 	if (len == 0)
 		env -> name = NULL;
 
