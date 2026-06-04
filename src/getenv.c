@@ -11,7 +11,7 @@ t_env *env_to_lst()
 
 	head = NULL;
 	//env = NULL;
-	printf ("......en to lst jede......\n");
+	//printf ("......en to lst jede......\n");
 
 
 	while(*copy_environ)
@@ -49,7 +49,7 @@ void env_name(char *str, t_env *env)
 
 	env -> name = ft_strdup(name);
 
-	printf ("  ....env_name: %s....\n", env -> name);
+	//printf ("  ....env_name: %s....\n", env -> name);
 	if (len == 0)
 		env -> name = NULL;
 
@@ -71,7 +71,7 @@ void env_value(char *str, t_env *env)
 	}
 	if (stav == 1)
 	{
-		printf ("env_value - kontrola znaku \n");
+		//printf ("env_value - kontrola znaku \n");
 		env -> value = ft_strdup(str);
 	}
 	else

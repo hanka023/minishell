@@ -92,7 +92,7 @@ void check_str (char *str)
 	char *copy;
 	int stav;
 
-	copy = NULL;
+	// copy = NULL;
 	stav = 0;
 	while (*str)
 	{
