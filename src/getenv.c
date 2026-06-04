@@ -27,14 +27,11 @@ t_env *env_to_lst()
 
 void env_name(char *str, t_env *env)
 {
-	
-
 	char *name;
 	
 	int len; 
 
 	len = 0;
-
 	name  = str;
 	//printf ("  ....env_name jede ....\n");
 
@@ -60,22 +57,20 @@ void env_name(char *str, t_env *env)
 
 void env_value(char *str, t_env *env)
 {
-	int stav;
 	
-	stav = 0;
-	while (*str)
-	{
-		if ((*str) == '=')
-			stav = 1;
-		++str;
-	}
-	if (stav == 1)
-	{
-		//printf ("env_value - kontrola znaku \n");
-		env -> value = ft_strdup(str);
-	}
-	else
+	char *value;
+
+	value = str;
+	// printf ("env value jede\n" );
+	// printf (" value: %s\n", str);
+	while (*value != '=' && *value != '\0')
+		++value;
+	if (*value == '=')
+		++value;
+	else if (*value == '\0')
 		env -> value = NULL;
+	env -> value = ft_strdup(value);
+	printf (" value: %s\n", env -> value);
 	return;
 } 
 
@@ -93,7 +88,7 @@ t_env *new_env(char *str)
 		return (NULL);
 	}
 	env_name (str, env);
-
+	env_value (str, env);
 	env -> next = NULL;
 	return (env);
 } 
