@@ -54,19 +54,18 @@ void env_name(char *str, t_env *env)
 void env_value(char *str, t_env *env)
 {
 	
-	char *value;
 
-	value = str;
-	// printf ("env value jede\n" );
-	// printf (" value: %s\n", str);
-	while (*value != '=' && *value != '\0')
-		++value;
-	if (*value == '=')
-		++value;
-	else if (*value == '\0')
-		env -> value = NULL;
-	env -> value = ft_strdup(value);
-	//printf (" value: %s\n", env -> value);
+	
+	while (*str != '=' && *str != '\0')
+		++str;
+
+	if (*str == '=' && *str != '\0')
+		++str;
+	env -> value = ft_strdup(str);
+		
+
+
+	printf (" value: %s\n", env -> value);
 	return;
 } 
 
@@ -74,6 +73,8 @@ void env_value(char *str, t_env *env)
 t_env *new_env(char *str)
 {
 	t_env *env;
+	char *copy;
+	
 	env = malloc (sizeof (t_env));
 	if (!env)
 		return (NULL);
@@ -83,7 +84,8 @@ t_env *new_env(char *str)
 		free(env);
 		return (NULL);
 	}
-	env_name (str, env);
+	copy = ft_strdup (str);
+	env_name (copy, env);
 	env_value (str, env);
 	env -> next = NULL;
 	return (env);

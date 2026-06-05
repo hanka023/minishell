@@ -68,16 +68,18 @@ char *find_env(char *str, t_env *env)
 {
 	
  //print_env(env);
-
+	printf ("find env jede - hlredam  %s\n",  str);
 	while (env != NULL)
 
 	{
-		printf ("while jede  %s\n", env -> str);
+		//printf ("str %s\n", env -> str);
+		//printf ("name  %s\n", env -> name);
+		//printf ("value  %s\n", env -> value);
 
 		if (ft_strcmp (str, env -> name) == 0)
 		{
 			printf ("strcmp jede  %s\n", env -> value);
-			return (env -> value);
+			//return (env -> value);
 			printf ("value  %s\n", env -> value);
 		}
 		env = env -> next;
