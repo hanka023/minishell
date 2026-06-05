@@ -35,15 +35,14 @@ int main(int argc, char *argv[])
 		line = get_next_line(0);
 		if(!line)
 			return (0);
-		lst = my_split(line);
-		check = checker(lst);
-
+		lst = my_split(line);  //splitne line do lst
+		check = checker(lst); //ma kontrolovat radek 
 		if (check == 0)
 			print_list(lst);
 		else if (check == 1)
 			printf("bullshit detected \n");
 		//print_list(lst);
-		expander(lst);
+		expander(lst); //expanduje
 		free(line);
 		free_list (lst);
 	}

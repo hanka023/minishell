@@ -3,16 +3,12 @@
 
 t_env *env_to_lst()
 {
-	//int i;
 	t_env *head;
 	t_env *env;
 	extern char **environ;
 	char **copy_environ = environ;
 
 	head = NULL;
-	//env = NULL;
-	//printf ("......en to lst jede......\n");
-
 
 	while(*copy_environ)
 	{
@@ -70,7 +66,7 @@ void env_value(char *str, t_env *env)
 	else if (*value == '\0')
 		env -> value = NULL;
 	env -> value = ft_strdup(value);
-	printf (" value: %s\n", env -> value);
+	//printf (" value: %s\n", env -> value);
 	return;
 } 
 
@@ -113,11 +109,11 @@ void	env_add_back(t_env **head, t_env *env)
 	return;
 }
 
-void print_env(t_env **env)
+void print_env(t_env *env)
 {
 	t_env *print;
 
- 	print = *env;
+ 	print = env;
 
     while (print != NULL)
     {
