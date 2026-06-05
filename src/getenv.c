@@ -65,7 +65,7 @@ void env_value(char *str, t_env *env)
 		
 
 
-	printf (" value: %s\n", env -> value);
+	// printf (" value: %s\n", env -> value);
 	return;
 } 
 
