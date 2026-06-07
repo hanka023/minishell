@@ -70,6 +70,17 @@ void	free_list(t_list *lst);
 
 
 
+/* * * * * * * t_list.c * * * * * * * * */
+
+
+int checker(t_list *lst);
+void expander(t_list *lst);
+void expand(char *string);
+
+
+
+
+
 
 
 

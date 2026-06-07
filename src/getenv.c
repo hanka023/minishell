@@ -1,4 +1,9 @@
+
+#include <string.h>
 #include "parser.h"
+#include "../minishell.h"
+
+
 
 
 t_env *env_to_lst()

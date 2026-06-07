@@ -24,13 +24,12 @@ typedef struct s_env
 	struct s_env	*next;
 } t_env;
 
-typedef struct s_list
-{
-	char			*str; 
-	struct s_list	*prev;
-	struct s_list	*next;
-} t_list;
-
+// typedef struct s_list
+// {
+// 	char			*str; 
+// 	struct s_list	*prev;
+// 	struct s_list	*next;
+// } t_list;
 
 /* * * * * * * checker.c  * * * * * * * * */
 
@@ -44,17 +43,16 @@ int		my_strlen2(char **str);
 char	*f_strdup(char *str);
 int		ft_strcmp(char *s1, char *s2);
 char	*get_env(char *str);
-char	*check_str (char *str);
-void	expander(t_list *lst);
+char	*find_$(char *str);
 
 
 
 /* * * * * * * checker.c  * * * * * * * * */
 
 
-int checker(t_list *lst);
-void expander(t_list *lst);
-void expand(char *string);
+//int checker(t_list *lst);
+// void expander(t_list *lst);
+//void expand(char *string);
 
 
 /* * * * * * * getenv  * * * * * * * * */

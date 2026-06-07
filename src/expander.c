@@ -1,6 +1,10 @@
 
-#include "../minishell.h"
+
 #include <string.h>
+#include "parser.h"
+#include "../minishell.h"
+
+
 
 
 int my_strlen(char *str)
@@ -22,8 +26,6 @@ int my_strlen2(char **str)
 		++len;
 	return (len);
 }
-
-
 
 
 int	ft_strcmp(char *s1, char *s2)
@@ -66,21 +68,17 @@ int	ft_strcmp(char *s1, char *s2)
 
 char *find_env(char *str, t_env *env)
 {
-	
- //print_env(env);
-	printf ("find env jede - hlredam  %s\n",  str);
+
 	while (env != NULL)
 
 	{
-		//printf ("str %s\n", env -> str);
-		//printf ("name  %s\n", env -> name);
-		//printf ("value  %s\n", env -> value);
+
 
 		if (ft_strcmp (str, env -> name) == 0)
 		{
-			printf ("strcmp jede  %s\n", env -> value);
-			//return (env -> value);
-			printf ("value  %s\n", env -> value);
+			
+			return (env -> value);
+			
 		}
 		env = env -> next;
 	}
@@ -100,7 +98,7 @@ void check_last_qt(char *str)
 	return;
 }
 
-char *check_str(char *str)  //hledam $USER 
+char *find_$(char *str)  //hledam $USER 
 {
 	char *copy;
 	int stav;
@@ -119,7 +117,7 @@ char *check_str(char *str)  //hledam $USER
 			copy = ft_strdup (str); 
 			if (!copy)
 				return (NULL); //copy = USER (napr)
-			check_last_qt(copy);
+			check_last_qt(copy); //cut last " 
 			return (copy);
 		}
 		++str;
@@ -131,22 +129,25 @@ char *check_str(char *str)  //hledam $USER
 void expander(t_list *lst)  // *lst je hlavicka 
 {
 	char *name;
-	t_env *environ_head;
+	char *value;
+	t_env *env;
 
-	environ_head = env_to_lst();
+	env = env_to_lst();
 
-	//print_env(environ_head);
+
 
 	while (lst != NULL)
 	{
-		if (check_str (lst -> str) != NULL)
+		if (find_$ (lst -> str) != NULL)
 		{
-			name = check_str(lst -> str);  // *char USER
+			name = find_$(lst -> str);  // *char USER
 			if (!name)
 				return;
-			printf ("name %s\n", name);	
-			name = find_env(name, environ_head);
-			printf ("name %s\n", name);
+			//printf ("name %s\n", name);	
+			value = find_env(name, env);  
+			free (lst -> str);
+			lst -> str = ft_strdup(value);
+			//printf ("value %s\n", value);
 		}
 		lst = lst -> next;
 	}

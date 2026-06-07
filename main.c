@@ -4,7 +4,9 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include "gnl/get_next_line.h"
+#include "src/parser.h"
 #include "minishell.h"
+
 
 void print_envp(char **envp)
 {
@@ -27,7 +29,9 @@ int main(int argc, char *argv[])
 
 	char	*line;
 	t_list	*lst;
-	int check = 0;
+	int check;
+	
+	check = 0;
 
 	while (1)
 	{
@@ -37,12 +41,14 @@ int main(int argc, char *argv[])
 			return (0);
 		lst = my_split(line);  //splitne line do lst
 		check = checker(lst); //ma kontrolovat radek 
-		if (check == 0)
-			print_list(lst);
-		else if (check == 1)
+		
+		if (check == 1)
 			printf("bullshit detected \n");
-		//print_list(lst);
+		// else if (check == 0)
+		// 		print_list(lst);
+	
 		expander(lst); //expanduje
+		print_list(lst);
 		free(line);
 		free_list (lst);
 	}

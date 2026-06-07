@@ -1,5 +1,9 @@
 
+#include <string.h>
+#include "parser.h"
 #include "../minishell.h"
+
+
 
 int check_pipe(t_list *lst)
 {
