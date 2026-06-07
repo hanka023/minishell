@@ -120,7 +120,8 @@ char *find_$(char *str)  //hledam $USER
 			check_last_qt(copy); //cut last " 
 			return (copy);
 		}
-		++str;
+		else
+			++str;
 	}
 	return (NULL);
 }
@@ -133,7 +134,7 @@ void expander(t_list *lst)  // *lst je hlavicka
 	t_env *env;
 
 	env = env_to_lst();
-
+	name = NULL;
 
 
 	while (lst != NULL)
@@ -151,7 +152,8 @@ void expander(t_list *lst)  // *lst je hlavicka
 		}
 		lst = lst -> next;
 	}
-	free(name);
+	if(name)
+		free(name);
 	return;
 }
 

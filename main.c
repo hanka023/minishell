@@ -41,11 +41,9 @@ int main(int argc, char *argv[])
 			return (0);
 		lst = my_split(line);  //splitne line do lst
 		check = checker(lst); //ma kontrolovat radek 
-		
 		if (check == 1)
 			printf("bullshit detected \n");
-		// else if (check == 0)
-		// 		print_list(lst);
+		
 	
 		expander(lst); //expanduje
 		print_list(lst);

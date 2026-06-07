@@ -59,14 +59,11 @@ void	add_back(t_list **head, t_list *lst)
 
 void print_list(t_list *lst)
 {
-	t_list *print;
-
- 	print = lst;
-
-    while (print != NULL)
+	
+    while ( lst != NULL)
     {
-      	printf("%s\n", print -> str);
-	   	print = print -> next;
+      	printf("%s\n", lst -> str);
+	   	lst = lst -> next;
     }
 	return;
 }
