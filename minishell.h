@@ -74,7 +74,7 @@ void	free_list(t_list *lst);
 
 
 int checker(t_list *lst);
-void expander(t_list *lst);
+int expander(t_list *lst);
 void expand(char *string);
 
 

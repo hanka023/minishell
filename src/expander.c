@@ -64,21 +64,36 @@ int	ft_strcmp(char *s1, char *s2)
 
 
 
+// int find_env(char *str, t_env *env)
+// {
 
+// 	while (env != NULL)
+// 	{
+// 		if (ft_strcmp (str, env -> name) == 0)
+// 		{
+// 			return (1);
+// 		}
+// 		env = env -> next;
+// 	}
+// 	return(0);
+// }
 
 char *find_env(char *str, t_env *env)
 {
+	char *copy;
+	char *set;
+
+	set = "\"";
+	copy = ft_strtrim(str, set);
+
+	printf ("char *copy ve find_env %s \n", copy);
 
 	while (env != NULL)
-
 	{
-
-
 		if (ft_strcmp (str, env -> name) == 0)
 		{
 			
 			return (env -> value);
-			
 		}
 		env = env -> next;
 	}
@@ -98,9 +113,8 @@ void check_last_qt(char *str)
 	return;
 }
 
-char *find_$(char *str)  //hledam $USER 
+int find_$(char *str)  //hledam $USER 
 {
-	char *copy;
 	int stav;
 	
 	stav = 0;
@@ -112,49 +126,47 @@ char *find_$(char *str)  //hledam $USER
 		else if (*str == '\'' && stav == 1)
 			stav = 0;
 		if (stav == 0 && *str == '$' && *(str + 1) != '\0')
-		{	
-			++str;
-			copy = ft_strdup (str); 
-			if (!copy)
-				return (NULL); //copy = USER (napr)
-			check_last_qt(copy); //cut last " 
-			return (copy);
-		}
+			return (1);
 		else
 			++str;
 	}
-	return (NULL);
+	return (0);
 }
 
 
-void expander(t_list *lst)  // *lst je hlavicka 
+int expander(t_list *lst)  // *lst je hlavicka 
 {
 	char *name;
-	char *value;
 	t_env *env;
 
 	env = env_to_lst();
 	name = NULL;
 
 
+	int find; 
+	char *is_env;
+
+	find = 0;
+	is_env = NULL;
+
 	while (lst != NULL)
 	{
-		if (find_$ (lst -> str) != NULL)
-		{
-			name = find_$(lst -> str);  // *char USER
-			if (!name)
-				return;
-			//printf ("name %s\n", name);	
-			value = find_env(name, env);  
-			free (lst -> str);
-			lst -> str = ft_strdup(value);
-			//printf ("value %s\n", value);
-		}
+		printf ("lst -> str %s \n", lst -> str);
+
+		find = find_$(lst -> str); 
+		if (find == 0)
+			break;
+
+		else if (find == 1)
+			is_env = find_env(name, env);  
+		if(is_env == NULL)	
+		 	return (-1);
+	
 		lst = lst -> next;
 	}
 	if(name)
 		free(name);
-	return;
+	return(0);
 }
 
 

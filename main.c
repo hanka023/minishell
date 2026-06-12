@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
 {
 	(void)argc;
 	(void)argv;
+	int exp;
 	
 
 	char	*line;
@@ -32,7 +33,7 @@ int main(int argc, char *argv[])
 	int check;
 	
 	check = 0;
-
+	exp = 0;
 	while (1)
 	{
 		write(1, "minishell$ ", 11);
@@ -43,9 +44,9 @@ int main(int argc, char *argv[])
 		check = checker(lst); //ma kontrolovat radek 
 		if (check == 1)
 			printf("bullshit detected \n");
-		
-	
-		expander(lst); //expanduje
+		exp = expander(lst); 
+		if (exp == -1)
+			printf("bullshit detected \n");
 		print_list(lst);
 		free(line);
 		free_list (lst);

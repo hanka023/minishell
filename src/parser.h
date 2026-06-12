@@ -43,7 +43,7 @@ int		my_strlen2(char **str);
 char	*f_strdup(char *str);
 int		ft_strcmp(char *s1, char *s2);
 char	*get_env(char *str);
-char	*find_$(char *str);
+int		find_$(char *str);
 
 
 
