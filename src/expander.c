@@ -83,20 +83,32 @@ char *find_env(char *str, t_env *env)
 	char *copy;
 	char *set;
 
-	set = "\"";
+	if (!str)
+	{
+		perror("ve find_env neni str\n");
+		return(NULL);
+	}
+	printf ("find_env jede\n");
+	set = "\" $";
 	copy = ft_strtrim(str, set);
+	
+	printf ("copy ve find_env: %s\n", copy);
 
-	printf ("char *copy ve find_env %s \n", copy);
+	printf ("env %s \n", env -> str);
 
 	while (env != NULL)
 	{
-		if (ft_strcmp (str, env -> name) == 0)
+		//printf ("%s\n", env -> str);
+
+		if (ft_strcmp (copy, env -> name) == 0)
 		{
-			
+			printf ("------------------------------------nalezena shoda %s\n", env ->str);
+			free(copy);
 			return (env -> value);
 		}
 		env = env -> next;
 	}
+	printf ("NIC nenalezeno:( \n");
 	return(NULL);
 }
 
@@ -156,9 +168,11 @@ int expander(t_list *lst)  // *lst je hlavicka
 		find = find_$(lst -> str); 
 		if (find == 0)
 			break;
-
 		else if (find == 1)
-			is_env = find_env(name, env);  
+		{
+			printf( "$ nalezen %s\n", lst -> str);
+			is_env = find_env(lst -> str, env);  
+		}
 		if(is_env == NULL)	
 		 	return (-1);
 	
