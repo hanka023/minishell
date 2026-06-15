@@ -41,14 +41,13 @@ int main(int argc, char *argv[])
 		if(!line)
 			return (0);
 		check = check_line(line); //ma kontrolovat radek 
-		if (check > 0)
+		if (check == 1)
 		{
 			printf("bullshit detected \n");	
 			free(line);
-			break;
+			return (1);
 		}
 		lst = my_split(line);  //splitne line do lst
-	
 		exp = expander(lst); 
 		if (exp == -1)
 			printf("bullshit detected \n");

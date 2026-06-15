@@ -41,23 +41,24 @@ int left_dir (char *str, int *left, int *last)
 	{
 		*left = 1;
 		*last = 0;
-		++str;
+		//++str;
 	}
 	else if (*left == 0 && *(str + 1) != '<')
 	{
 		*left = 1;
 		*last = 1;
-		++str;
+		//++str;
 	}
 	else if ( *left == 1)
 	{
 		*left = 2;
 		*last = 1;
-		++str;
+		//++str;
 	}
 	return(0);
 	
 }
+
 int right_dir (char *str, int *right, int *last)
 {
 	if (*last == 1 ||*right == 2 )
@@ -66,24 +67,22 @@ int right_dir (char *str, int *right, int *last)
 	{
 		*right = 1;
 		*last = 0;
-		++str;
+		//++str;
 	}
 	else if (*right == 0 && *(str + 1) != '<')
 	{
 		*right = 1;
 		*last = 1;
-		++str;
+		//++str;
 	}
 	else if ( *right == 1)
 	{
 		*right = 2;
 		*last = 1;
-		++str;
+		//++str;
 	}
-	return(0);
-	
+	return(0);	
 }
-
 
 int left_right_redirect(char *str, int *left, int *right, int *last)
 {
@@ -108,7 +107,6 @@ int left_right_redirect(char *str, int *left, int *right, int *last)
 		if (r > 0)
 			return(1);
 	}
-		
 	return (0);
 
 }
@@ -116,36 +114,43 @@ int left_right_redirect(char *str, int *left, int *right, int *last)
 int count_redirect(char *str)
 {
 	int count;
-	int *last;
-	int last_value;
 	int redirect;
+	int *last;
 	int *left;
 	int *right;
-	
+	int last_value;
+	int left_value;
+	int right_value;
+
 	left = 0;
 	right = 0;
 	count = 0;
 	last_value = 0;
+	left_value = 0;
+	right_value = 0;
 	last =  &last_value;
+	left = &left_value;
+	right = &right_value;
 	redirect = 0;
 	while (*str)
 	{
+		
 		if(*str == '<' || *str == '>')
 		{
 			redirect = left_right_redirect(str, left, right, last);
-		//	printf ("last %ls\n", last);
+			
 			if (redirect > 0)
 				return (1);
 			++str;
 		}
 		else if (ft_isalnum(*str) == 1)
 		{
-			last = 0;
+			*last = 0;
 			++str;
 		}
 		else 
 			++str;
-
+		//printf ("last %d\n", *last);
 	}
 	if (*last == 1)
 		return(1);
