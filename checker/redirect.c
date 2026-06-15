@@ -35,7 +35,7 @@ int left_dir (char *str, int *left, int *last)
 {
 	if (!left || !last)
    		return (1);
-	else if (*last == 1)
+	else if (*last == 1 || *left == 2)
 		return (1); 
 	else if ( *left == 0 && *(str + 1) == '<')
 	{
@@ -61,6 +61,8 @@ int left_dir (char *str, int *left, int *last)
 
 int right_dir (char *str, int *right, int *last)
 {
+	if (!right || !last)
+   		return (1);
 	if (*last == 1 ||*right == 2 )
 		return (1); 
 	if ( *right == 0 && *(str + 1) == '<')

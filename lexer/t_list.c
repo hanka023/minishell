@@ -75,6 +75,8 @@ void free_list(t_list *lst)
 	while (lst != NULL)
 	{
 		free_list = (lst) -> next;
+		if (lst -> str)
+			free (lst -> str);
 		free(lst);
 		lst = free_list;
 	}

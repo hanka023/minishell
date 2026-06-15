@@ -31,11 +31,13 @@ int main(int argc, char *argv[])
 	char	*line;
 	t_list	*lst;
 	int check;
+
 	
 	check = 0;
 	exp = 0;
 	while (1)
 	{
+		check = 0;
 		write(1, "minishell$ ", 11);
 		line = get_next_line(0);
 		if(!line)
@@ -50,10 +52,10 @@ int main(int argc, char *argv[])
 		lst = my_split(line);  //splitne line do lst
 		exp = expander(lst); 
 		if (exp == -1)
-			printf("bullshit detected \n");
+			printf("expander ko \n");
 		print_list(lst);
-		free(line);
 		free_list (lst);
+		free(line);
 	}
 	return(0);
 }
