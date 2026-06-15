@@ -4,7 +4,7 @@
 #include <fcntl.h>
 #include <stdlib.h>
 #include "gnl/get_next_line.h"
-#include "src/parser.h"
+#include "expander/parser.h"
 #include "minishell.h"
 
 
@@ -40,10 +40,15 @@ int main(int argc, char *argv[])
 		line = get_next_line(0);
 		if(!line)
 			return (0);
+		check = check_line(line); //ma kontrolovat radek 
+		if (check > 0)
+		{
+			printf("bullshit detected \n");	
+			free(line);
+			break;
+		}
 		lst = my_split(line);  //splitne line do lst
-		check = checker(lst); //ma kontrolovat radek 
-		if (check == 1)
-			printf("bullshit detected \n");
+	
 		exp = expander(lst); 
 		if (exp == -1)
 			printf("bullshit detected \n");

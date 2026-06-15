@@ -20,9 +20,13 @@ SRC = main.c \
 		lexer/quotes.c \
 		lexer/t_list.c \
 		lexer/word.c \
-		src/checker.c \
-		src/expander.c	\
-		src/getenv.c
+		expander/expander_utils.c \
+		expander/expander.c	\
+		expander/getenv.c \
+		checker/checker.c \
+		checker/quotes.c \
+		checker/pipes.c \
+		checker/redirect.c 
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)

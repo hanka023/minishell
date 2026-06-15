@@ -8,7 +8,8 @@
 #include <string.h>
 #include "gnl/get_next_line.h"
 #include "libft/libft.h"
-#include "src/parser.h"
+#include "expander/parser.h"
+#include "checker/checker.h"
 
 typedef struct s_list
 {
@@ -64,10 +65,6 @@ t_list	*new_list(char *str);
 void	add_back(t_list **head, t_list *new);
 void	print_list(t_list *begin_list);
 void	free_list(t_list *lst);
-
-
-
-
 
 
 /* * * * * * * t_list.c * * * * * * * * */

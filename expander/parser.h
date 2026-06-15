@@ -33,7 +33,11 @@ typedef struct s_env
 
 /* * * * * * * checker.c  * * * * * * * * */
 
+/* * * * * * * expander - utils  * * * * * * * * */
 
+int my_strlen(char *str);
+int	ft_strcmp(char *s1, char *s2);
+void check_last_qt(char *str);
 
 /* * * * * * * expander  * * * * * * * * */
 
