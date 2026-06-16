@@ -138,7 +138,7 @@ int count_redirect(char *str)
 	while (*str)
 	{	
 			
-		printf ("str ---%c---\n", *str);
+		// ("str ---%c---\n", *str);
 		if(*str == '<' || *str == '>')
 		{
 		if (left_right_redirect(str, left, right, last) > 0)
@@ -152,7 +152,7 @@ int count_redirect(char *str)
 		}
 		else 
 			++str;
-		printf ("last -> -> ->  %d\n", *last);
+		//printf ("last -> -> ->  %d\n", *last);
 	}
 	return (*last);
 }

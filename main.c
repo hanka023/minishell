@@ -8,18 +8,18 @@
 #include "minishell.h"
 
 
-void print_envp(char **envp)
-{
-	int i;
+// void print_envp(char **envp)
+// {
+// 	int i;
 
-	i = 0;
-	while(envp[i] !=NULL)
-	{
-		printf ("%s\n", envp[i]);
-		++i;
-	}
-	return;
-}
+// 	i = 0;
+// 	while(envp[i] !=NULL)
+// 	{
+// 		printf ("%s\n", envp[i]);
+// 		++i;
+// 	}
+// 	return;
+// }
 
 int main(int argc, char *argv[])
 {
@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
 		if (exp == -1)
 			printf("expander ko \n");
 		quotes_remove(lst);
-		//print_list(lst);
+		print_list(lst);
 		free_list (lst);
 		free(line);
 	}
