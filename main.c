@@ -42,6 +42,11 @@ int main(int argc, char *argv[])
 		line = get_next_line(0);
 		if(!line)
 			return (0);
+		if(line[0] == '\n' && line[1] == '\0')
+		{
+			free(line);
+			continue;
+		}
 		check = check_line(line); //ma kontrolovat radek 
 		if (check == 1)
 		{
@@ -53,7 +58,8 @@ int main(int argc, char *argv[])
 		exp = expander(lst); 
 		if (exp == -1)
 			printf("expander ko \n");
-		print_list(lst);
+		quotes_remove(lst);
+		//print_list(lst);
 		free_list (lst);
 		free(line);
 	}

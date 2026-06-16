@@ -23,10 +23,12 @@ SRC = main.c \
 		expander/expander_utils.c \
 		expander/expander.c	\
 		expander/getenv.c \
+		expander/quotes_remove.c \
 		checker/checker.c \
 		checker/quotes.c \
 		checker/pipes.c \
 		checker/redirect.c 
+		
 
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)

@@ -11,6 +11,7 @@
 #include "expander/parser.h"
 #include "checker/checker.h"
 
+
 typedef struct s_list
 {
 	char			*str; 
@@ -75,8 +76,7 @@ int expander(t_list *lst);
 void expand(char *string);
 
 
-
-
+int quotes_remove(t_list *lst);
 
 
 

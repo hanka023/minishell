@@ -22,22 +22,23 @@ int word(char *str, t_list **head)
 			len = quotes(str); 
 			str = str + len;
 		}
-		
 		else
 			++str;	
 	}
-
 	len = str - start;
 	//printf("word len%d\n",len );
 	copy = malloc (sizeof (char) * (len + 1));
-	if (copy == NULL)
+	if (!copy) //<<<<????
 	   	return(0);	
-	scpy = ft_strlcpy (copy, start, len + 1);
+	scpy = ft_strlcpy(copy, start, len + 1);
 	if (!scpy)
+	{
+		free(copy);
 		return(0);
+	}
 	lst = new_list(copy);
 	add_back(head, lst); 
-	free (copy);	
+	free (copy);	//??????????????
 	str = str + len;
 	return(len);
 }

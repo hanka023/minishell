@@ -6,28 +6,19 @@
 
 int check_quotes(char *str)
 {
-	
 	int quotes;
 
 	quotes = 0; // 0 = ok, 1 = ko
 	while (*str)
 	{
 		if (*str == '\'' && quotes == 0 )
-		{
 			quotes = 1;
-			++str;
-		}
 		else if (*str == '\'' && quotes == 1 )
-		{
 			quotes = 0;
-			++str;
-		}
-		else
-			++str;
+		++str;
 	}
 	return (quotes);
 }
-
 
 
 int check_double_quotes(char *str)
@@ -37,19 +28,11 @@ int check_double_quotes(char *str)
 	quotes = 0; // 0 = ok, 1 = ko
 	while (*str)
 	{
-		
 		if (*str == '\"' && quotes == 0 )
-		{
 			quotes = 1;
-			++str;
-		}
 		else if (*str == '\"' && quotes == 1 )
-		{
 			quotes = 0;
-			++str;
-		}
-		else
-			++str;
+		++str;
 	}
 	return (quotes);
 }

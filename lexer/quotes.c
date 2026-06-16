@@ -14,7 +14,6 @@ int quotes(char *str)
 }
 
 
-
 int single_quote(char *str)
 {
 	int len;
