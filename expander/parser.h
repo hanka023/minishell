@@ -47,7 +47,8 @@ int		my_strlen2(char **str);
 char	*f_strdup(char *str);
 int		ft_strcmp(char *s1, char *s2);
 char	*get_env(char *str);
-int		find_$(char *str);
+char  	*find_$(char *str);
+
 
 
 
@@ -70,9 +71,10 @@ void	env_add_back(t_env **head, t_env *env);
 void	print_env(t_env *env);
 void	free_env(t_env *env);
 
-/* * * * * * * getenv  * * * * * * * * */
+/* * * * * * * expander * * * * * * * * */
+  
 
-
+char *find_env(char *str, t_env *env);
 
 
 

@@ -55,12 +55,8 @@ void env_name(char *str, t_env *env)
 }
 
 
-
 void env_value(char *str, t_env *env)
 {
-	
-
-	
 	while (*str != '=' && *str != '\0')
 		++str;
 
@@ -68,8 +64,6 @@ void env_value(char *str, t_env *env)
 		++str;
 	env -> value = ft_strdup(str);
 		
-
-
 	// printf (" value: %s\n", env -> value);
 	return;
 } 

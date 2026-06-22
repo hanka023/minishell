@@ -4,7 +4,7 @@ NAME = mini
 # Překladač a příznaky
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g -fsanitize=address
-# for gdb CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g 
+ # CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g 
 
 LIBFT_DIR   = libft
 LIBFT       = $(LIBFT_DIR)/libft.a

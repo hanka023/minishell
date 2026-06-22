@@ -4,9 +4,123 @@
 #include "parser.h"
 #include "../minishell.h"
 
+// char *find_env(char *str, t_env *env)
+// {
+// 	char *copy;
+// 	char *set;
+
+// 	if (!str)
+// 	{
+// 		perror("ve find_env neni str\n");
+// 		return(NULL);
+// 	}
+// 	set = "\" $\n\t";
+// 	copy = ft_strtrim(str, set);
+// 	while (env != NULL)
+// 	{
+// 		if (ft_strcmp (copy, env -> name) == 0)
+// 		{	
+// 			if (env -> str != NULL)
+// 			free(copy);
+// 			return (env -> value);
+// 		}
+// 		env = env -> next;
+// 	}
+// 	free(copy);
+// 	return(NULL);
+// }
 
 
 
+// int find_$(char *str)  //hledam $USER 
+// {
+// 	int stav;
+	
+// 	stav = 0;
+
+// 	while (*str)
+// 	{
+// 		if ((*str == '\'') && stav == 0)
+// 			stav = 1;
+// 		else if (*str == '\'' && stav == 1)
+// 			stav = 0;
+// 		if (stav == 0 && *str == '$' && *(str + 1) != '\0')
+// 			return (1);
+// 		else
+// 			++str;
+// 	}
+// 	return (0);
+// }
+
+
+// char *env_handler(t_list *lst)
+// {
+// 	t_env *env;
+// 	char *is_env;
+
+// 	env = env_to_lst();
+// 	is_env = NULL;
+// 	is_env = find_env(lst -> str, env);  
+// 	if (is_env != NULL)
+// 	{
+// 		free(lst ->str);
+// 		lst -> str = ft_strdup(is_env);
+// 	}
+// 	return (is_env);
+// }
+
+// int expander(t_list *lst)  // *lst je hlavicka 
+// {
+// 	char *name;
+// 	char *is_env;
+// 	int find; 
+
+// 	name = NULL;
+// 	find = 0;
+// 	while (lst != NULL)
+// 	{
+// 		find = find_$(lst -> str); 
+// 		if (find == 0)
+// 			break;
+// 		else if (find == 1)
+// 		{
+// 			is_env = env_handler(lst);
+// 		}
+// 		if(is_env == NULL)	
+// 		 	return (-1);
+// 		lst = lst -> next;
+// 	}
+// 	if(name)
+// 		free(name);
+// 	return(0);
+// }
+
+
+// char *find_env(char *str, t_env *env)
+// {
+// 	char *copy;
+// 	char *set;
+
+// 	if (!str)
+// 	{
+// 		perror("ve find_env neni str\n");
+// 		return(NULL);
+// 	}
+// 	set = "\" $\n\t";
+// 	copy = ft_strtrim(str, set);
+// 	while (env != NULL)
+// 	{
+// 		if (ft_strcmp (copy, env -> name) == 0)
+// 		{	
+// 			if (env -> str != NULL)
+// 			free(copy);
+// 			return (env -> value);
+// 		}
+// 		env = env -> next;
+// 	}
+// 	free(copy);
+// 	return(NULL);
+// }
 
 
 char *find_$(char *str)  //hledam $USER 
@@ -28,6 +142,48 @@ char *find_$(char *str)  //hledam $USER
 	}
 	return (str);
 }
+
+
+// char *env_handler(t_list *lst)
+// {
+// 	t_env *env;
+// 	char *is_env;
+
+// 	env = env_to_lst();
+// 	is_env = NULL;
+// 	is_env = find_env(lst -> str, env);  
+// 	if (is_env != NULL)
+// 	{
+// 		free(lst ->str);
+// 		lst -> str = ft_strdup(is_env);
+// 	}
+// 	return (is_env);
+// }
+
+// int expandlen(char *str)
+// {
+// 	int len = 0;
+// 	char *copy;
+// 	char *start;
+	
+// 	copy = NULL;
+// 	start = copy;
+// 	while (*str)
+// 	{
+// 		while (*str != '$')
+// 			++len;
+// 		if (*str == '$')
+// 		{
+// 			++str;
+// 			++len; 
+// 			while (*str == ft_isalpha || *str == '_')
+// 			{
+// 				++cop
+// 			}
+
+// 		}
+// 	}
+// }
 
 
 char env_cmp(char *copy, t_env *env)
@@ -126,8 +282,59 @@ int expand_len(t_list *lst, t_env *env)
 	}
 	return (len);
 }
+// char *expand_str(t_list *lst, t_env *env)
+// {
+// 	char	*str;
+// 	//char 	*copy;
+// 	char	*new_str;
+// 	char	*env_value;
+// 	int		len;
+
+// 	str = lst -> str;
+// 	len = expand_len(lst, env);
+// 	new_str = malloc (sizeof (char) * (len + 1));
+// 	while (*str)
+// 	{
+// 		while (*str != '$')
+// 		{
+// 			*new_str = *str;
+// 			++str;
+// 			++new_str;
+// 		}
+// 		if (*str == '$')
+// 		{
+// 			len = env_len(str, env);
+// 			str = str + (len - 1);
+// 			env_value = copy_env(str, env);
+// 			////zkopirovat env_value do str 
+// 		}
+// 	}
+// 	return (env_value);//opravit
+// }
 
 
+
+// char expand_lst(t_list *lst)
+// {
+// 	char *find; 
+// 	char *new_lst;
+// 	int len;
+// 	t_env	*env;
+
+// 	env_to_lst(env);
+// 	find = 0;
+// 	len = 0;
+
+// 	find = find_$(lst -> str); 
+// 	if (find != NULL)
+// 	{
+// 		len = expand_len(lst, env);
+// 		//new_lst = malloc (sizeof (char) * (len + 1));
+// 	}
+	
+// 	return(0);
+
+// }
 
 
 
@@ -141,6 +348,7 @@ int strlen_zero(char *str)
 		++str;
 		++len;
 	}
+	//printf ("len ve strlen zero >>>>>>>>>>>>>>>>%d<<<<<<<<<<<<<<<<<\n", len);
 	return (len);
 }
 
@@ -150,17 +358,7 @@ int strlen_one(char *str)
 	int len;
 
 	len = 0;
-	if (*str == '\'')
-	{
-		++str;
-		++len;
-	}
 	while (*str && *str != '\'')
-	{
-		++str;
-		++len;
-	}
-		if (*str == '\'')
 	{
 		++str;
 		++len;
@@ -174,17 +372,7 @@ int strlen_two(char *str)
 	int len;
 
 	len = 0;
-		if (*str == '\"')
-	{
-		++str;
-		++len;
-	}
 	while (*str && *str != '\"')
-	{
-		++str;
-		++len;
-	}
-		if (*str == '\"')
 	{
 		++str;
 		++len;
@@ -235,17 +423,21 @@ int strlen_name(char *str)
 	int len;
 
 	len = 0;
+//	printf ("strlen_name jedeee!!!!!!! >>>%c<<<\n", *str);
 	if (*str == '$')
 	{
+		//printf ("strlen_name $$$$$$$ .....>>>> %c\n", *str);
 		++str;
 		++len;
 	}
 	while(*str && ( ft_isalnum(*str) || *str == '_'))
 	{
+	//	printf ("strlen_name len %c\n", *str);
 		++str;
 		++len;
 	}
 	return (len);
+	//printf ("strlen_name len %d\n", len);
 }
 
 char *find_name(char *str)
@@ -256,7 +448,7 @@ char *find_name(char *str)
 
 	if (*str == '$')
 		++str;
-	name = str;
+	name = str; ////potrebuju???
 	start = name;
 	len = strlen_name(name);
 	name = malloc (sizeof(char) * len + 1);
@@ -267,6 +459,7 @@ char *find_name(char *str)
 		++str;
 	}
 	name = '\0';
+	//printf ("start ve find name %s\n", start);
 	return (start);
 }
 
@@ -307,6 +500,8 @@ char *copy_string(char *str, char c)
 
 	len = 0;
 	i = 0;
+
+//	printf ("*str v copy_string %c\n", *str);
 	while (str[len] && str[len] != c)
 		len++;
 	copy = (char *)malloc(sizeof(char) * (len + 1));
@@ -320,6 +515,7 @@ char *copy_string(char *str, char c)
 		++i;
 	}
 	copy[len] = '\0';
+//	printf ("start v copy_string %s\n", start);
 	return (start);
 }
 
@@ -331,28 +527,48 @@ char *zero_handler(char *str, t_env *env)
 	char *env_value;
 	char *tmp;
 	char *final;
+	//int env_len;
+	//char *start;
 
+	len = 0;
 	final = "";
+	copy = NULL;
+	env_value = NULL;
+	
 	while (*str && *str != '\'' && *str != '\"' )
 	{
 		if (*str != '$')
 		{
+//			printf ("*str v zero handler - - - - - %c - - - - -  -\n", *str);
 			copy = copy_string(str, '$');
+
 			len = ft_strlen(copy);
+//			printf("\ncopy string *****%s******  strlen *****%d******\n\n", copy, len );
 			str = str + len;
 		}
 		else if (*str == '$')
 		{
+			
 			name = find_name (str);
+			//printf ("name:-> -> ->  %s <- <= <- \n", name);
 			len = strlen_name(str);
+			//printf ("name v zero handler >>>%s<<< len: %d\n", name, len);
 			env_value = find_env(name, env);
+
+			//env_len = ft_strlen(env_value);
+		//	printf (" env value >>>%s<<<  env_len: %d\n", env_value, env_len);
 			copy = ft_strdup (env_value);
+			//printf ("len %d\n", len);
 			str = str + len;
 		}
 		tmp = final;
+
+		//printf ("copy  =======%s====== tmp ======%s======= \n", copy, tmp);
 		final = ft_strjoin(tmp, copy);
+		//printf ("zero handler ----za strjoin %s \n", final);
 		free(copy);
 	}
+	//printf ("zero handler %s \n", final);
 	return (final);
 }
 
@@ -364,41 +580,18 @@ char *one_handler(char *str)
 	len = 0;
 	len = strlen_one(str);
 	copy = ft_strldup(str, len);
-	printf ("one handler - - --- - %s \n", copy);
+	str = str + len;
 	return (copy);
-	
 }
- char *two_handler(char *str,  t_env *env)
+ char *two_handler(char *str)
  {
 	int len;
 	char *copy;
-	char *name;
-	char *env_value;
-	char *tmp;
-	char *final;
 
-	final = "";
-	while (*str && *str && *str != '\"' )
-	{
-		if (*str != '$')
-		{
-			copy = copy_string(str, '$');
-			len = ft_strlen(copy);
-			str = str + len;
-		}
-		else if (*str == '$')
-		{
-			name = find_name (str);
-			len = strlen_name(str);
-			env_value = find_env(name, env);
-			copy = ft_strdup (env_value);
-			str = str + len;
-		}
-		tmp = final;
-		final = ft_strjoin(tmp, copy);
-		free(copy);
-	}
-	return (final);
+	len = strlen_one(str);
+	copy = ft_strldup(str, len);
+	str = str + len;
+	return (copy);
  }
 
 char *expand_lst(t_list *lst, t_env *env)
@@ -406,19 +599,26 @@ char *expand_lst(t_list *lst, t_env *env)
 	char *str;
 	char *copy;
 	char *final;
+//	char *start;
 	char *tmp;
 	int len;
 
 	str = lst -> str;
+	//makstart = "";
 	final = NULL;
 	len = 0;
 	tmp = "";
 	while (*str)
 	{	
+
+//		printf ("while v expand_lst jede\n");
+
 		if (*str != '\'' && *str != '\"')
 		{
 			copy = zero_handler(str, env);
+//			printf ("----- *copy>>>>>>%s<<<<<<<\n", copy);
 			len = strlen_zero(str);
+//			printf ("-----strlen zero >>>>>>%d<<<<<<<\n", len);
 		}
 		else if (*str == '\'')
 		{
@@ -427,10 +627,11 @@ char *expand_lst(t_list *lst, t_env *env)
 		}	
 		else if (*str == '\"')
 		{
-			copy = two_handler(str, env);
+			copy = two_handler(str);
 			len = strlen_two(str);
 		}
 		str = str + len;
+	
 		if (final)
 		{
 			tmp = ft_strjoin(final, copy);
@@ -440,15 +641,19 @@ char *expand_lst(t_list *lst, t_env *env)
 		}
 		else 
 			final = ft_strdup (copy);
-		//free(copy);
+		free(copy);
 	
 	}
 	return(final);
 }
 
 
-int expander(t_list *lst) 
+int expander(t_list *lst)  // *lst je hlavicka 
 {
+
+
+	//printf ("test %s \n", lst ->str);
+
 	t_env *env;
 
 	env = env_to_lst();
@@ -458,8 +663,10 @@ int expander(t_list *lst)
 	while (lst != NULL)
 	{
 		new_lst = expand_lst(lst, env);
+		// ("while v expander %s \n", new_lst);
 		free(lst -> str);
 		lst -> str = ft_strdup(new_lst);
+	//	free(new_lst);
 		lst = lst -> next;
 	}
 	return(0);
