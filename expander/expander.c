@@ -358,16 +358,20 @@ char *zero_handler(char *str, t_env *env)
 
 char *one_handler(char *str)
 {
-	int len;
 	char *copy;
+	char *start;
 
-	len = 0;
-	len = strlen_one(str);
-	copy = ft_strldup(str, len);
-	printf ("one handler - - --- - %s \n", copy);
-	return (copy);
-	
+	if (*str == '\'')
+		++str;
+	copy = copy_string (str, '\'');
+	start = copy;
+	if (*copy == '\'')
+		*copy = '\0';
+	return (start);
 }
+
+
+
  char *two_handler(char *str,  t_env *env)
  {
 	int len;
@@ -378,7 +382,9 @@ char *one_handler(char *str)
 	char *final;
 
 	final = "";
-	while (*str && *str && *str != '\"' )
+	if (*str =='\"')
+		++str;
+	while (*str && *str != '\"' )
 	{
 		if (*str != '$')
 		{
@@ -398,6 +404,8 @@ char *one_handler(char *str)
 		final = ft_strjoin(tmp, copy);
 		free(copy);
 	}
+	if (*final == '\"')
+		(*final ='\0');
 	return (final);
  }
 
@@ -419,16 +427,19 @@ char *expand_lst(t_list *lst, t_env *env)
 		{
 			copy = zero_handler(str, env);
 			len = strlen_zero(str);
+			printf ("copy: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
 		}
 		else if (*str == '\'')
 		{
 			copy = one_handler(str);
 			len = strlen_one(str);
+			printf ("copy: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
 		}	
 		else if (*str == '\"')
 		{
 			copy = two_handler(str, env);
 			len = strlen_two(str);
+			printf ("copy: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
 		}
 		str = str + len;
 		if (final)
