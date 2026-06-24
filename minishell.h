@@ -72,7 +72,7 @@ void	free_list(t_list *lst);
 
 
 int checker(t_list *lst);
-int expander(t_list *lst);
+// int expander(t_list *lst, t_env *env);
 void expand(char *string);
 
 

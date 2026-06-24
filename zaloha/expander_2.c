@@ -318,9 +318,7 @@ int expander(t_list *lst)  // *lst je hlavicka
 	char *find; 
 	char *new_lst;
 	int len;
-	t_env	*env;
-
-	env_to_lst(env);
+	
 	find = 0;
 	len = 0;
 	while (lst != NULL)
