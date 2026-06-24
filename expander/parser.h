@@ -76,7 +76,7 @@ void	free_env(t_env *env);
 
 char *find_env(char *str, t_env *env);
 
-
+int expander(t_list *lst, t_env *env);
 
 
 #endif

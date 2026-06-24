@@ -86,6 +86,7 @@ t_env *new_env(char *str)
 	copy = ft_strdup (str);
 	env_name (copy, env);
 	env_value (str, env);
+	free(copy);
 	env -> next = NULL;
 	return (env);
 } 
@@ -131,6 +132,9 @@ void free_env(t_env *env)
 	while (env != NULL)
 	{
 		free_env = (env) -> next;
+		free(env -> name);
+		free(env -> value);
+		free(env -> str);
 		free(env);
 		env = free_env;
 	}
