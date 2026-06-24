@@ -540,6 +540,7 @@ char *expand_lst(t_list *lst, t_env *env)
 		str = str + len;
 
 		tmp = ft_strjoin (new_copy, copy);
+		new_copy = NULL;
 		new_copy = ft_strdup(tmp);
 		free(tmp);
 		free(copy);
