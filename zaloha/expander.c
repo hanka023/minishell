@@ -250,49 +250,43 @@ int test_name(char *str, t_env *env);
 char *find_name(char *str, t_env *env)
 {
 	char *start;
-	char *start_name;
 	char *name;
 	int len;
 	int test;
 
 	test = 0;
-	len = 0;
 	if (*str == '$')
 		++str;
-	start = str;
-	while(*str && (ft_isalnum(*str) == 1 || *str == '_'))
-	{
-		++str;
-		++len;
-	}
 	
-	// if (*str && (ft_isalnum(*str) == 0 && *str != '_' && *str !=' '))
-	// {
-	// 	printf(" find name - test >>>>>>%C<<<<<<\n", *str);
-	// 	return(NULL);
-	// }
+	
+	len = strlen_name(str);
+	printf("len -------%d------\n", len);
+	// name = malloc (sizeof(char) * (len + 1));
+	// if (!name)
+	// 	return (NULL);
 
-	name = malloc (sizeof(char) * (len + 1));
-	if (!name)
-		return (NULL);
-	start_name = name; 
-	str = start;
-	while(*str && (ft_isalnum(*str) == 1 || *str == '_'))
+	name = str;
+	start = name;
+	printf("name ve find name -----------%s---------------\n", name);
+	while(*str == ft_isalnum(*str) || *str == '_')
 	{
 		*name = *str;
 		++name;
 		++str;
 	}
-	*name = '\0';
-	name = start_name;
-	test = test_name(name, env);
+	name = '\0';
+
+
+
+	test = test_name(start, env);
 	if (!test)
 	{
-		printf (" test v test name KO :(\n");
+		printf (" test KO :( ----------%s--------------------------\n", start);
 		free(name);
 		return (NULL);
 	}
-	return (name);
+	printf (" test name ----------%s--------------------------\n", start);
+	return (start);
 }
 
 int test_name(char *str, t_env *env)
@@ -306,19 +300,31 @@ int test_name(char *str, t_env *env)
 		++str;
 	name = str;
 	len = ft_strlen (str);
+	//printf ("name ---%s----- len ------------%ld----------------\n",name, len);
 	while(env != NULL)
 	{
 		cmp = ft_strncmp(name, env -> name, len);
+		//printf (" vysledek: ------%d-----\n", cmp);
+		//printf ("%s >%d<\n", env -> name, cmp);
 		if (cmp == 0)
 		{
 			eq = env -> str[len];
 			if (eq == '=')
+			{
+
+				printf ("name nalezeno !!! >>>>>%s<<<<<<\n", env -> name);
 				return(1);
+			}	
 		}
 		env = env -> next;
 	}
+	//printf (" vysledek: ------%d-----\n", cmp);
 	return(0);
 }
+
+
+
+
 
 char *find_env(char *str, t_env *env)
 {
@@ -405,6 +411,7 @@ char *zero_handler(char *str, t_env *env)
 	char *tmp;
 	char *final;
 
+
 	final = "";
 	while (*str && *str != '\'' && *str != '\"' )
 	{
@@ -413,16 +420,27 @@ char *zero_handler(char *str, t_env *env)
 			copy = copy_string_zero(str, '$');
 			len = ft_strlen(copy);
 			str = str + len;
+			//printf("zero handler *str!='$'  copy ---->>>%s<<<--- len----->%d<\n", copy, len);
 		}
 		else if (*str == '$')
 		{
 			name = find_name (str, env);
+
 			if (!name)
+			{
+				printf ("zero handler -----name neproslo kontrolou v test_name :( \n");
+			//	free(copy);
 				return (NULL);
+
+			}
+			//test = test_name(str, env);  //dat rovnou do name
 			len = strlen_name(str);
 			env_value = find_env(name, env);
 			copy = ft_strdup (env_value);
 			str = str + len;
+		
+			//return (NULL);
+			//printf ("zero handler name->>>>%s<<<  copy---->%s<----- len -->%d<---- \n",name, copy, len);
 		}
 		tmp = final;
 		final = ft_strjoin(tmp, copy);
@@ -479,53 +497,11 @@ char *one_handler(char *str)
 		final = ft_strjoin(tmp, copy);
 		free(copy);
 	}
-	//printf ("final v two handler -----------------%c-------------\n", final[len - 1]);
+	printf ("final v two handler -----------------%c-------------\n", final[len - 1]);
 	if (final[len -1] == '\"')
 		(final[len - 1] ='\0');
 	return (final);
  }
-
-/******************************************** */
-
-
-
- char *two_handler_dollar(char *str,  t_env *env)
- {
-	int len;
-	char *copy;
-	char *name;
-	char *env_value;
-	char *tmp;
-	char *final;
-
-	final = "";
-	if (*str =='\"')
-		++str;
-	while (*str && *str != '\"' )
-	{
-
-		if (*str == '$')
-		{
-			name = find_name (str, env);
-			if(!name)
-				return(NULL);
-			len = strlen_name(str);
-			env_value = find_env(name, env);
-			copy = ft_strdup (env_value);
-			str = str + len;
-		}
-		tmp = final;
-		final = ft_strjoin(tmp, copy);
-		free(copy);
-	}
-	return (final);
- }
-
-
-
-
-
-
 
 char *expand_lst(t_list *lst, t_env *env)
 {
@@ -554,24 +530,24 @@ char *expand_lst(t_list *lst, t_env *env)
 		{
 			copy = one_handler(str);
 			len = strlen_one(str);
-			//printf ("copy one: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
+			printf ("copy one: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
 		}	
 		else if (*str == '\"' && *(str+1) != '$')
 		{
 			copy = two_handler(str, env);
 			len = strlen_two(str);
-			//printf (" copy two: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
+			printf (" copy two: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
 		}
 		else if (*str == '\"' && *(str + 1) == '$')
 		{
 			copy = two_handler_dollar(str, env);
 			len = strlen_two(str);
-			//printf (" copy two: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
+			printf (" copy two: --->>>%s<<<--- len: ---->>>%d<<<----\n", copy, len);
 		}
 		str = str + len;
 
 		tmp = ft_strjoin (new_copy, copy);
-		//printf("tmp v expand lst >>>>>>>>%s<<<<<<\n", tmp);
+		printf("tmp v expand lst >>>>>>>>%s<<<<<<\n", tmp);
 		new_copy = NULL;
 		new_copy = ft_strdup(tmp);
 		free(tmp);
