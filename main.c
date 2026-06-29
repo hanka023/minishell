@@ -23,13 +23,13 @@
 
 
 
-void error_handle(t_list *lst, t_env *env)
-{
-	printf("Error detected\n");
-	free_env (env);
-	free_list(lst);
-	return;
-}
+// void error_handle(t_list *lst, t_env *env)
+// {
+// 	printf("Error detected\n");
+// 	free_env (env);
+// 	free_list(lst);
+// 	return;
+// }
 
 
 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
 		check = check_line(line); //ma kontrolovat radek 
 		if (check == 1)
 		{
-			printf("bullshit detected \n");	
+			printf("chyba na vstupu\n");	
 			free(line);
 			free_env(env);
 			return (1);
@@ -80,11 +80,13 @@ int main(int argc, char *argv[])
 		exp = expander(lst, env); 
 		if (exp == 1)
 		{
+			printf("Error v expanderu\n");
+			free_env (env);
+			free_list(lst);
 			free(line);
-			error_handle(lst, env);
+			//error_handle(lst, env);
 			return (1);
 		}
-		
 		quotes_remove(lst);
 		print_list(lst);
 		free_list (lst);

@@ -78,36 +78,58 @@ char *one_handler(char *str)
 	}
 	else 
 		return(NULL);
+
+	printf ("\nfinal str v dollar expander -------->>>%s<<<-------------\n\n", copy);
+	
 	return (copy);
  }
 
 
 t_list *two_lst(char *str,  t_env *env)
 {
-	int		len;
-	char	*name;
+	int len;
+	char *name;
+	//t_list *word;
 	t_list *head_w;
 
 	head_w = NULL;
+
+
+	len = 0;
+	printf ("two lst jede\n");
 	if (*str =='\"')
 		++str;
+	printf ("ten str:   %s\n", str);
 	while (*str && *str != '\0' && *str != '\"')
 	{
+		printf ("while jede \n");
 		if (*str != '$')
 		{
+			printf ("if jede \n");
+
 			len = strlen_word(str);
+			printf("strlen word %d \n", len); 
+
+			printf ("len v two_lst %d\n", len);
 			word_to_lst(str, &head_w);
+			printf ("word to lst neco dela\n\n");
 		}
+
 		else if (*str == '$')
 		{
 			name = expand_name(str, env); ///narvat do lst
 			len = strlen_name(str);
+			printf ("strlen name %d\n", len);
 			word_to_lst(name, &head_w);
 		}
+		printf ("tady sem >>>%c<<<<\n", *str);
 		str = str + len;
 		if (*str == '\n')
 			++str;
+		printf ("tady sem >>>%c<<<<\n", *str);
+
 	}
+	printf ("while dobehlo \n");
 	return (head_w);
 }
 
@@ -122,6 +144,7 @@ char *two_handler(char *str, t_env *env)
 	copy = "";
 	s = two_trim(str);
 
+	printf ("\ns v two handler  > > >%s< < <\n\n", s);
 
 	two = two_lst(str, env); //narvu str do lst
 			

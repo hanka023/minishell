@@ -80,6 +80,9 @@ int quotes_remove(t_list *lst);
 
 
 
+// t_list **word_to_lst(char *str, t_list **head_w);
+// int expander(t_list *lst, t_env *env);
+
 
 #endif
 

@@ -20,10 +20,15 @@ SRC = main.c \
 		lexer/quotes.c \
 		lexer/t_list.c \
 		lexer/word.c \
+		expander/double_expander.c \
+		expander/env_utils.c \
 		expander/expander_utils.c \
 		expander/expander.c	\
 		expander/getenv.c \
 		expander/quotes_remove.c \
+		expander/string_utils.c \
+		expander/utils.c \
+		expander/utils2.c \
 		checker/checker.c \
 		checker/quotes.c \
 		checker/pipes.c \

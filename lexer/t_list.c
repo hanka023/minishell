@@ -9,10 +9,8 @@ t_list *str_to_lst(int argc, char **argv)
 	t_list *lst;
 
 	i = 0;
-	
 	head = NULL;
 	lst = NULL;
-
 	while(i < argc)
 	{
 		lst = new_list(argv[i]);
@@ -21,6 +19,9 @@ t_list *str_to_lst(int argc, char **argv)
 	}
 	return(head);
 }
+
+
+
 
 t_list *new_list(char *str)
 {
