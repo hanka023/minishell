@@ -4,7 +4,7 @@ NAME = mini
 # Překladač a příznaky
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g -fsanitize=address
- # CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g 
+ //CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g 
 
 LIBFT_DIR   = libft
 LIBFT       = $(LIBFT_DIR)/libft.a
@@ -31,6 +31,7 @@ SRC = main.c \
 		expander/utils2.c \
 		checker/checker.c \
 		checker/quotes.c \
+		checker/names.c \
 		checker/pipes.c \
 		checker/redirect.c 
 		

@@ -20,12 +20,10 @@ t_list *str_to_lst(int argc, char **argv)
 	return(head);
 }
 
-
-
-
 t_list *new_list(char *str)
 {
 	t_list *lst;
+	
 	lst = malloc (sizeof (t_list));
 	if (!lst)
 		return (NULL);
@@ -34,7 +32,6 @@ t_list *new_list(char *str)
 	{
 		free(lst);
 		return (NULL);
-
 	}
 	lst -> next = NULL;
 	return (lst);

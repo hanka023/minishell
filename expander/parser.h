@@ -5,6 +5,9 @@
 
 
 typedef struct s_list t_list;
+// typedef struct s_env t_env;
+
+
 // typedef enum e_type
 // {
 // 	WORD,
@@ -35,12 +38,7 @@ typedef struct s_env
 	struct s_env	*next;
 } t_env;
 
-// typedef struct s_list
-// {
-// 	char			*str; 
-// 	struct s_list	*prev;
-// 	struct s_list	*next;
-// } t_list;
+
 
 /* * * * * * * checker.c  * * * * * * * * */
 

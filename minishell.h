@@ -11,6 +11,8 @@
 #include "expander/parser.h"
 #include "checker/checker.h"
 
+typedef struct s_env t_env;
+
 
 typedef struct s_list
 {
@@ -18,6 +20,7 @@ typedef struct s_list
 	struct s_list	*prev;
 	struct s_list	*next;
 } t_list;
+
 
 
 /* * * * * * * metachar * * * * * * * * */

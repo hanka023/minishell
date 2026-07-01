@@ -31,10 +31,6 @@
 // 	return;
 // }
 
-
-
-
-
 int main(int argc, char *argv[])
 {
 	(void)argc;
@@ -68,7 +64,7 @@ int main(int argc, char *argv[])
 			free(line);
 			continue;
 		}
-		check = check_line(line); //ma kontrolovat radek 
+		check = check_line(line, env); //ma kontrolovat radek 
 		if (check == 1)
 		{
 			printf("chyba na vstupu\n");	
@@ -76,7 +72,12 @@ int main(int argc, char *argv[])
 			free_env(env);
 			return (1);
 		}
-		lst = my_split(line);  //splitne line do lst
+		printf ("check v main prosel !!  \n");
+		lst = my_split(line); 
+		
+		printf("list ----------\n");
+		print_list(lst);
+
 		exp = expander(lst, env); 
 		if (exp == 1)
 		{
@@ -87,15 +88,12 @@ int main(int argc, char *argv[])
 			//error_handle(lst, env);
 			return (1);
 		}
+		printf("expander v main prosel\n");
 		quotes_remove(lst);
 		print_list(lst);
 		free_list (lst);
-		
 		free(line);
 	}
-
 	free_env(env);
-
-	
 	return(0);
 }

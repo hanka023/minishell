@@ -1,8 +1,5 @@
 #include "../minishell.h"
 
-
-
-
 int word(char *str, t_list **head)
 {
 	int		len;
@@ -38,7 +35,7 @@ int word(char *str, t_list **head)
 	}
 	lst = new_list(copy);
 	add_back(head, lst); 
-	free (copy);	//??????????????
+	free (copy);
 	str = str + len;
 	return(len);
 }

@@ -51,6 +51,7 @@ char *word_prepare(char *str)
 		++str;
 	}
 	*copy = '\0';
+	printf("start ve word prepare v double expander  > >%s< <\n", start);
 	return(start);
 }
 

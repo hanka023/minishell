@@ -69,12 +69,12 @@ char *one_handler(char *str)
 
 	if (*str == '$')
 	{
-		name = find_name (str, env);
+		name = find_name(str, env);
 		if(!name)
 			return(NULL);
 		env_value = find_env(name, env);
 		copy = ft_strdup (env_value);
-		
+		free(name);
 	}
 	else 
 		return(NULL);
@@ -100,9 +100,10 @@ t_list *two_lst(char *str,  t_env *env)
 		}
 		else if (*str == '$')
 		{
-			name = expand_name(str, env); ///narvat do lst
+			name = expand_name(str, env); //vrati env -> value
 			len = strlen_name(str);
 			word_to_lst(name, &head_w);
+			free(name);
 		}
 		str = str + len;
 		if (*str == '\n')
@@ -115,7 +116,7 @@ t_list *two_lst(char *str,  t_env *env)
 char *two_handler(char *str, t_env *env)
 {
 	t_list *two;
-	//t_list *start;
+	t_list *start;
 	char *s;
 	char *copy;
 	char *tmp;
@@ -123,25 +124,25 @@ char *two_handler(char *str, t_env *env)
 	copy = "";
 	s = two_trim(str);
 	printf ("str v two handler > >%s< <\n", s);
-	if (!test_names(str, env))
-	 {
+	if (test_names(str, env)!=0)
+	{
 		printf("test bezi\n");
 		free(s);
 		return (NULL);
 	}
-	printf("> > > > test v two handler ok\n");
+//l	printf("> > > > test v two handler ok\n");
 	two = two_lst(s, env); //narvu str do lst	
-	//start = two;
+	start = two;
 	while(two != NULL)
 	{
-		s = (two -> str);
-		tmp = ft_strjoin (copy, s);
+		tmp = ft_strjoin (copy, two -> str);
 		copy = ft_strdup(tmp);
 		free(tmp);
+		//free(two -> str);
 		two = two -> next;
 	}
 	free(s);
-	
+	free_list(start);
 	return (copy);
 }
 
@@ -171,11 +172,11 @@ char *expand_lst(t_list *lst, t_env *env)
 		else if (*str == '\"' )
 		{
 			copy = two_handler(str, env);
-			//if (!copy)
-			// {
-			// 	printf ("neni copy v two handler\n");
-			// 	return(NULL);
-			// }
+			if (!copy)
+			{
+				printf ("neni copy v two handler\n");
+				return(NULL);
+			}
 			len = strlen_two(str);  //du po " 
 		}
 		str = str + len;

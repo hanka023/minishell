@@ -45,31 +45,31 @@ int strlen_name(char *str)
 	return (len);
 }
 
-int test_name(char *str, t_env *env)
-{
-	char *name;
-	size_t len;
-	int cmp;
-	char eq;
+// int test_name(char *str, t_env *env)
+// {
+// 	char *name;
+// 	size_t len;
+// 	int cmp;
+// 	char eq;
 
-	if (*str == '$')
-		++str;
-	name = str;
-	len = strlen_name (str);
+// 	if (*str == '$')
+// 		++str;
+// 	name = str;
+// 	len = strlen_name (str);
 
-	while(env != NULL)
-	{
-		cmp = ft_strncmp(name, env -> name, len);
-		if (cmp == 0)
-		{
-			eq = env -> str[len];
-			if (eq == '=')
-				return(1);
-		}
-		env = env -> next;
-	}
-	return(0);
-}
+// 	while(env != NULL)
+// 	{
+// 		cmp = ft_strncmp(name, env -> name, len);
+// 		if (cmp == 0)
+// 		{
+// 			eq = env -> str[len];
+// 			if (eq == '=')
+// 				return(1);
+// 		}
+// 		env = env -> next;
+// 	}
+// 	return(0);
+// }
 
 // int test_names(char *str, t_env *env)
 // {
@@ -129,8 +129,6 @@ char *find_name(char *str, t_env *env)
 		++str;
 		++len;
 	}
-	
-
 	name = malloc (sizeof(char) * (len + 1));
 	if (!name)
 		return (NULL);
@@ -145,9 +143,9 @@ char *find_name(char *str, t_env *env)
 	*name = '\0';
 	name = start_name;
 	test = test_name(name, env);
-	if (!test)
+	if (test != 0)
 	{
-		printf (" test v test name KO :(\n");
+		printf (" test v test name KO :(  fce find name\n");
 		free(name);
 		return (NULL);
 	}
