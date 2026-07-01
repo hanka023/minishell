@@ -31,7 +31,6 @@ char *two_trim(char *str)
 
 char *word_prepare(char *str)
 {
-
 	char *copy;
 	char *start;
 	int len;
@@ -52,7 +51,6 @@ char *word_prepare(char *str)
 		++str;
 	}
 	*copy = '\0';
-
 	return(start);
 }
 
@@ -64,7 +62,6 @@ void word_to_lst(char *str, t_list **head_w)
 	char *copy;
 
 	copy = word_prepare(str);
-	lst= NULL;
 	lst = new_list(copy);
 	add_back(head_w, lst);
 	free(copy);

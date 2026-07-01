@@ -115,7 +115,7 @@ t_list *two_lst(char *str,  t_env *env)
 char *two_handler(char *str, t_env *env)
 {
 	t_list *two;
-	//t_list *start;
+	t_list *start;
 	char *s;
 	char *copy;
 	char *tmp;
@@ -124,24 +124,22 @@ char *two_handler(char *str, t_env *env)
 	s = two_trim(str);
 	printf ("str v two handler > >%s< <\n", s);
 	if (!test_names(str, env))
-	 {
-		printf("test bezi\n");
+	{
 		free(s);
 		return (NULL);
 	}
-	printf("> > > > test v two handler ok\n");
+	printf ("> > > > test names ok\n");
 	two = two_lst(s, env); //narvu str do lst	
-	//start = two;
+	start = two;
 	while(two != NULL)
 	{
-		s = (two -> str);
-		tmp = ft_strjoin (copy, s);
+		tmp = ft_strjoin (copy, two -> str);
 		copy = ft_strdup(tmp);
 		free(tmp);
 		two = two -> next;
 	}
 	free(s);
-	
+	//free_list(start);
 	return (copy);
 }
 
@@ -171,7 +169,7 @@ char *expand_lst(t_list *lst, t_env *env)
 		else if (*str == '\"' )
 		{
 			copy = two_handler(str, env);
-			//if (!copy)
+			// if (!copy)
 			// {
 			// 	printf ("neni copy v two handler\n");
 			// 	return(NULL);
@@ -201,10 +199,10 @@ int expander(t_list *lst, t_env *env)
 	{
 		new_lst = expand_lst(lst, env);
 		if (!new_lst)
-		//{
-		//	free(new_lst);
-		//	return(1); 
-		// }
+		{
+			free(new_lst);
+			return(1); 
+		}
 		free(lst -> str);
 		lst -> str = ft_strdup(new_lst);
 		free(new_lst);

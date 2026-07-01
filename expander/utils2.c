@@ -55,7 +55,7 @@ int test_name(char *str, t_env *env)
 	if (*str == '$')
 		++str;
 	name = str;
-	len = ft_strlen (str);
+	len = strlen_name (str);
 
 	while(env != NULL)
 	{
@@ -71,6 +71,45 @@ int test_name(char *str, t_env *env)
 	return(0);
 }
 
+// int test_names(char *str, t_env *env)
+// {
+// 	int len;
+
+// 	len = 0;
+// 	while (*str)
+// 	{
+// 		if (*str == '$')
+// 		{
+// 			len = strlen_name (str);
+// 			if(!test_name(str, env))
+// 				return(0);
+// 			str = str + len;
+// 		}
+// 		++str;
+// 	}
+// 	return(1);
+// }
+
+
+int test_names(char *str, t_env *env)
+{
+	int len;
+
+	len = 0;
+	
+	while (*str)
+	{
+		if (*str == '$')
+		{
+			len = strlen_name (str);
+			if(!test_name(str, env))
+				return(0);
+			str = str + len;
+		}
+		++str;
+	}
+	return(1);
+}
 
 char *find_name(char *str, t_env *env)
 {

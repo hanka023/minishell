@@ -110,8 +110,6 @@ char	*env_handler(t_list *lst);
 char	*find_env(char *str, t_env *env);
 
 
-
-
 /* * * * * * * string_utils.c * * * * * * * * */
 
 char *copy_string_zero(char *str, char c);
@@ -132,6 +130,7 @@ int		strlen_two(char *str);
 char	*ft_strldup(const char *str, int len);
 int		strlen_name(char *str);
 int		test_name(char *str, t_env *env);
+int		test_names(char *str, t_env *env);
 char	*find_name(char *str, t_env *env);
 
 
