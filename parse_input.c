@@ -1,44 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/27 16:01:51 by jkralice         ###   ########.fr       */
+/*   Created: 2026/08/27 15:30:14 by jkralice          #+#    #+#             */
+/*   Updated: 2026/08/27 15:56:37 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//	jkralice
-#include "mini.h"
-#include "Lib42/lib42.h"
-#include "map.h"
-
-//	hskalov
 #include "parse_input.h"
+#include "parser/minishell.h"
+#include "minishell.h"
 
-//	stdlib
-#include <unistd.h>
-
-int	main(void)
+t_list	*parse_input(t_state *state)
 {
-	t_state	state;
+	t_env	*env;
+	char	*line;
 	t_list	*list;
 
-	state = setup(gib(1), 2, mib(32));
-
-	// while (1)
-	// {
-		list = parse_input(&state);
-		while (list)
-		{
-			write(1, list->str, str_len(list->str));
-			write(1, " ", 1);
-			list = list->next;
-		}
-		write(1, "\n", 1);
-	// }
-	cleanup(state);
-	return (0);
+	line = read_line(&env);
+	env = env_to_lst(state->envp);
+	list = make_lst(line, env, state);
+	free(line);
+	free_env(env);
+	return (list);
 }

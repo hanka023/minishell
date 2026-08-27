@@ -22,6 +22,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../parser.h"
 #include <stdio.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -35,14 +36,14 @@
 // void	free_strings(char **strings);
 
 
-void line_to_lst(t_env *env, t_state *state)
+void line_to_lst(char *line, t_env *env, t_state *state)
 {
 
 	t_list		*lst;
 	char		*line;
 	char 		**str;
-	char 		**env_str;	
-	
+	char 		**env_str;
+
 	while (1)
 	{
 		write(1, "minishell$ ", 11);
@@ -51,7 +52,7 @@ void line_to_lst(t_env *env, t_state *state)
 			break;
 		if (check_empty_line(line) == 1)
 			continue;
-		
+
 		/*  TADY JE TEN LINKED LIST */
 
 		lst = make_lst(line, env, state);
@@ -63,16 +64,16 @@ void line_to_lst(t_env *env, t_state *state)
 		env_str = env_to_str(env);
 
 	/* print - list pro otestovani */
-		print_list (lst); 
+		print_list (lst);
 
 	/* test - zmena env */
 
 		printf ("zmena jmena\n");
 		char *old = "USER";
 		char *new = "111";
-		
+
 		change_env_name(env, old, new);
-		
+
 		//print_env (env); //  to nechces!!!!
 
 		/*******test     */
@@ -83,24 +84,24 @@ void line_to_lst(t_env *env, t_state *state)
 		free_list(lst);
 		free_str(str);
 		free_str(env_str);
-	
+
 	}
-	
+
 }
 
-int main(int argc, char *argv[])
-{
-	t_env		*env;
-	t_state		*state;
+// int main(int argc, char *argv[])
+// {
+// 	t_env		*env;
+// 	t_state		*state;
 
-	//state = setup(gib(1), 2, mib(32));
-	state = NULL;
+// 	//state = setup(gib(1), 2, mib(32));
+// 	state = NULL;
 
-	(void)argc;
-	(void)argv;
-	env = env_to_lst();
-	line_to_lst(env, state);
-	free_env (env);
-	
-	return(0);
-}
+// 	(void)argc;
+// 	(void)argv;
+// 	env = env_to_lst();
+// 	line_to_lst(line, env, state);
+// 	free_env (env);
+
+// 	return(0);
+// }

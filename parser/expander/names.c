@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   names.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 14:25:51 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/27 16:00:57 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "parser.h"
 
 int	strlen_name(char *str)

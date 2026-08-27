@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main_utils_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 19:41:50 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/27 15:34:02 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../../parser.h"
 #include "../minishell.h"
 #include "lst.h"
 
@@ -83,15 +84,17 @@ char	*read_line(t_env **env)
 
 t_list	*make_lst(char *line, t_env *env, t_state *state)
 {
+	t_env	*env;
 	t_list	*lst;
 	int		exp;
 
+	env = env_to_lst(state->envp);
 	exp = 0;
 	lst = my_split(line);
 	if (!lst)
 		return (NULL);
 	free (line);
-	exp = expander(lst, env, state);
+	exp = expander(lst, state->envp, state);
 	if (exp == 1)
 	{
 		printf("Error v expanderu\n");

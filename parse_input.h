@@ -1,24 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset.c                                            :+:      :+:    :+:   */
+/*   parse_input.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/21 14:36:44 by pepcen            #+#    #+#             */
-/*   Updated: 2026/05/28 14:02:31 by pepcen           ###   ########.fr       */
+/*   Created: 2026/08/27 14:21:20 by haskalov          #+#    #+#             */
+/*   Updated: 2026/08/27 15:57:43 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../commands.h"
-#include "../map.h"
+#ifndef PARSE_INPUT_H
+# define PARSE_INPUT_H
 
-char	**unset(char **map, char *key)
-{
-	char	**out;
+# include "mini.h"
 
-	out = map_remove(map, key);
-	if (!out)
-		out = map;
-	return (out);
-}
+typedef struct s_list t_list;
+typedef struct s_env t_env;
+
+t_list	*parse_input(t_state *state);
+
+#endif
+
+

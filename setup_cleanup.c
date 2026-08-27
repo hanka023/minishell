@@ -6,11 +6,11 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 17:12:51 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/27 14:32:38 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/27 15:57:05 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "mini.h"
 #include "map.h"
 #include "Lib42/pipeline.h"
 #include <stdlib.h>

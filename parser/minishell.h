@@ -1,4 +1,4 @@
-#ifndef     MINISHELL_H 
+#ifndef     MINISHELL_H
 #define     MINISHELL_H
 
 
@@ -16,13 +16,32 @@
 #include "expander/parser.h"
 #include "checker/checker.h"
 #include "lexer/lexer.h"
-#include "main_lst/lst.h"
 
-typedef struct s_list t_list;
-typedef struct s_env t_env;
-typedef struct s_state t_state;
+typedef struct s_list
+{
+	char			*str;
+	struct s_list	*prev;
+	struct s_list	*next;
+	char			type;
+}	t_list;
 
-void line_to_lst(t_env *env, t_state *state);
+typedef struct s_env
+{
+	char			*name;
+	char			*value;
+	struct s_env	*prev;
+	struct s_env	*next;
+}	t_env;
+
+typedef struct s_list
+{
+	char			*str;
+	struct s_list	*prev;
+	struct s_list	*next;
+	char			type;
+}	t_list;
+
+void line_to_lst(char *line, t_env *env, t_state *state);
 
 #endif
 

@@ -3,21 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   getenv_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/19 16:58:10 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/27 15:36:51 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../minishell.h"
 
-t_env	*env_to_lst(void)
+t_env	*env_to_lst(char **environ)
 {
 	t_env		*head;
 	t_env		*env;
-	extern char	**environ;
 	char		**copy_environ;
 
 	head = NULL;

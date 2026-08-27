@@ -3,40 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   lst.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 19:33:17 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/27 16:00:07 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LST_H
 # define LST_H
 
-# include "../minishell.h" 
-
-typedef struct s_list
-{
-	char			*str;
-	struct s_list	*prev;
-	struct s_list	*next;
-	char			type;
-}	t_list;
-
-typedef struct s_env
-{
-	char			*name;
-	char			*value;
-	struct s_env	*prev;
-	struct s_env	*next;
-}	t_env;
-
-
-typedef struct s_state
-{
-	char		**envp;
-	int			exit_code;
-}	t_state;
+# include "../minishell.h"
 
 /* * * * * * * main_utils_1  * * * * * * * * */
 

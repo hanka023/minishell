@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 19:31:34 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/27 16:00:53 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARSER_H
 # define PARSER_H
 
-# include "../minishell.h" 
+# include "../minishell.h"
 
 typedef struct s_list	t_list;
 typedef struct s_env	t_env;
@@ -59,7 +59,7 @@ char	*ft_strldup(const char *str, int len);
 
 /* * * * * * * getenv_1  * * * * * * * * */
 
-t_env	*env_to_lst(void);
+t_env	*env_to_lst(char **environ);
 void	env_name(char *str, t_env *env);
 void	env_value(char *str, t_env *env);
 t_env	*new_env(char *str);

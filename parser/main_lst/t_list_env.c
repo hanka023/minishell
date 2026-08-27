@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   t_list_env.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/19 17:17:53 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/27 15:21:33 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char *copy_name_to_str(t_env *lst)
 	int		len;
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	j = 0;
 	len = (ft_strlen(lst -> name) + ft_strlen(lst -> value) + 1);
