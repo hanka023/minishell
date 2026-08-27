@@ -7,6 +7,7 @@ DBGFLAGS = -g -fsanitize=leak,address,origin
 SOURCES = \
 	main.c			\
 	setup_cleanup.c	\
+	parse_input.c	\
 	\
 	map/map_add.c		\
 	map/map_change.c	\
