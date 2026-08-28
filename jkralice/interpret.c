@@ -1,34 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   interpret.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/28 15:52:36 by jkralice         ###   ########.fr       */
+/*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
+/*   Updated: 2026/08/28 15:52:00 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//	jkralice
-#include "mini.h"
-#include "jkralice/Lib42/lib42.h"
+#include "../mini.h"
+#include "map.h"
 
-//	stdlib
-#include <unistd.h>
-
-int	main(void)
+void	interpret(t_state *state, t_list *list)
 {
-	t_state	state;
-	t_list	*list;
 
-	state = setup(gib(1), 2, mib(32));
-	while (1)
-	{
-		list = input(&state);
-		print_list(list);
-		free_list(list);
-	}
-	cleanup(state);
-	return (0);
 }

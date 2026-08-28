@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:43 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/28 14:43:53 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/28 15:37:07 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,8 @@ void	cleanup(t_state state);
 
 //	Gather and parse input.
 t_list	*input(t_state *state);
+
+//	Interprets and runs the input.
+void	interpret(t_state *state, t_list *list);
 
 #endif
