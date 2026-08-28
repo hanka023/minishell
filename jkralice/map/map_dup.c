@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 11:20:20 by pepcen            #+#    #+#             */
-/*   Updated: 2026/08/09 12:45:32 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/28 14:29:32 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <stdio.h>
 
 #include "../Lib42/memory.h"
+#include "../Lib42/str.h"
 
 static inline
 size_t	map_len(char **map)
@@ -23,17 +24,6 @@ size_t	map_len(char **map)
 
 	out = 0;
 	while (map[out])
-		out++;
-	return (out);
-}
-
-static inline
-size_t	str_len(char *str)
-{
-	size_t	out;
-
-	out = 0;
-	while (str[out])
 		out++;
 	return (out);
 }
