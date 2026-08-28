@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/28 15:52:00 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/28 15:56:10 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,4 @@
 
 void	interpret(t_state *state, t_list *list)
 {
-
 }
