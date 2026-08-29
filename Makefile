@@ -6,9 +6,10 @@ CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=leak,address
 SOURCES = \
 	main.c	\
 	\
-	jkralice/mini/setup.c	\
-	jkralice/mini/cleanup.c	\
-	jkralice/mini/input.c	\
+	jkralice/mini/setup.c		\
+	jkralice/mini/cleanup.c		\
+	jkralice/mini/input.c		\
+	jkralice/mini/interpret.c	\
 	\
 	jkralice/map/map_add.c		\
 	jkralice/map/map_change.c	\

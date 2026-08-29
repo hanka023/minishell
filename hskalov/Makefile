@@ -5,12 +5,12 @@ NAME = mini
 # Překladač a příznaky
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g -fsanitize=address
-# CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g 
+# CFLAGS = -Wall -Wextra -Werror -I libft -I gnl -I utils  -I fPie -g
 # DBGF = -g -fsanitize=address,leak
 
 LIBFT_DIR   = libft
 LIBFT       = $(LIBFT_DIR)/libft.a
-LDFLAGS     = -Llibft -lft 
+LDFLAGS     = -Llibft -lft
 
 # Seznam všech .c souborů
 SRC = main.c \
@@ -43,8 +43,8 @@ SRC = main.c \
 		main_lst/t_list.c \
 		main_lst/t_list_env.c \
 		main_lst/change_env.c \
-		main_lst/find_env.c 
-	
+		main_lst/find_env.c
+
 # Změna koncovek .c na .o pro objekty
 OBJ = $(SRC:.c=.o)
 

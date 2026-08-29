@@ -3,22 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:39:55 by pepcen            #+#    #+#             */
-/*   Updated: 2026/05/28 14:02:33 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/08/29 16:21:21 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../commands.h"
 #include "../map.h"
 
-char	**export(char **map, char *key, char *val)
+int	export(void *param, int in_fd, int out_fd)
 {
-	char	**out;
+	t_export_args	*args;
+	char			**tmp;
 
-	out = map_add(map, key, val);
-	if (!out && !map_change(map, key, val))
-			return (NULL);
-	return (out);
+	(void)in_fd;
+	(void)out_fd;
+	args = (t_export_args *)param;
+	tmp = map_add(*(args->envp), args->key, args->val);
+	if (!tmp && !map_change(*(args->envp), args->key, args->val))
+			return (1);
+	*(args->envp) = tmp;
+	return (0);
 }

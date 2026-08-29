@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:07:30 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/26 17:02:55 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/29 17:03:45 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,16 @@ int	pipeline_run(t_pipeline *ppl, int in_fd, int out_fd)
 	size = ppl_chain_size(chain);
 	if (size == 0)
 		return (-1);
-	if (size == 1)
+	else if (size == 1)
 		return (_ppl_run_link_alone(
 				ppl_node_data(ppl_chain_start(chain)),
 				in_fd,
 				out_fd
 			));
-	if (size >= 2)
+	else
 		return (run_multiple_links(
 				chain,
 				in_fd,
 				out_fd
 			));
-	return (-1);
 }

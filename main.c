@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/28 16:18:51 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/29 17:01:41 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ int	main(void)
 	while (1)
 	{
 		list = input(&state);
-		print_list(list);
+		interpret(&state, list);
+		// print_list(list);
 		free_list(list);
 	}
 	cleanup(state);

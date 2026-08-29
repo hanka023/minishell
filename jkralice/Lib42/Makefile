@@ -9,6 +9,7 @@ SOURCES = \
 	types/ssize.c	\
 	\
 	str/str_cat.c	\
+	str/str_eq.c	\
 	str/str_len.c	\
 	str/str_split.c	\
 	str/str_sub.c	\

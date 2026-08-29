@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:43 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/28 16:24:44 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/29 16:59:20 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,14 @@
 # include "jkralice/Lib42/pipeline.h"
 # include "hskalov/minishell.h"
 
+# ifndef PROMPT
+#  define PROMPT "\e[032m[ mini ] > \e[0m"
+# endif
+
 typedef struct s_state
 {
 	char		**envp;
 	t_arena		*arena;
-	t_pipeline	*pipeline;
 	int			exit_code;
 }	t_state;
 

@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/24 14:12:39 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/26 17:03:38 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/29 17:03:50 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	_ppl_run_link_alone(t_ppl_link *link, int in_fd, int out_fd)
 		link->data.process._pid = pid;
 	if (link->type == PPL_FUNCTION)
 		link->data.function._pid = pid;
-	return (pid != -1);
+	return (pid == -1);
 }
 
 inline

@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 16:27:33 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/09 17:48:48 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/29 15:41:31 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ char	**str_split(t_arena *arena, char *str, char c)
 		while (str[j] != c && str[j])
 			j++;
 		out[i] = str_sub(arena, str, start, j - start);
+		i++;
 	}
 	out[i] = NULL;
 	return (out);

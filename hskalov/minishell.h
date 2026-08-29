@@ -18,9 +18,9 @@
 #include "lexer/lexer.h"
 #include "main_lst/lst.h"
 
-typedef struct s_list t_list;
-typedef struct s_env t_env;
-typedef struct s_state t_state;
+// typedef struct s_list t_list;
+// typedef struct s_env t_env;
+// typedef struct s_state t_state;
 
 void line_to_lst(t_env *env, t_state *state);
 

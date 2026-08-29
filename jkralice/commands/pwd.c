@@ -3,28 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:47:17 by pepcen            #+#    #+#             */
-/*   Updated: 2026/05/21 14:52:26 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/08/29 16:21:47 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../commands.h"
+#include "../Lib42/str.h"
 
 #include <unistd.h>
 #include <stdlib.h>
 
-size_t	str_len(char *str);
-
-int	pwd(void)
+int	pwd(void *param, int in_fd, int out_fd)
 {
 	char	*dir;
 
+	(void)param;
+	(void)in_fd;
 	dir = getcwd(NULL, 0);
-	if (!dir)
-		return (0);
-	write(1, dir, str_len(dir));
+	write(out_fd, dir, str_len(dir));
 	free(dir);
-	return (1);
+	return (0);
 }
