@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 16:26:22 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:17:41 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,3 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	free(start);
 	return (head_w);
 }
-

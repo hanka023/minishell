@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/24 16:35:28 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:28:46 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@ int	change_env_value(t_env *env, char *old_value, char *new_value)
 	returns 1 if name is valid
 */
 
-int check_env_name(char *name)
+int	check_env_name(char *name)
 {
-	if(!name)
+	if (!name)
 		return (0);
 	if (ft_isalpha(name[0]) == 1)
 	{
 		printf (" >>> %c  name OK", name[0]);
-		return(1);
+		return (1);
 	}
 	else
 		printf ("name KO :(");
@@ -65,17 +65,16 @@ int	change_name(t_env *env, char *old_name, char *new_name)
 {
 	t_env	*find;
 	char	*new;
-	
-	if(!env || !old_name || !new_name)
+
+	if (!env || !old_name || !new_name)
 		return (-1);
-	find = find_env_node(old_name, env);	
+	find = find_env_node (old_name, env);
 	if (!find)
-		return(-1);
-	new = ft_strdup(new_name);
+		return (-1);
+	new = ft_strdup (new_name);
 	if (!new)
 		return (-1);
-	free(find -> name);
-	(find -> name) = new;	
+	free (find -> name);
+	(find -> name) = new;
 	return (0);
 }
-

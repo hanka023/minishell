@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sighandler.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
+/*   Updated: 2026/08/28 17:17:24 by haskalov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <signal.h>
 #include <errno.h>
 #include <string.h>
@@ -8,11 +20,7 @@ void	sighandler(int sig)
 {
 	if (sig == SIGINT)
 	{
-		// 1. Vrátíme chování signálu na default (ukončení)
 		signal(SIGINT, SIG_DFL);
-		// 2. Pošleme SIGINT sami sobě (nebo svému procesu)
-		// kill(getpid(), SIGINT);
-		// Alternativně stačí jen:
 		raise(SIGINT);
 		exit(0);
 	}
@@ -30,9 +38,8 @@ int	main(int argc, char *argv[])
 			perror ("signal");
 			return (1);
 		}
-		while (j < 10) //odpocitavani casu 
+		while (j < 10)
 		{
-			//printf ("%d\n", j);
 			++j;
 			sleep (2);
 		}

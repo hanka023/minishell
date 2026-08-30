@@ -6,10 +6,9 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2025/06/30 14:10:50 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:24:28 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-//  The strchr() function returns a pointer to the first occurrence of the character c in the string s
 
 #include "libft.h"
 

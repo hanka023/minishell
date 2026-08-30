@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 16:27:52 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:46:28 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
-typedef struct s_state t_state;
+typedef struct s_state	t_state;
 
 /* * * * * * * main_utils_1  * * * * * * * * */
 
@@ -72,6 +72,7 @@ t_env	*find_env_node(char *str, t_env *env);
 /* * * * * * * t_list_env.c * * * * * * * * */
 
 int		list_len(t_list *lst);
+int		env_list_len(t_env *lst);
 char	*copy_name_to_str(t_env *lst);
 char	**env_to_str(t_env *lst);
 

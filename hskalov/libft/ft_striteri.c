@@ -6,10 +6,9 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2025/06/30 14:10:08 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:23:54 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-// applikuje funkci *f na kazdy znak retezce
 
 #include "libft.h"
 

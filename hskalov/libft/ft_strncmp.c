@@ -6,11 +6,9 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2025/06/30 14:10:38 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/08/28 17:24:15 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-// The  strcmp()  function compares the two strings s1 and s2.  The locale is not taken into account (for a locale-
-// aware comparison, see strcoll(3)).  The comparison is done using unsigned characters.
 
 #include "libft.h"
 
