@@ -21,6 +21,14 @@ SOURCES = \
 	jkralice/map/map_search.c	\
 	jkralice/map/map_utils.c	\
 	\
+	jkralice/commands/cd.c				\
+	jkralice/commands/echo.c			\
+	jkralice/commands/env.c				\
+	jkralice/commands/export.c			\
+	jkralice/commands/pwd.c				\
+	jkralice/commands/unset.c			\
+	jkralice/commands/commands_utils.c	\
+	\
 	hskalov/expander/double_expander.c	 	\
 	hskalov/expander/env_utils.c	 		\
 	hskalov/expander/expander_utils.c	 	\

@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:10:49 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/29 16:59:03 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/30 16:55:06 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	link_wait_status(t_ppl_link *link)
 	}
 	else if (link->type == PPL_FUNCTION)
 	{
-		write(1, "hit\n", 4);
 		if (waitpid(link->data.function._pid, &status, 0) == -1)
 			return (-1);
 	}

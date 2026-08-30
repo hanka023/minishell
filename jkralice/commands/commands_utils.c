@@ -1,30 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipeline_add_process.c                             :+:      :+:    :+:   */
+/*   commands_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/09 15:08:40 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/30 16:40:22 by jkralice         ###   ########.fr       */
+/*   Created: 2026/08/30 16:20:41 by jkralice          #+#    #+#             */
+/*   Updated: 2026/08/30 16:32:40 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "_pipeline.h"
-#include "limits.h"
+#include "../commands.h"
+#include "../Lib42/types.h"
 
-int	pipeline_add_process(t_pipeline *ppl, char *path, char **argv, char **envp)
+void	separate_key_val(char *str, char **key_out, char **val_out)
 {
-	t_ppl_link	*link;
+	size_t	i;
 
-	link = ppl_chain_add_back((t_ppl_chain *)ppl);
-	*link = (t_ppl_link){
-		.type = PPL_PROCESS,
-		.data.process = (t_ppl_link_process){
-		.path = path,
-		.argv = argv,
-		.envp = envp,
-		._pid = 0
-	}};
-	return (1);
+	*key_out = str;
+	*val_out = NULL;
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '=')
+		{
+			str[i] = '\0';
+			*val_out = &(str[i + 1]);
+			return ;
+		}
+		i++;
+	}
 }
