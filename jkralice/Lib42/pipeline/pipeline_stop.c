@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 15:52:35 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/24 12:15:21 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/31 17:29:55 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ void	pipeline_stop(t_pipeline *ppl)
 	{
 		link = ppl_node_data(node);
 		if (link->type == PPL_FUNCTION && link->data.function._pid > 1)
-			kill(link->data.function._pid, SIGKILL);
+			kill(link->data.function._pid, SIGTERM);
 		if (link->type == PPL_PROCESS && link->data.process._pid > 1)
-			kill(link->data.process._pid, SIGKILL);
+			kill(link->data.process._pid, SIGTERM);
 		if (link->type == PPL_FILE && link->data.file._fd > 2)
 			close(link->data.file._fd);
 		node = ppl_node_next((t_ppl_chain *)ppl, node);

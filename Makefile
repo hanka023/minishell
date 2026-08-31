@@ -28,6 +28,7 @@ SOURCES = \
 	jkralice/commands/pwd.c				\
 	jkralice/commands/unset.c			\
 	jkralice/commands/commands_utils.c	\
+	jkralice/commands/_heredoc.c		\
 	\
 	hskalov/expander/double_expander.c	 	\
 	hskalov/expander/env_utils.c	 		\

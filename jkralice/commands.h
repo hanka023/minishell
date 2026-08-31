@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:27:50 by pepcen            #+#    #+#             */
-/*   Updated: 2026/08/30 16:26:02 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/31 18:13:05 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,12 @@ int		pwd(void *param, int in_fd, int out_fd);
 int		export(void *param, int in_fd, int out_fd);
 int		unset(void *param, int in_fd, int out_fd);
 int		env(void *param, int in_fd, int out_fd);
+
+typedef struct s_heredoc_args
+{
+	char	*delimiter;
+}	t_heredoc_args;
+
+int		_heredoc(void *param, int in_fd, int out_fd);
 
 #endif

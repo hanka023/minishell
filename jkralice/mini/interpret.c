@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/30 19:29:12 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/08/31 18:14:45 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,6 @@ void	interpret(t_state *state, t_list *list)
 			}
 		}
 	}
-
 	pipeline_run(ppl, 0, out_fd);
 	state->exit_code = pipeline_wait(ppl);
 	if (out_fd != 1)
