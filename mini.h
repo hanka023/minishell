@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mini.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:43 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/29 16:59:20 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/01 14:27:29 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_state	setup(size_t arena_size, size_t scratch_count, size_t scratch_size);
 void	cleanup(t_state state);
 
 //	Gather and parse input.
-t_list	*input(t_state *state);
+t_list	*input(t_state *state, char *line);
 
 //	Interprets and runs the input.
 void	interpret(t_state *state, t_list *list);

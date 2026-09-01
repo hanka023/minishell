@@ -1,7 +1,7 @@
 NAME = mini
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g #-fsanitize=leak,address
+CFLAGS = -Wall -Werror -Wextra -g -lreadline -fsanitize=leak,address
 
 SOURCES = \
 	main.c	\
