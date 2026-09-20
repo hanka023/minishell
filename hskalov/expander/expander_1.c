@@ -23,17 +23,20 @@ int	expand_status(char *str, t_state *state, t_list **head_w)
 	len = 0;
 	copy = "";
 	if (*str == '\"')
+	{
 		++str;
-	if (*str == '$')
+		++len;
+	}
+	if (*str == '$' && *(str + 1) == '?')
 	{
 		status_code = ft_itoa(state -> exit_code);
 		if (!status_code)
 			return (0);
-		copy = ft_strdup (status_code);
+		copy = ft_strdup(status_code);
 		word_to_lst(copy, head_w);
 		free (status_code);
 		free (copy);
-		return (len);
+		return (len + 2);
 	}
 	return (0);
 }
