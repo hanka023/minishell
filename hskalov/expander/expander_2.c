@@ -94,7 +94,7 @@ char	*expand_lst(t_list *lst, t_env *env, t_state *state)
 
 	metachar_set = "|<>";
 	str = lst -> str;
-	if (is_in_set(*str, metachar_set) || is_in_set(*(str +1), metachar_set))
+	if (is_in_set(*str, metachar_set) || is_in_set(*(str + 1), metachar_set))
 		return (expand_metachar(str));
 	else
 	{

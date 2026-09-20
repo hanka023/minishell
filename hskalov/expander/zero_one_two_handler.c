@@ -55,14 +55,11 @@ char	*two_handler(char *s, t_env *env, t_state *state)
 {
 	t_list	*lst;
 	t_list	*start;
-	char	*str;
 	char	*cp;
 	char	*tmp;
 
-	str = two_trim(s);
-	lst = two_lst(str, env, state);
+	lst = two_lst(s, env, state);
 	start = lst;
-	free(str);
 	cp = ft_strdup("");
 	if (!cp)
 		return (NULL);

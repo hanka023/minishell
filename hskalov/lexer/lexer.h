@@ -21,7 +21,7 @@ typedef struct s_env	t_env;
 /* * * * * * my_split_utils * * * * * */
 
 int		metachar(char *str);
-int		stav_str(char *str, int stav);
+int		stav_str(char c, int stav);
 int		strlen_split(char *str);
 size_t	ft_strlcpy(char *dest, const char *src, size_t n);
 int		strlen_copy(char *str);

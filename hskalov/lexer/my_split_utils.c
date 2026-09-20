@@ -31,30 +31,54 @@ int	metachar(char *str)
 	return (len);
 }
 
-int	stav_str(char *str, int stav)
+int	stav_str(char c, int stav)
 {
-	if (*str == '\'' && stav == 0)
-		stav = 1;
-	else if (*str == '\'' && stav == 1)
-		stav = 0;
-	else if (*str == '\"' && stav == 0)
-		stav = 2;
-	else if (*str == '\"' && stav == 2)
-		stav = 0;
+	if (stav == 0)
+	{
+		if (c == '\'')
+			return(1);
+		if (c == '"')
+			return(2);
+	}
+	else if (stav == 1 && c == '\'')
+		return(0);
+	else if (stav == 2 && c == '"')
+		return(0);
 	return (stav);
 }
+
+// int	strlen_split(char *str)
+// {
+// 	int		len;
+// 	char	*set;
+
+// 	len = 0;
+// 	set = " \t\n|<>";
+// 	while (*str && !is_in_set(*str, set))
+// 	{
+// 		++str;
+// 		++len;
+// 	}
+// 	return (len);
+// }
+
+
 
 int	strlen_split(char *str)
 {
 	int		len;
 	char	*set;
+	int		stav;
 
 	len = 0;
+	stav = 0;
 	set = " \t\n|<>";
-	while (*str && !is_in_set(*str, set))
+	while (str[len])
 	{
-		++str;
-		++len;
+		if (stav == 0 && is_in_set(str[len], set))
+			break;
+		stav = stav_str(str[len], stav);
+		len++;
 	}
 	return (len);
 }
@@ -90,22 +114,12 @@ int	strlen_copy(char *str)
 	len = 0;
 	stav = 0;
 	set = " \t\n|<>";
-	if (*str == '\"')
-		stav = 2;
-	else if (*str == '\'')
-		stav = 1;
-	++str;
-	++len;
-	while (*str)
+	while (str[len])
 	{
-		stav = stav_str(str, stav);
-		if (is_in_set(*str, set) && stav == 0)
-			return (len);
-		else
-		{
-			++str;
-			++len;
-		}
+		if (stav == 0 && is_in_set(str[len], set))
+			break;
+		stav = stav_str(str[len], stav);
+		len++;
 	}
 	return (len);
 }

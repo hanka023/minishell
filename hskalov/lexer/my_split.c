@@ -58,33 +58,20 @@ char	*copy_metachar(char *str, int len)
 int	no_set(char *str, t_list **head)
 {
 	int		len;
-	int		s_len;
-	char	*copy;
 
-	len = 0;
-	s_len = 0;
-	s_len = ft_strlen (str);
-	if (s_len > 0 && str[s_len - 1] == '\n')
-		str[s_len - 1] = ' ';
-	copy = "";
 	len = strlen_copy (str);
-	copy = make_copy (str, len);
-	word_to_list (copy, head, len);
-	free (copy);
+	if (word_to_list (str, head, len) != 0)
+		return (0);
 	return (len);
 }
 
 int	m_set(char *str, t_list **head)
 {
 	int		len;
-	char	*copy;
 
-	len = 0;
-	copy = "";
 	len = metachar (str);
-	copy = copy_metachar (str, len);
-	word_to_list (copy, head, len);
-	free (copy);
+	if (word_to_list (str, head, len) != 0)
+		return(0);
 	return (len);
 }
 

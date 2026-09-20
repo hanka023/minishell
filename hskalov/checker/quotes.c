@@ -16,31 +16,19 @@
 int	check_quotes(char *str)
 {
 	int	quotes;
+	int	d_quotes;
 
 	quotes = 0;
+	d_quotes = 0;
 	while (*str)
 	{
-		if (*str == '\'' && quotes == 0)
-			quotes = 1;
-		else if (*str == '\'' && quotes == 1)
-			quotes = 0;
-		++str;
+		if (*str == '\'' && d_quotes == 0)
+			quotes = !quotes;
+		else if (*str == '"' && quotes == 0)
+			d_quotes = !d_quotes;
+		str++;
 	}
-	return (quotes);
-}
-
-int	check_double_quotes(char *str)
-{
-	int	quotes;
-
-	quotes = 0;
-	while (*str)
-	{
-		if (*str == '\"' && quotes == 0)
-			quotes = 1;
-		else if (*str == '\"' && quotes == 1)
-			quotes = 0;
-		++str;
-	}
-	return (quotes);
+	if (quotes || d_quotes)
+		return (1);
+	return (0);
 }

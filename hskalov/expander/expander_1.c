@@ -76,7 +76,7 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	char	*start;
 
 	head_w = NULL;
-	str = one_trim(s);
+	str = two_trim(s);
 	start = str;
 	while (*str && *str != '\0' && *str != '\"')
 	{

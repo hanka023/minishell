@@ -23,6 +23,7 @@ int	word_to_list(char *str, t_list **head, int len)
 	copy = malloc (sizeof (char) * (len + 1));
 	if (!copy)
 		return (1);
+	i = 0;
 	while (i < len)
 	{
 		copy[i] = str[i];
@@ -30,7 +31,11 @@ int	word_to_list(char *str, t_list **head, int len)
 	}
 	copy[i] = '\0';
 	lst = new_list (copy);
-	free (copy);
+	if(!lst)
+	{
+		free (copy);
+		return(1);
+	}
 	add_back (head, lst);
 	return (0);
 }

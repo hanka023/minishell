@@ -1,7 +1,7 @@
-NAME = mini
+NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -lreadline
+CFLAGS = -Wall -Werror -Wextra -lreadline -g -fsanitize=address
 DBGFLAGS = -g -fsanitize=address
 
 SOURCES = \

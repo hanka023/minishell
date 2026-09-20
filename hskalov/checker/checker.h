@@ -34,7 +34,6 @@ int	check_pipes(char *str);
 /* * * * * * * * * quotes.c  * * * * * * * * * */
 
 int	check_quotes(char *str);
-int	check_double_quotes(char *str);
 
 /* * * * * * *   redirect_1.c   * * * * * * * * */
 
