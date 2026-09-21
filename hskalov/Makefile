@@ -15,16 +15,16 @@ LDFLAGS     = -Llibft -lft
 SRC = main.c \
 		expander/double_expander.c \
 		expander/env_utils.c \
-		expander/expander_utils.c \
 		expander/expander_1.c	\
 		expander/expander_2.c	\
+		expander/expander_utils.c \
 		expander/getenv_1.c \
 		expander/getenv_2.c \
+		expander/names.c \
 		expander/string.c \
 		expander/strlen.c \
-		expander/utils.c \
-		expander/names.c \
 		expander/trim.c \
+		expander/utils.c \
 		expander/zero_one_two_handler.c \
 		gnl/get_next_line_utils.c \
 		gnl/get_next_line.c \

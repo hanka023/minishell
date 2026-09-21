@@ -37,18 +37,47 @@ char	*zero_handler(char *str, t_env *env, t_state *state)
 	return (copy);
 }
 
+// char	*one_handler(char *str)
+// {
+// 	char	*copy;
+// 	char	*start;
+
+// 	if (*str == '\'')
+// 		++str;
+// 	copy = copy_string (str, '\'');
+// 	start = copy;
+// 	if (*copy == '\'')
+// 		*copy = '\0';
+// 	printf("string v one handler [%s]\n", start);	
+// 	return (start);
+// }
+
+
 char	*one_handler(char *str)
 {
 	char	*copy;
-	char	*start;
+	int		len;
+	int		i;
 
+	len = 0;
+	i = 0;
 	if (*str == '\'')
 		++str;
-	copy = copy_string (str, '\'');
-	start = copy;
-	if (*copy == '\'')
-		*copy = '\0';
-	return (start);
+	while (str[len] != '\0' && str[len] != '\'')
+		++len;
+	copy = malloc (sizeof(char) * (len + 1));
+	if (!copy)
+		return(NULL);
+	while (i < len)
+	{
+		copy[i] = str[i];
+		++i;
+	}
+	copy[len] = '\0';
+
+	printf("string v one handler [%s]\n", copy);	
+
+	return (copy);
 }
 
 char	*two_handler(char *s, t_env *env, t_state *state)

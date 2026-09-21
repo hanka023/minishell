@@ -20,6 +20,7 @@
 
 // 	len = 0;
 // 	set = " \t\n|<>\'\"";
+
 // 	while (*str && !is_in_set(*str, set))
 // 	{
 // 		++str;

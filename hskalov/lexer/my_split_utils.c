@@ -99,9 +99,10 @@ int	strlen_copy(char *str)
 	set = " \t\n|<>";
 	while (str[len])
 	{
+		stav = stav_str(str[len], stav);
 		if (stav == 0 && is_in_set(str[len], set))
 			break;
-		stav = stav_str(str[len], stav);
+			
 		len++;
 	}
 	return (len);
