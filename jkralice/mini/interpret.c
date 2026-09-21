@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/21 15:45:41 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/21 16:39:07 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,9 @@ void	interpret(t_state *state)
 	out_fd = 1;
 	while (list)
 	{
-		if (str_eq(list->str, "|"))
+		if (list->type == 1)
+			*(char **)arena_advance(temp.arena, sizeof(char *)) = list->str;
+		else if (str_eq(list->str, "|"))
 		{
 			add_link(state, temp, argv, in_fd, out_fd);
 			argv = arena_push(temp.arena, 0);

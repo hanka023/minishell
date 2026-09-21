@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/21 16:33:40 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 16:38:38 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,7 @@ int	main(void)
 		add_history(line);
 
 		state.list = input(&state, line);
-
-		for (t_list *l = state.list; l; l = l->next)
-			printf("STRING: %s, LITERAL: %i\n", l->str, l->type);
-
-		// interpret(&state);
+		interpret(&state);
 		free_list(state.list);
 	}
 	rl_clear_history();
