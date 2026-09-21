@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -lreadline -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -lreadline -g -fsanitize=address 
 DBGFLAGS = -g -fsanitize=address
 
 SOURCES = \
@@ -40,6 +40,7 @@ SOURCES = \
 	hskalov/expander/getenv_2.c	 			\
 	hskalov/expander/string.c	 			\
 	hskalov/expander/strlen.c	 			\
+	hskalov/expander/trim.c	 				\
 	hskalov/expander/utils.c	 			\
 	hskalov/expander/names.c	 			\
 	hskalov/expander/zero_one_two_handler.c	\

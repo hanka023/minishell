@@ -13,22 +13,22 @@
 #include "../minishell.h"
 #include "parser.h"
 
+// int	strlen_zero(char *str)
+// {
+// 	int		len;
+// 	char	*set;
+
+// 	len = 0;
+// 	set = " \t\n|<>\'\"";
+// 	while (*str && !is_in_set(*str, set))
+// 	{
+// 		++str;
+// 		++len;
+// 	}
+// 	return (len);
+// }
+
 int	strlen_zero(char *str)
-{
-	int		len;
-	char	*set;
-
-	len = 0;
-	set = " \t\n|<>\'\"";
-	while (*str && !is_in_set(*str, set))
-	{
-		++str;
-		++len;
-	}
-	return (len);
-}
-
-int	strlen_zero_zero(char *str)
 {
 	int	len;
 
@@ -41,8 +41,23 @@ int	strlen_zero_zero(char *str)
 	return (len);
 }
 
-int	strlen_one(char *str)
+int	strlen_word_zero(char *s)
 {
+	int	len;
+
+	if (!s)
+		return (0);
+	len = 0;
+	while (*s && *s != '\0' && *s != '$' && *s != '\'' && *s != '\"')
+	{
+		++len;
+		++s;
+	}
+	return (len);
+}
+
+int	strlen_one(char *str)
+{	
 	int	len;
 
 	len = 0;

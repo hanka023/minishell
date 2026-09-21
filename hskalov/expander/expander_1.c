@@ -96,3 +96,33 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	free(start);
 	return (head_w);
 }
+
+
+t_list	*zero_lst(char *s, t_env *env, t_state *state)
+{
+	int		len;
+	t_list	*head_w;
+	char	*str;
+	char	*start;
+
+	head_w = NULL;
+	str = two_trim(s);
+	start = str;
+	while (*str && *str != '\0' && *str != '\'' && *str != '\"')
+	{
+		if (*str != '$')
+		{
+			len = strlen_word_zero(str);
+			zero_to_lst(str, &head_w);
+		}
+		if (*str == '$' && *(str + 1) == '?')
+			len = expand_status(str, state, &head_w);
+		else if (*str == '$')
+			len = expand_name(str, env, &head_w);
+		str = str + len;
+		if (*str == '\n')
+			++str;
+	}
+	free(start);
+	return (head_w);
+}

@@ -47,23 +47,6 @@ int	stav_str(char c, int stav)
 	return (stav);
 }
 
-// int	strlen_split(char *str)
-// {
-// 	int		len;
-// 	char	*set;
-
-// 	len = 0;
-// 	set = " \t\n|<>";
-// 	while (*str && !is_in_set(*str, set))
-// 	{
-// 		++str;
-// 		++len;
-// 	}
-// 	return (len);
-// }
-
-
-
 int	strlen_split(char *str)
 {
 	int		len;

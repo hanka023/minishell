@@ -13,104 +13,56 @@
 #include "parser.h"
 #include "../minishell.h"
 
-
-char	*zero_prepare(char *s)
-{
-	char	*copy;
-	char	*start;
-	int		l;
-
-	l = 0;
-	while (s[l] != '$' && s[l] != '\0' && s[l] != '\'' && s[l] != '\"')
-		++l;
-	copy = malloc (sizeof (char) *(l + 1));
-	if (!copy)
-		return (NULL);
-	start = copy;
-	while (*s != '$' && *s != '\0' && *s != '\'' && *s != '\"')
-	{
-		*copy = *s;
-		++copy;
-		++s;
-	}
-	*copy = '\0';
-	return (start);
-}
-
-char	*word_prepare(char *str)
+char	*two_trim(char *str)
 {
 	char	*copy;
 	char	*start;
 	int		len;
 
 	len = 0;
-	while (str[len] != '$' && str[len] != '\0' && str[len] != '\"')
+	if (*str == '\"')
+		++str;
+	while (str[len] != '\0' && str[len] != '\"')
 		++len;
-	copy = malloc (sizeof (char) *(len + 1));
+	copy = malloc(sizeof(char) * (len + 1));
 	if (!copy)
 		return (NULL);
 	start = copy;
-	while (*str != '$' && *str != '\0' && *str != '\"')
+	while (len > 0)
 	{
 		*copy = *str;
 		++copy;
 		++str;
+		--len;
 	}
 	*copy = '\0';
+	copy = start;
 	return (start);
 }
 
-void	zero_to_lst(char *str, t_list **head_w)
+char	*one_trim(char *str)
 {
-	t_list	*lst;
 	char	*copy;
+	char	*start;
+	int		len;
 
-	copy = zero_prepare(str);
-	lst = new_list(copy);
-	add_back(head_w, lst);
-	free (copy);
-	return ;
-}
-
-void	word_to_lst(char *str, t_list **head_w)
-{
-	t_list	*lst;
-	char	*copy;
-
-	copy = word_prepare(str);
-	lst = new_list(copy);
-	add_back(head_w, lst);
-	free (copy);
-	return ;
-}
-
-int	strlen_word(char *str)
-{
-	int	len;
-
-	if (!str)
-		return (0);
 	len = 0;
-	while (*str && *str != '\0' && *str != '$' && *str != '\"')
-	{
-		++len;
+	if (*str == '\'')
 		++str;
+	while (str[len] != '\0' && str[len] != '\'')
+		++len;
+	copy = malloc (sizeof(char) * (len + 1));
+	if (!copy)
+		return (NULL);
+	start = copy;
+	while (len > 0)
+	{
+		*copy = *str;
+		++copy;
+		++str;
+		--len;
 	}
-	return (len);
+	*copy = '\0';
+	copy = start;
+	return (start);
 }
-
-
-// int	strlen_word_zero(char *s)
-// {
-// 	int	len;
-
-// 	if (!s)
-// 		return (0);
-// 	len = 0;
-// 	while (*s && *s != '\0' && *s != '$' && *s != '\'' && *s != '\"')
-// 	{
-// 		++len;
-// 		++s;
-// 	}
-// 	return (len);
-// }

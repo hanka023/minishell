@@ -15,7 +15,7 @@
 
 char	*zero_handler(char *str, t_env *env, t_state *state)
 {
-	t_list	*two;
+	t_list	*zero;
 	t_list	*start;
 	char	*copy;
 	char	*tmp;
@@ -23,17 +23,17 @@ char	*zero_handler(char *str, t_env *env, t_state *state)
 	copy = "";
 	if (test_names(str, env) == 1)
 		return (NULL);
-	two = two_lst(str, env, state);
-	start = two;
-	while (two != NULL)
+	zero = zero_lst(str, env, state);
+	start = zero;
+	while (zero != NULL)
 	{
-		tmp = ft_strjoin (copy, two -> str);
+		tmp = ft_strjoin (copy, zero -> str);
 		copy = ft_strdup(tmp);
 		free(tmp);
-		two = two -> next;
+		zero = zero -> next;
 	}
-	two = start;
-	free_list(two);
+	zero = start;
+	free_list(zero);
 	return (copy);
 }
 
@@ -75,3 +75,4 @@ char	*two_handler(char *s, t_env *env, t_state *state)
 	free_list(lst);
 	return (cp);
 }
+	

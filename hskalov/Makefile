@@ -24,6 +24,7 @@ SRC = main.c \
 		expander/strlen.c \
 		expander/utils.c \
 		expander/names.c \
+		expander/trim.c \
 		expander/zero_one_two_handler.c \
 		gnl/get_next_line_utils.c \
 		gnl/get_next_line.c \

@@ -21,11 +21,11 @@ typedef struct s_state	t_state;
 
 /* * * * * * * double expander * * * * * * * * */
 
-char	*two_trim(char *str);
-char	*one_trim(char *str);
 char	*word_prepare(char *str);
+void	zero_to_lst(char *str, t_list **head_w);
 void	word_to_lst(char *str, t_list **head_w);
 int		strlen_word(char *str);
+int		strlen_zero(char *s);
 
 /* * * * * * * env_utils.c * * * * * * */
 
@@ -40,6 +40,7 @@ char	*find_env(char *str, t_env *env);
 int		expand_status(char *str, t_state *state, t_list **head_w);
 int		expand_name(char *str, t_env *env, t_list **head_w);
 t_list	*two_lst(char *s, t_env *env, t_state *state);
+t_list	*zero_lst(char *s, t_env *env, t_state *state);
 
 /* * * * * * * expander_2 * * * * * * * * */
 
@@ -86,9 +87,15 @@ char	*copy_string(char *str, char c);
 /* * * * * * * strlen.c * * * * * * * * */
 
 int		strlen_zero(char *str);
-int		strlen_zero_zero(char *str);
+int		strlen_str_zero(char *str);
 int		strlen_one(char *str);
 int		strlen_two(char *str);
+int		strlen_word_zero(char *s);
+
+/* * * * * * * trim.c * * * * * * * * */
+
+char	*two_trim(char *str);
+char	*one_trim(char *str);
 
 /* * * * * * * utils.c * * * * * * * * */
 
