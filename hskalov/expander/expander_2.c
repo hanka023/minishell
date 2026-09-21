@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 16:36:27 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 18:01:26 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,15 @@ int	expand_string(t_list *lst, t_env *env, t_state *state)
 	char	*new_copy;
 	char	*tmp;
 	int		len;
+	char	*ptr;
 
+	ptr = lst->str;
 	copy = "";
 	new_copy = ft_strdup("");
 	if (! new_copy)
 		return (0);
 	tmp = "";
-	while (lst->str && lst->str[0])
+	while (lst -> str && lst -> str[0])
 	{
 		copy = expand_str(lst, env, &len, state);
 		if (len <= 0)
@@ -62,12 +64,13 @@ int	expand_string(t_list *lst, t_env *env, t_state *state)
 			free(copy);
 			break ;
 		}
-		lst->str = lst->str + len;
+		lst -> str = lst -> str + len;
 		tmp = ft_strjoin(new_copy, copy);
 		free(new_copy);
 		free (copy);
 		new_copy = tmp;
 	}
+	free(ptr);
 	lst->str = new_copy;
 	return (new_copy != 0);
 }

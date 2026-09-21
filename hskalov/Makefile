@@ -32,8 +32,7 @@ SRC = main.c \
 		checker/quotes.c \
 		checker/names.c \
 		checker/pipes.c \
-		checker/redirect_1.c \
-		checker/redirect_2.c \
+		checker/redirect.c \
 		lexer/my_split_utils.c \
 		lexer/my_split.c \
 		lexer/quotes.c \

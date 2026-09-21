@@ -1,49 +1,75 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipes.c                                            :+:      :+:    :+:   */
+/*   redirect_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 18:25:06 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 19:35:43 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 #include "../minishell.h"
 
-int	check_pipes_str(char *str)
+
+int is_rd(char c)
+{
+	if (c == '>' || c == '<')
+		return (1);
+	else 
+		return (0);
+}
+
+int is_space (char c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	else
+		return (0);
+}
+
+int	check_redirect(char *str)
 {
 	int stav;
-	int expecting_command;
 	
+	if (!str)
+		return(0);
 	stav = 0;
-	expecting_command = 1;
 	while (*str)
 	{
 		stav = stav_str(*str, stav);
-		if (stav == 0)
+		if (stav == 0 && is_rd(*str) == 1)
 		{
-			if (*str == '|')
-			{
-				if (expecting_command ==  1)
-					return (1);
-				expecting_command = 1;
-			}
-			else if (!is_in_set(*str, " \t\n"))
-				expecting_command = 0;
+			if (*(str + 1) == *str)
+				++str;
+			if (is_rd(*(str + 1)) == 1)
+				return (1);
+			++str;
+			while (*str && is_space(*str) == 1)
+				++str;
+			if (*str == '\0' || *str == '|' || is_rd(*str) == 1 )
+				return (1);
+			continue ;
 		}
-		else
-			expecting_command = 0;
 		++str;
 	}
-	return (expecting_command);
+	return (0);
 }
 
-int	check_pipes(char *str)
+int check_redirect_error(char *str)
 {
-	if (!str)
+	int redirect;
+
+	redirect = 	check_redirect(str);
+	if (redirect == 1)
+	{
+		printf ("Error redirect\n");
+			return (1);
+	}
+	else if (redirect == 0)
 		return (0);
-	return (check_pipes_str(str));
+	else 
+		return (-1);
 }

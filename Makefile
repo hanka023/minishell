@@ -50,8 +50,7 @@ SOURCES = \
 	hskalov/checker/quotes.c	 			\
 	hskalov/checker/names.c	 				\
 	hskalov/checker/pipes.c	 				\
-	hskalov/checker/redirect_1.c	 		\
-	hskalov/checker/redirect_2.c	 		\
+	hskalov/checker/redirect.c	 			\
 	hskalov/lexer/my_split_utils.c	 		\
 	hskalov/lexer/my_split.c	 			\
 	hskalov/lexer/quotes.c	 				\

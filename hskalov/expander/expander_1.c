@@ -6,13 +6,31 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 13:46:06 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 21:07:02 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../../mini.h"
 #include "parser.h"
+
+int ft_isname (char *str)
+{
+	if (!str || !*str)
+		return (0);
+	if (*str == '$')
+		++str;
+	if (ft_isalpha(*str) == 0 && *str != '_')
+		return (0);
+	++str;
+	while (*str && *str != '=')
+	{
+		if (ft_isalnum (*str) == 0 && *str != '_')
+			return (0);
+		++str;
+	}
+	return (1);
+}
 
 int	expand_status(char *str, t_state *state, t_list **head_w)
 {
@@ -75,23 +93,28 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	char	*str;
 	char	*start;
 
+	if (!s)
+        return (NULL);
 	head_w = NULL;
 	str = two_trim(s);
+	if (!str)
+        return (NULL);
 	start = str;
-	while (*str && *str != '\0' && *str != '\"')
+	while (*str)
 	{
-		if (*str != '$')
-		{
-			len = strlen_word(str);
-			word_to_lst(str, &head_w);
-		}
 		if (*str == '$' && *(str + 1) == '?')
 			len = expand_status(str, state, &head_w);
-		else if (*str == '$')
+		else if (*str == '$' && ft_isname(str) == 1)
 			len = expand_name(str, env, &head_w);
+		else
+		{
+			len = strlen_word(str);
+			if (len > 0)
+				word_to_lst(str, &head_w);
+			else 
+				len = 1;
+		}
 		str = str + len;
-		if (*str == '\n')
-			++str;
 	}
 	free(start);
 	return (head_w);
@@ -109,18 +132,16 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state)
 	start = str;
 	while (*str && *str != '\0' && *str != '\'' && *str != '\"')
 	{
-		if (*str != '$')
+		if (*str == '$' && *(str + 1) == '?')
+			len = expand_status(str, state, &head_w);
+		else if (*str == '$' && (ft_isname(str) == 1))
+			len = expand_name(str, env, &head_w);
+		else
 		{
 			len = strlen_word_zero(str);
 			zero_to_lst(str, &head_w);
 		}
-		if (*str == '$' && *(str + 1) == '?')
-			len = expand_status(str, state, &head_w);
-		else if (*str == '$')
-			len = expand_name(str, env, &head_w);
 		str = str + len;
-		if (*str == '\n')
-			++str;
 	}
 	free(start);
 	return (head_w);

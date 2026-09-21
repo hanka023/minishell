@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 16:36:11 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 20:43:19 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ char	*find_env(char *str, t_env *env);
 
 /* * * * * * * expander_1 * * * * * * * * */
 
+int		ft_isname (char *str);
 int		expand_status(char *str, t_state *state, t_list **head_w);
 int		expand_name(char *str, t_env *env, t_list **head_w);
 t_list	*two_lst(char *s, t_env *env, t_state *state);
