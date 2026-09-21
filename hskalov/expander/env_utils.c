@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 16:24:36 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/17 23:40:03 by pepcen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	env_len(char *str, t_env *env)
 	}
 	++str;
 	copy = malloc(ft_strlen(str));
-	start = str;
+	start = copy;
 	while (*str && (ft_isalnum(*str) == 1 || *str == '_'))
 	{
 		*copy = *str;

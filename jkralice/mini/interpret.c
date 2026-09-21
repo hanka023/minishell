@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/31 18:14:45 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:45:41 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,109 +14,180 @@
 #include "../map.h"
 #include "../commands.h"
 #include "../Lib42/str.h"
-#include "../Lib42/list/ppl_chain.h"
+#include "../Lib42/memory.h"
+#include "../Lib42/pipeline.h"
+
+#include <stdio.h>
 
 static
-char	**build_argv(t_arena *arena, t_list **list)
+void	*get_command(char **argv)
 {
-	char	**cmd;
-	size_t	i;
-
-	cmd = arena_push(arena, 0);
-	i = 0;
-	while (*list
-		&& !str_eq((*list)->str, "|")
-		&& !str_eq((*list)->str, ">")
-		&& !str_eq((*list)->str, "<")
-		&& !str_eq((*list)->str, ">>")
-		&& !str_eq((*list)->str, "<<"))
-	{
-		arena_advance(arena, sizeof(char *));
-		cmd[i++] = (*list)->str;
-		*list = (*list)->next;
-	}
-	arena_advance(arena, sizeof(char *));
-	cmd[i] = NULL;
-	return (cmd);
-}
-
-static
-int	add_command(t_pipeline *ppl, t_arena *arena, char **argv, char ***envp)
-{
-	t_command_args	*args;
-	int				(*foo)(void *, int, int);
-	int				argc;
+	int	(*foo)(void *);
 
 	if (str_eq(argv[0], "echo"))
-		foo = echo;
+		foo = cmd_echo;
 	else if (str_eq(argv[0], "cd"))
-		foo = cd;
+		foo = cmd_cd;
 	else if (str_eq(argv[0], "pwd"))
-		foo = pwd;
+		foo = cmd_pwd;
 	else if (str_eq(argv[0], "export"))
-		foo = export;
+		foo = cmd_export;
 	else if (str_eq(argv[0], "unset"))
-		foo = unset;
+		foo = cmd_unset;
 	else if (str_eq(argv[0], "env"))
-		foo = env;
+		foo = cmd_env;
+	else if (str_eq(argv[0], "exit"))
+		foo = cmd_exit;
 	else
-		return (0);
-	argc = 0;
-	while (argv[argc])
-		argc++;
-	args = arena_push(arena, sizeof(t_command_args));
-	*args = (t_command_args){.argc = argc, .argv = argv, .envp = envp};
-	pipeline_add_function(ppl, foo, args);
-	return (1);
+		return (NULL);
+	return (foo);
 }
 
 static
-int	add_process(t_pipeline *ppl, t_arena *arena, char **argv, char **envp)
+int	heredoc(char *del)
 {
-	char	*path;
+	int		pipe_fd[2];
+	size_t	del_len;
+	size_t	line_len;
+	char	*line;
+	char	*found;
 
-	path = find_executable(arena, argv[0], map_get(envp, "PATH"));
-	if (!path)
-		return (0);
-	pipeline_add_process(ppl, path, argv, envp);
-	return (1);
+	pipe(pipe_fd);
+	del_len = str_len(del);
+	write(1, "> ", 2);
+	line = get_next_line(0);
+	while (line)
+	{
+		line_len = str_len(line);
+		found = mem_search(line, line_len, del, del_len);
+		if (found)
+		{
+			write(pipe_fd[1], line, (size_t)(found - line));
+			break ;
+		}
+		write(pipe_fd[1], line, line_len);
+		write(1, "> ", 2);
+		line = get_next_line(0);
+	}
+	close(pipe_fd[1]);
+	return (pipe_fd[0]);
 }
 
-void	interpret(t_state *state, t_list *list)
+static
+int	add_link(t_state *state, t_arena_temp temp, char **argv, int in_fd, int out_fd)
+{
+	void			*command;
+	char			*path;
+
+	*(char **)arena_advance(temp.arena, sizeof(char *)) = NULL;
+	command = get_command(argv);
+	if (command)
+	{
+		void	*param;
+		int		argc;
+
+		param = arena_push(temp.arena, sizeof(t_command_args));
+		argc = 0;
+		while (argv[argc])
+			argc++;
+		if (command == cmd_exit)
+			*(t_exit_args *)param = (t_exit_args){
+				.argc = argc,
+				.argv = argv,
+				.state = state
+				};
+		else
+			*(t_command_args *)param = (t_command_args){
+				.argc = argc,
+				.argv = argv,
+				.envp = &state->envp
+				};
+		*ppl_add_back(state->ppl) = ppl_create_function(
+			command,
+			param,
+			(int [2]){in_fd, out_fd}
+			);
+		return (1);
+	}
+	path = find_executable(temp.arena, argv[0], map_get(state->envp, "PATH"));
+	if (path)
+	{
+		*ppl_add_back(state->ppl) = ppl_create_process(
+			path,
+			argv,
+			state->envp,
+			(int [2]){in_fd, out_fd}
+			);
+		return (1);
+	}
+	return (0);
+}
+
+void	interpret(t_state *state)
 {
 	t_arena_temp	temp;
-	t_pipeline		*ppl;
+	t_ppl_node		*node;
+	t_list			*list;
 	char			**argv;
+	int				in_fd;
 	int				out_fd;
 
 	temp = arena_scratch_claim(1, &state->arena);
-	ppl = pipeline_create(temp.arena);
-
+	list = state->list;
+	argv = arena_push(temp.arena, 0);
+	in_fd = 0;
 	out_fd = 1;
 	while (list)
 	{
-		argv = build_argv(temp.arena, &list);
-		if (add_command(ppl, temp.arena, argv, &state->envp) == 0)
-			add_process(ppl, temp.arena, argv, state->envp);
-		if (list)
+		if (str_eq(list->str, "|"))
 		{
-			if (str_eq(list->str, "|"))
-				list = list->next;
-			else if (str_eq(list->str, ">"))
-			{
-				out_fd = open(list->next->str, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-				break ;
-			}
-			else if (str_eq(list->str, ">>"))
-			{
-				out_fd = open(list->next->str, O_WRONLY | O_CREAT, 0644);
-				break ;
-			}
+			add_link(state, temp, argv, in_fd, out_fd);
+			argv = arena_push(temp.arena, 0);
+			in_fd = 0;
+			out_fd = 1;
 		}
+		else if (str_eq(list->str, ">"))
+		{
+			list = list->next;
+			out_fd = open(list->str, O_WRONLY | O_CREAT | O_TRUNC, 0666);
+		}
+		else if (str_eq(list->str, ">>"))
+		{
+			list = list->next;
+			out_fd = open(list->str, O_WRONLY | O_CREAT | O_APPEND, 0666);
+		}
+		else if (str_eq(list->str, "<"))
+		{
+			list = list->next;
+			in_fd = open(list->str, O_RDONLY);
+		}
+		else if (str_eq(list->str, "<<"))
+		{
+			list = list->next;
+			in_fd = heredoc(list->str);
+		}
+		else
+		 	*(char **)arena_advance(temp.arena, sizeof(char *)) = list->str;
+		list = list->next;
 	}
-	pipeline_run(ppl, 0, out_fd);
-	state->exit_code = pipeline_wait(ppl);
-	if (out_fd != 1)
-		close(out_fd);
+	if (argv[0])
+	{
+		*(char **)arena_advance(temp.arena, sizeof(char *)) = NULL;
+		add_link(state, temp, argv, in_fd, out_fd);
+	}
+
+	node = state->ppl->start;
+
+	if (state->ppl->size == 1 && node->type == PPL_TYPE_FUNCTION)
+		state->exit_code = node->data.function.foo(node->data.function.param);
+	else
+	{
+		ppl_run(state->ppl, (int [2]){0, 1});
+		state->exit_code = ppl_wait(state->ppl);
+		ppl_close(state->ppl);
+	}
+	ppl_clear(state->ppl);
+
+	arena_scratch_release(temp);
 	arena_scratch_release(temp);
 }

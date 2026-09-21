@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/08 18:40:56 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:57:01 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,33 +58,20 @@ char	*copy_metachar(char *str, int len)
 int	no_set(char *str, t_list **head)
 {
 	int		len;
-	int		s_len;
-	char	*copy;
 
-	len = 0;
-	s_len = 0;
-	s_len = ft_strlen (str);
-	if (s_len > 0 && str[s_len - 1] == '\n')
-		str[s_len - 1] = ' ';
-	copy = "";
 	len = strlen_copy (str);
-	copy = make_copy (str, len);
-	word_to_list (copy, head, len);
-	free (copy);
+	if (word_to_list (str, head, len) != 0)
+		return (0);
 	return (len);
 }
 
 int	m_set(char *str, t_list **head)
 {
 	int		len;
-	char	*copy;
 
-	len = 0;
-	copy = "";
 	len = metachar (str);
-	copy = copy_metachar (str, len);
-	word_to_list (copy, head, len);
-	free (copy);
+	if (word_to_list (str, head, len) != 0)
+		return (0);
 	return (len);
 }
 
@@ -98,20 +85,18 @@ t_list	*my_split(char *str)
 	set = " \t\n";
 	metachar_set = "|<>";
 	head = NULL;
-	len = ft_strlen (str);
-	if (len > 0 && str[len - 1] == '\n')
-		str[len - 1] = ' ';
 	while (*str && *str != '\0')
 	{
-		len = 0;
-		while (is_in_set(*str, set))
+		while (*str && is_in_set(*str, set))
 			++str;
 		if (*str == '\0')
 			break ;
-		else if (!is_in_set(*str, set) && !is_in_set(*str, metachar_set))
-			len = no_set(str, &head);
-		else if (is_in_set(*str, metachar_set))
+		if (is_in_set(*str, metachar_set))
 			len = m_set(str, &head);
+		else
+			len = no_set(str, &head);
+		if (len <= 0)
+			break ;
 		str = str + len;
 	}
 	return (head);

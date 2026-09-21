@@ -1,7 +1,8 @@
-NAME = mini
+NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -lreadline -fsanitize=leak,address
+CFLAGS = -Wall -Werror -Wextra -lreadline -g -fsanitize=address
+DBGFLAGS = -g -fsanitize=address
 
 SOURCES = \
 	main.c	\
@@ -21,14 +22,14 @@ SOURCES = \
 	jkralice/map/map_search.c	\
 	jkralice/map/map_utils.c	\
 	\
-	jkralice/commands/cd.c				\
-	jkralice/commands/echo.c			\
-	jkralice/commands/env.c				\
-	jkralice/commands/export.c			\
-	jkralice/commands/pwd.c				\
-	jkralice/commands/unset.c			\
-	jkralice/commands/commands_utils.c	\
-	jkralice/commands/_heredoc.c		\
+	jkralice/commands/cmd_cd.c				\
+	jkralice/commands/cmd_echo.c			\
+	jkralice/commands/cmd_env.c				\
+	jkralice/commands/cmd_export.c			\
+	jkralice/commands/cmd_pwd.c				\
+	jkralice/commands/cmd_unset.c			\
+	jkralice/commands/cmd_exit.c			\
+	jkralice/commands/commands_utils.c		\
 	\
 	hskalov/expander/double_expander.c	 	\
 	hskalov/expander/env_utils.c	 		\
@@ -39,6 +40,7 @@ SOURCES = \
 	hskalov/expander/getenv_2.c	 			\
 	hskalov/expander/string.c	 			\
 	hskalov/expander/strlen.c	 			\
+	hskalov/expander/trim.c	 				\
 	hskalov/expander/utils.c	 			\
 	hskalov/expander/names.c	 			\
 	hskalov/expander/zero_one_two_handler.c	\
@@ -73,7 +75,13 @@ $(NAME):
 	@cd jkralice/Lib42; make
 	@cd hskalov/libft; make
 	@cd hskalov/gnl; make
-	@$(CC) $(CFLAGS) $(SOURCES) $(LIBRARIES) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SOURCES) $(LIBRARIES) -lreadline -o $(NAME)
+
+debug:
+	@cd jkralice/Lib42; make debug
+	@cd hskalov/libft; make
+	@cd hskalov/gnl; make
+	@$(CC) $(CFLAGS) $(DBGFLAGS) $(SOURCES) $(LIBRARIES) -o $(NAME)
 
 clean:
 	@cd jkralice/Lib42; make clean

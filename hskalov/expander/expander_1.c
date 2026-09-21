@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 17:17:41 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:46:06 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,20 @@ int	expand_status(char *str, t_state *state, t_list **head_w)
 	len = 0;
 	copy = "";
 	if (*str == '\"')
+	{
 		++str;
-	if (*str == '$')
+		++len;
+	}
+	if (*str == '$' && *(str + 1) == '?')
 	{
 		status_code = ft_itoa(state -> exit_code);
 		if (!status_code)
 			return (0);
-		copy = ft_strdup (status_code);
+		copy = ft_strdup(status_code);
 		word_to_lst(copy, head_w);
 		free (status_code);
 		free (copy);
-		return (len);
+		return (len + 2);
 	}
 	return (0);
 }
@@ -73,7 +76,7 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	char	*start;
 
 	head_w = NULL;
-	str = one_trim(s);
+	str = two_trim(s);
 	start = str;
 	while (*str && *str != '\0' && *str != '\"')
 	{
@@ -81,6 +84,35 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 		{
 			len = strlen_word(str);
 			word_to_lst(str, &head_w);
+		}
+		if (*str == '$' && *(str + 1) == '?')
+			len = expand_status(str, state, &head_w);
+		else if (*str == '$')
+			len = expand_name(str, env, &head_w);
+		str = str + len;
+		if (*str == '\n')
+			++str;
+	}
+	free(start);
+	return (head_w);
+}
+
+t_list	*zero_lst(char *s, t_env *env, t_state *state)
+{
+	int		len;
+	t_list	*head_w;
+	char	*str;
+	char	*start;
+
+	head_w = NULL;
+	str = two_trim(s);
+	start = str;
+	while (*str && *str != '\0' && *str != '\'' && *str != '\"')
+	{
+		if (*str != '$')
+		{
+			len = strlen_word_zero(str);
+			zero_to_lst(str, &head_w);
 		}
 		if (*str == '$' && *(str + 1) == '?')
 			len = expand_status(str, state, &head_w);

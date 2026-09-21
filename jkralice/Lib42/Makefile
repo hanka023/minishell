@@ -2,17 +2,18 @@ NAME = lib42.a
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-DBGFLAGS = -g -fsanitize=leak,address,origin
+DBGFLAGS = -g -fsanitize=leak,address
 
 SOURCES = \
+	types/int.c		\
 	types/size.c	\
 	types/ssize.c	\
 	\
 	str/str_cat.c	\
-	str/str_eq.c	\
 	str/str_len.c	\
-	str/str_split.c	\
+	str/str_eq.c	\
 	str/str_sub.c	\
+	str/str_split.c	\
 	\
 	memory/bytes.c			\
 	memory/mem_compare.c	\
@@ -36,34 +37,31 @@ SOURCES = \
 	arena/arena_temp_end.c			\
 	arena/_global_scratch.c			\
 	\
-	list/_dlist/_dlist_add.c		\
-	list/_dlist/_dlist_clear.c		\
-	list/_dlist/_dlist_copy.c		\
-	list/_dlist/_dlist_create.c 	\
-	list/_dlist/_dlist_get.c		\
-	list/_dlist/_dlist_getters.c	\
-	list/_dlist/_dlist_remove.c		\
-	list/_dlist/_dnode.c			\
+	list/_list/_dllnode.c			\
+	list/_list/_dllist_create.c		\
+	list/_list/_dllist_add.c		\
+	list/_list/_dlist_get.c			\
+	list/_list/_dlist_remove.c		\
+	list/_list/_dllist_clear.c		\
+	list/_list/_dllist_copy.c		\
+	list/_list/__dllnode_data.c		\
+	list/_list/__dllnode_allocate.c	\
 	\
-	list/ppl_chain/ppl_node.c			\
-	list/ppl_chain/ppl_chain_create.c	\
-	list/ppl_chain/ppl_chain_add.c		\
-	list/ppl_chain/ppl_chain_getters.c	\
-	list/ppl_chain/ppl_chain_get.c		\
-	list/ppl_chain/ppl_chain_remove.c	\
-	list/ppl_chain/ppl_chain_clear.c	\
-	list/ppl_chain/ppl_chain_copy.c		\
-	\
-	pipeline/find_executable.c					\
-	pipeline/pipeline_create.c					\
-	pipeline/pipeline_add_function.c			\
-	pipeline/pipeline_add_process.c				\
-	pipeline/pipeline_clear.c					\
-	pipeline/pipeline_run.c						\
-	pipeline/pipeline_wait.c					\
-	pipeline/pipeline_stop.c					\
-	pipeline/pipeline_kill.c					\
-	pipeline/_pipeline_run_link.c				\
+	list/ppl/ppl_add.c				\
+	list/ppl/ppl_clear.c			\
+	list/ppl/ppl_copy.c				\
+	list/ppl/ppl_create.c			\
+	list/ppl/ppl_get.c				\
+	list/ppl/ppl_node.c				\
+	list/ppl/ppl_remove.c			\
+	pipeline/ppl_create_function.c	\
+	pipeline/ppl_create_process.c	\
+	pipeline/ppl_run.c				\
+	pipeline/ppl_wait.c				\
+	pipeline/ppl_stop.c				\
+	pipeline/ppl_kill.c				\
+	pipeline/ppl_close.c			\
+	pipeline/find_executable.c		\
 
 
 OBJECTS = $(SOURCES:.c=.o)
@@ -84,14 +82,14 @@ fclean: clean
 	@rm -f $(NAME)
 
 gen:
-	@./list/generate.sh t_ppl_link t_ppl_chain ppl_chain t_ppl_node ppl_node "../pipeline/pipeline_link.h"
+	@./list/generate.sh t_ppl_link ppl_chain ppl_node "../pipeline/pipeline_link.h"
 
 clean_gen:
 	@echo Removing generated lists...
 	@mv list/generate.sh	list/.generate.sh
-	@mv list/_dlist			list/._dlist
+	@mv list/_list			list/._list
 	@rm -fr list/*
 	@mv list/.generate.sh 	list/generate.sh
-	@mv list/._dlist 		list/_dlist
+	@mv list/._list 		list/_list
 
 re: clean $(NAME)

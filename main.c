@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/01 14:33:39 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 16:01:09 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@
 int	main(void)
 {
 	t_state	state;
-	t_list	*list;
 	char	*line;
 
-	state = setup(gib(1), 2, mib(32));
+	state = setup(gib(1), 2, mib(128));
 	while (1)
 	{
 		line = readline(PROMPT);
@@ -40,11 +39,10 @@ int	main(void)
             continue ;
         }
 		add_history(line);
-		list = input(&state, line);
-		interpret(&state, list);
-		print_list(list);
-		free_list(list);
-		//free(line);
+
+		state.list = input(&state, line);
+		interpret(&state);
+		free_list(state.list);
 	}
 	rl_clear_history();
 	cleanup(state);

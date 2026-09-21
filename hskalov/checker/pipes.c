@@ -17,7 +17,7 @@ int	check_pipes_str(char *str, int stav, int pipe, int last)
 {
 	while (*str)
 	{
-		stav = stav_str(str, stav);
+		stav = stav_str(*str, stav);
 		if (stav != 0)
 			++str;
 		if (*str == '|' && pipe == 0)

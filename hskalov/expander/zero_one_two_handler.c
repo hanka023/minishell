@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 19:32:23 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:51:31 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	*zero_handler(char *str, t_env *env, t_state *state)
 {
-	t_list	*two;
+	t_list	*zero;
 	t_list	*start;
 	char	*copy;
 	char	*tmp;
@@ -23,46 +23,53 @@ char	*zero_handler(char *str, t_env *env, t_state *state)
 	copy = "";
 	if (test_names(str, env) == 1)
 		return (NULL);
-	two = two_lst(str, env, state);
-	start = two;
-	while (two != NULL)
+	zero = zero_lst(str, env, state);
+	start = zero;
+	while (zero != NULL)
 	{
-		tmp = ft_strjoin (copy, two -> str);
+		tmp = ft_strjoin (copy, zero -> str);
 		copy = ft_strdup(tmp);
 		free(tmp);
-		two = two -> next;
+		zero = zero -> next;
 	}
-	two = start;
-	free_list(two);
+	zero = start;
+	free_list(zero);
 	return (copy);
 }
 
 char	*one_handler(char *str)
 {
 	char	*copy;
-	char	*start;
+	int		len;
+	int		i;
 
+	len = 0;
+	i = 0;
 	if (*str == '\'')
 		++str;
-	copy = copy_string (str, '\'');
-	start = copy;
-	if (*copy == '\'')
-		*copy = '\0';
-	return (start);
+	while (str[len] != '\0' && str[len] != '\'')
+		++len;
+	copy = malloc (sizeof(char) * (len + 1));
+	if (!copy)
+		return (NULL);
+	while (i < len)
+	{
+		copy[i] = str[i];
+		++i;
+	}
+	copy[len] = '\0';
+	return (copy);
 }
 
 char	*two_handler(char *s, t_env *env, t_state *state)
 {
 	t_list	*lst;
 	t_list	*start;
-	char	*str;
 	char	*cp;
 	char	*tmp;
 
-	str = two_trim(s);
-	lst = two_lst(str, env, state);
+	lst = two_lst(s, env, state);
 	start = lst;
-	free(str);
 	cp = ft_strdup("");
 	if (!cp)
 		return (NULL);

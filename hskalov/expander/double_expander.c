@@ -6,64 +6,33 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/13 16:00:34 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:45:26 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../minishell.h"
 
-char	*two_trim(char *str)
+char	*zero_prepare(char *s)
 {
 	char	*copy;
 	char	*start;
-	int		len;
+	int		l;
 
-	len = 0;
-	if (*str == '\"')
-		++str;
-	while (str[len] != '\0' && str[len] != '\"')
-		++len;
-	copy = malloc(sizeof(char) * (len + 1));
+	l = 0;
+	while (s[l] != '$' && s[l] != '\0' && s[l] != '\'' && s[l] != '\"')
+		++l;
+	copy = malloc (sizeof (char) *(l + 1));
 	if (!copy)
 		return (NULL);
 	start = copy;
-	while (len > 0)
+	while (*s != '$' && *s != '\0' && *s != '\'' && *s != '\"')
 	{
-		*copy = *str;
+		*copy = *s;
 		++copy;
-		++str;
-		--len;
+		++s;
 	}
 	*copy = '\0';
-	copy = start;
-	return (start);
-}
-
-char	*one_trim(char *str)
-{
-	char	*copy;
-	char	*start;
-	int		len;
-
-	len = 0;
-	if (*str == '\'')
-		++str;
-	while (str[len] != '\0' && str[len] != '\'')
-		++len;
-	copy = malloc (sizeof(char) * (len + 1));
-	if (!copy)
-		return (NULL);
-	start = copy;
-	while (len > 0)
-	{
-		*copy = *str;
-		++copy;
-		++str;
-		--len;
-	}
-	*copy = '\0';
-	copy = start;
 	return (start);
 }
 
@@ -88,6 +57,18 @@ char	*word_prepare(char *str)
 	}
 	*copy = '\0';
 	return (start);
+}
+
+void	zero_to_lst(char *str, t_list **head_w)
+{
+	t_list	*lst;
+	char	*copy;
+
+	copy = zero_prepare(str);
+	lst = new_list(copy);
+	add_back(head_w, lst);
+	free (copy);
+	return ;
 }
 
 void	word_to_lst(char *str, t_list **head_w)

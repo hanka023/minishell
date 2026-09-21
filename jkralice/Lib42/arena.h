@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   arena.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/02 16:09:34 by pepcen            #+#    #+#             */
-/*   Updated: 2026/08/06 18:47:37 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/17 22:56:31 by pepcen           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void			*arena_push(t_arena *arena, size_t n);
 //	Adds `n` more bytes to the last allocated block of memory
 //	by advancing the arenas position.
 //	Returns the number of bytes succesfully added.
-size_t			arena_advance(t_arena *arena, size_t n);
+void			*arena_advance(t_arena *arena, size_t n);
 
 //	Pops `n` bytes off the arena.
 void			arena_pop(t_arena *arena, size_t n);
