@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/21 16:39:07 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/21 16:56:39 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	interpret(t_state *state)
 	temp = arena_scratch_claim(1, &state->arena);
 	list = state->list;
 	argv = arena_push(temp.arena, 0);
+	argv[0] = NULL;
 	in_fd = 0;
 	out_fd = 1;
 	while (list)
