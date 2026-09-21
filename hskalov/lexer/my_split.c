@@ -71,8 +71,6 @@ int	m_set(char *str, t_list **head)
 {
 	int		len;
 
-//	printf(" token v m_set [%s]\n",  str);
-
 	len = metachar (str);
 	if (word_to_list (str, head, len) != 0)
 		return(0);
@@ -132,8 +130,6 @@ t_list	*my_split(char *str)
             break ;
 		str = str + len;
 	}
-
-	printf(" token v my_split [%s]\n", head -> str);
 	return (head);
 }
 

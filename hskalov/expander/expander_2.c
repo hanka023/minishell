@@ -13,30 +13,6 @@
 #include "../minishell.h"
 #include "parser.h"
 
-char	*expand_metachar(char *str)
-{
-	int		len;
-	char	*start;
-	char	*copy;
-
-	len = 0;
-	len = metachar(str);
-	copy = malloc (sizeof (char) * (len + 1));
-	if (!copy)
-		return (0);
-	start = copy;
-	while (len > 0)
-	{
-		*copy = *str;
-		++copy;
-		++str;
-		--len;
-	}
-	*copy = '\0';
-	copy = start;
-	return (copy);
-}
-
 char	*expand_str(char *str, t_env *env, int *len, t_state *state)
 {
 	char	*copy;
@@ -58,6 +34,8 @@ char	*expand_str(char *str, t_env *env, int *len, t_state *state)
 		copy = two_handler(str, env, state);
 		*len = strlen_two(str);
 	}
+	if (!copy)
+        copy = ft_strdup("");
 	return (copy);
 }
 
@@ -73,52 +51,39 @@ char	*expand_string(char *str, t_env *env, t_state *state)
 	if (! new_copy)
 		return (NULL);
 	tmp = "";
-	while (*str)
+	while (str && *str)
 	{
 		copy = expand_str(str, env, &len, state);
+		if (len <= 0)
+		{
+			free(copy);
+			break;
+		}
 		str = str + len;
 		tmp = ft_strjoin(new_copy, copy);
 		free(new_copy);
-		new_copy = ft_strdup(tmp);
-		free (tmp);
 		free (copy);
+		new_copy = tmp;
 	}
 	return (new_copy);
 }
 
-char	*expand_lst(t_list *lst, t_env *env, t_state *state)
-{
-	char	*str;
-	char	*new_copy;
-	char	*metachar_set;
-
-	metachar_set = "|<>";
-	str = lst -> str;
-	if (is_in_set(*str, metachar_set) || is_in_set(*(str + 1), metachar_set))
-		return (expand_metachar(str));
-	else
-	{
-		new_copy = expand_string(str, env, state);
-		if (!new_copy)
-			return (NULL);
-		return (new_copy);
-	}
-}
-
 int	expander(t_list *lst, t_env *env, t_state *state)
 {
-	char	*new_lst;
+	char	*new_str;
 
 	if (!lst)
 		return (0);
 	while (lst != NULL)
 	{
-		new_lst = expand_lst(lst, env, state);
-		if (!new_lst)
-			return (1);
-		free(lst -> str);
-		lst -> str = ft_strdup(new_lst);
-		free(new_lst);
+		if (lst -> str)
+		{
+			new_str = expand_string(lst -> str, env, state);
+			if (!new_str)
+				return (1);
+			free(lst -> str);
+			lst -> str = new_str;
+		}
 		lst = lst -> next;
 	}
 	return (0);

@@ -74,9 +74,6 @@ char	*one_handler(char *str)
 		++i;
 	}
 	copy[len] = '\0';
-
-	printf("string v one handler [%s]\n", copy);	
-
 	return (copy);
 }
 

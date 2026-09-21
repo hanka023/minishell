@@ -25,7 +25,6 @@ char	*word_prepare(char *str);
 void	zero_to_lst(char *str, t_list **head_w);
 void	word_to_lst(char *str, t_list **head_w);
 int		strlen_word(char *str);
-int		strlen_zero(char *s);
 
 /* * * * * * * env_utils.c * * * * * * */
 
@@ -44,10 +43,8 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state);
 
 /* * * * * * * expander_2 * * * * * * * * */
 
-char	*expand_metachar(char *str);
 char	*expand_str(char *str, t_env *env, int *len, t_state *state);
 char	*expand_string(char *str, t_env *env, t_state *state);
-char	*expand_lst(t_list *lst, t_env *env, t_state *state);
 int		expander(t_list *lst, t_env *env, t_state *state);
 
 /* * * * * * * expander - utils  * * * * * * * * */
@@ -87,7 +84,6 @@ char	*copy_string(char *str, char c);
 /* * * * * * * strlen.c * * * * * * * * */
 
 int		strlen_zero(char *str);
-int		strlen_str_zero(char *str);
 int		strlen_one(char *str);
 int		strlen_two(char *str);
 int		strlen_word_zero(char *s);
