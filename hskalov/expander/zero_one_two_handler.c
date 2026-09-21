@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 19:32:23 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:51:31 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,22 +37,6 @@ char	*zero_handler(char *str, t_env *env, t_state *state)
 	return (copy);
 }
 
-// char	*one_handler(char *str)
-// {
-// 	char	*copy;
-// 	char	*start;
-
-// 	if (*str == '\'')
-// 		++str;
-// 	copy = copy_string (str, '\'');
-// 	start = copy;
-// 	if (*copy == '\'')
-// 		*copy = '\0';
-// 	printf("string v one handler [%s]\n", start);	
-// 	return (start);
-// }
-
-
 char	*one_handler(char *str)
 {
 	char	*copy;
@@ -67,7 +51,7 @@ char	*one_handler(char *str)
 		++len;
 	copy = malloc (sizeof(char) * (len + 1));
 	if (!copy)
-		return(NULL);
+		return (NULL);
 	while (i < len)
 	{
 		copy[i] = str[i];
@@ -101,4 +85,3 @@ char	*two_handler(char *s, t_env *env, t_state *state)
 	free_list(lst);
 	return (cp);
 }
-	

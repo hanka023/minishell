@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander_2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 16:26:09 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:46:37 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*expand_str(char *str, t_env *env, int *len, t_state *state)
 		*len = strlen_two(str);
 	}
 	if (!copy)
-        copy = ft_strdup("");
+		copy = ft_strdup("");
 	return (copy);
 }
 
@@ -57,7 +57,7 @@ char	*expand_string(char *str, t_env *env, t_state *state)
 		if (len <= 0)
 		{
 			free(copy);
-			break;
+			break ;
 		}
 		str = str + len;
 		tmp = ft_strjoin(new_copy, copy);

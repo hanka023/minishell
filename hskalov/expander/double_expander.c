@@ -6,13 +6,12 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/13 16:00:34 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:45:26 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 #include "../minishell.h"
-
 
 char	*zero_prepare(char *s)
 {
@@ -98,19 +97,3 @@ int	strlen_word(char *str)
 	}
 	return (len);
 }
-
-
-// int	strlen_word_zero(char *s)
-// {
-// 	int	len;
-
-// 	if (!s)
-// 		return (0);
-// 	len = 0;
-// 	while (*s && *s != '\0' && *s != '$' && *s != '\'' && *s != '\"')
-// 	{
-// 		++len;
-// 		++s;
-// 	}
-// 	return (len);
-// }

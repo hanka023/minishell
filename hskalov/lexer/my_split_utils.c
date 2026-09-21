@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/08 18:42:25 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 13:53:36 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	stav_str(char c, int stav)
 	if (stav == 0)
 	{
 		if (c == '\'')
-			return(1);
+			return (1);
 		if (c == '"')
-			return(2);
+			return (2);
 	}
 	else if (stav == 1 && c == '\'')
-		return(0);
+		return (0);
 	else if (stav == 2 && c == '"')
-		return(0);
+		return (0);
 	return (stav);
 }
 
@@ -59,7 +59,7 @@ int	strlen_split(char *str)
 	while (str[len])
 	{
 		if (stav == 0 && is_in_set(str[len], set))
-			break;
+			break ;
 		stav = stav_str(str[len], stav);
 		len++;
 	}
@@ -101,8 +101,7 @@ int	strlen_copy(char *str)
 	{
 		stav = stav_str(str[len], stav);
 		if (stav == 0 && is_in_set(str[len], set))
-			break;
-			
+			break ;
 		len++;
 	}
 	return (len);
