@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 16:27:16 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/21 16:36:11 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state);
 
 /* * * * * * * expander_2 * * * * * * * * */
 
-char	*expand_str(char *str, t_env *env, int *len, t_state *state);
-char	*expand_string(char *str, t_env *env, t_state *state);
+char	*expand_str(t_list *lst, t_env *env, int *len, t_state *state);
+int		expand_string(t_list *lst, t_env *env, t_state *state);
 int		expander(t_list *lst, t_env *env, t_state *state);
 
 /* * * * * * * expander - utils  * * * * * * * * */
