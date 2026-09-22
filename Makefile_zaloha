@@ -7,15 +7,10 @@ DBGFLAGS = -g -fsanitize=address
 SOURCES = \
 	main.c	\
 	\
-	jkralice/mini/setup.c				\
-	jkralice/mini/cleanup.c				\
-	jkralice/mini/input.c				\
-	jkralice/mini/interpret.c			\
-	jkralice/mini/open_file.c			\
-	jkralice/mini/heredoc.c				\
-	jkralice/mini/argv_add.c			\
-	jkralice/mini/interpret_add_link.c	\
-	jkralice/mini/interpret_handle.c	\
+	jkralice/mini/setup.c		\
+	jkralice/mini/cleanup.c		\
+	jkralice/mini/input.c		\
+	jkralice/mini/interpret.c	\
 	\
 	jkralice/map/map_add.c		\
 	jkralice/map/map_change.c	\
@@ -34,7 +29,6 @@ SOURCES = \
 	jkralice/commands/cmd_pwd.c				\
 	jkralice/commands/cmd_unset.c			\
 	jkralice/commands/cmd_exit.c			\
-	jkralice/commands/find_command.c		\
 	jkralice/commands/commands_utils.c		\
 	\
 	hskalov/expander/dollar.c 				\
@@ -57,7 +51,7 @@ SOURCES = \
 	hskalov/checker/quotes.c	 			\
 	hskalov/checker/names.c	 				\
 	hskalov/checker/pipes.c	 				\
-	hskalov/checker/redirect.c	 		\
+	hskalov/checker/redirect.c	 			\
 	hskalov/lexer/my_split_utils.c	 		\
 	hskalov/lexer/my_split.c	 			\
 	hskalov/lexer/quotes.c	 				\
