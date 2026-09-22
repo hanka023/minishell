@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 20:43:19 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 17:59:45 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,22 @@ typedef struct s_list	t_list;
 typedef struct s_env	t_env;
 typedef struct s_state	t_state;
 
+
+typedef struct s_type
+{
+	int			typ;
+}	t_type;
+
+/* * * * * * * dollar * * * * * * * * */
+
+int 	expand_dollar(char *str, t_env *env, t_state *state, t_list **head_w);
+int 	expand_dollar_zero(char *str, t_env *env, t_state *state, t_list **head_w);
+
 /* * * * * * * double expander * * * * * * * * */
 
 char	*word_prepare(char *str);
 void	zero_to_lst(char *str, t_list **head_w);
 void	word_to_lst(char *str, t_list **head_w);
-int		strlen_word(char *str);
 
 /* * * * * * * env_utils.c * * * * * * */
 
@@ -44,7 +54,7 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state);
 
 /* * * * * * * expander_2 * * * * * * * * */
 
-char	*expand_str(t_list *lst, t_env *env, int *len, t_state *state);
+char	*expand_str(char *str, t_env *env, int *len, t_state *state);
 int		expand_string(t_list *lst, t_env *env, t_state *state);
 int		expander(t_list *lst, t_env *env, t_state *state);
 
@@ -88,6 +98,7 @@ int		strlen_zero(char *str);
 int		strlen_one(char *str);
 int		strlen_two(char *str);
 int		strlen_word_zero(char *s);
+int		strlen_word(char *str);
 
 /* * * * * * * trim.c * * * * * * * * */
 
@@ -101,6 +112,7 @@ int		expand_len(t_list *lst, t_env *env);
 
 /* * * * zero_one_two_handler.c  * * * */
 
+char	*list_to_str(t_list *lst);
 char	*zero_handler(char *str, t_env *env, t_state *state);
 char	*one_handler(char *str);
 char	*two_handler(char *s, t_env *env, t_state *state);

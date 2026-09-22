@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   my_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 15:57:01 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/22 21:19:10 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,6 @@ t_list	*my_split(char *str)
 			break ;
 		str = str + len;
 	}
+	set_status(head);
 	return (head);
 }

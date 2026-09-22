@@ -6,41 +6,43 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 18:01:26 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 20:35:24 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
-char	*expand_str(t_list *lst, t_env *env, int *len, t_state *state)
+
+char	*expand_str(char *str, t_env *env, int *len, t_state *state)
 {
 	char	*copy;
 
-	copy = "";
+	copy = NULL;
 	*len = 0;
-	if (lst->str[0] != '\'' && lst->str[0] != '\"')
+	if (str[0] != '\'' && str[0] != '\"')
 	{
-		copy = zero_handler(lst->str, env, state);
-		*len = strlen_zero(lst->str);
-		lst->type = 0;
+		copy = zero_handler(str, env, state);
+		*len = strlen_zero(str);
+		//type -> typ = 0;
 	}
-	else if (lst->str[0] == '\'')
+	else if (str[0] == '\'')
 	{
-		copy = one_handler(lst->str);
-		*len = strlen_one(lst->str);
-		lst->type = 1;
+		copy = one_handler(str);
+		*len = strlen_one(str);
+		//type -> typ = 1;
 	}
-	else if (lst->str[0] == '\"' )
+	else if (str[0] == '\"' )
 	{
-		copy = two_handler(lst->str, env, state);
-		*len = strlen_two(lst->str);
-		lst->type = 1;
+		copy = two_handler(str, env, state);
+		*len = strlen_two(str);
+		//type -> typ = 1;
 	}
 	if (!copy)
 		copy = ft_strdup("");
 	return (copy);
 }
+
 
 int	expand_string(t_list *lst, t_env *env, t_state *state)
 {
@@ -48,41 +50,45 @@ int	expand_string(t_list *lst, t_env *env, t_state *state)
 	char	*new_copy;
 	char	*tmp;
 	int		len;
-	char	*ptr;
+	char	*str;
 
-	ptr = lst->str;
-	copy = "";
+	if (!lst || !lst -> str)
+		return (0);
+	str = lst -> str;
 	new_copy = ft_strdup("");
 	if (! new_copy)
 		return (0);
 	tmp = "";
-	while (lst -> str && lst -> str[0])
+	while (*str)
 	{
-		copy = expand_str(lst, env, &len, state);
-		if (len <= 0)
+		copy = expand_str(str, env, &len, state);
+		if (!copy || len <= 0)
 		{
-			free(copy);
+			if (copy)
+				free(copy);
 			break ;
 		}
-		lst -> str = lst -> str + len;
+		str = str + len;
 		tmp = ft_strjoin(new_copy, copy);
 		free(new_copy);
 		free (copy);
+		if (!tmp)
+			return(0);
 		new_copy = tmp;
 	}
-	free(ptr);
-	lst->str = new_copy;
-	return (new_copy != 0);
+	free(lst -> str);
+	lst -> str = new_copy;
+	return (1);
 }
 
-int	expander(t_list *lst, t_env *env, t_state *state)
+int	expander(t_list *lst, t_env *env, t_state *state )
 {
 	if (!lst)
 		return (0);
 	while (lst != NULL)
 	{
 		if (lst -> str)
-			if (!expand_string(lst, env, state))
+			if (!expand_string (lst, env, state))
 				return (1);
 		lst = lst -> next;
 	}

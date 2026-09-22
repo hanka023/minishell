@@ -13,6 +13,7 @@ LDFLAGS     = -Llibft -lft
 
 # Seznam všech .c souborů
 SRC = main.c \
+		expander/dollar.c \
 		expander/double_expander.c \
 		expander/env_utils.c \
 		expander/expander_1.c	\

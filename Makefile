@@ -31,6 +31,7 @@ SOURCES = \
 	jkralice/commands/cmd_exit.c			\
 	jkralice/commands/commands_utils.c		\
 	\
+	hskalov/expander/dollar.c 				\
 	hskalov/expander/double_expander.c	 	\
 	hskalov/expander/env_utils.c	 		\
 	hskalov/expander/expander_utils.c	 	\

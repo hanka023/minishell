@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/08 18:43:14 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 21:19:20 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ t_list	*my_split(char *str);
 int		quotes(char *str);
 int		single_quote(char *str);
 int		double_quotes(char *str);
+void	set_status(t_list *lst);
 
 /* * * * * *  * * * word * * * * * * * * */
 

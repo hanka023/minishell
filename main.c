@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/21 16:38:38 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/22 21:30:39 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	main(void)
 
 		state.list = input(&state, line);
 		interpret(&state);
+		//print_list(state.list);
 		free_list(state.list);
 	}
 	rl_clear_history();

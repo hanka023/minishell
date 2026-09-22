@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 13:45:26 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 18:20:22 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,24 @@ char	*zero_prepare(char *s)
 	char	*copy;
 	char	*start;
 	int		l;
+	int		i;
 
 	l = 0;
-	while (s[l] != '$' && s[l] != '\0' && s[l] != '\'' && s[l] != '\"')
+	i = 0;
+	if(s[l] == '$')
+		++l;
+	while (s[l] != '\0' && s[l] != '$' &&  s[l] != '\'' && s[l] != '\"')
 		++l;
 	copy = malloc (sizeof (char) *(l + 1));
 	if (!copy)
 		return (NULL);
 	start = copy;
-	while (*s != '$' && *s != '\0' && *s != '\'' && *s != '\"')
+	while (i < l)
 	{
-		*copy = *s;
-		++copy;
-		++s;
+		copy[i] = s[i];
+		++i;
 	}
-	*copy = '\0';
+	copy [i] = '\0';
 	return (start);
 }
 
@@ -41,21 +44,24 @@ char	*word_prepare(char *str)
 	char	*copy;
 	char	*start;
 	int		len;
+	int		i;
 
 	len = 0;
-	while (str[len] != '$' && str[len] != '\0' && str[len] != '\"')
+	i = 0;
+	if(str[len] == '$')
+		++len;
+	while (str[len] != '\0' && str[len] != '$' && str[len] != '\"')
 		++len;
 	copy = malloc (sizeof (char) *(len + 1));
 	if (!copy)
 		return (NULL);
 	start = copy;
-	while (*str != '$' && *str != '\0' && *str != '\"')
+	while (i < len)
 	{
-		*copy = *str;
-		++copy;
-		++str;
+		copy[i] = str[i];
+		++i;
 	}
-	*copy = '\0';
+	copy [i] = '\0';
 	return (start);
 }
 
@@ -63,7 +69,7 @@ void	zero_to_lst(char *str, t_list **head_w)
 {
 	t_list	*lst;
 	char	*copy;
-
+	
 	copy = zero_prepare(str);
 	lst = new_list(copy);
 	add_back(head_w, lst);
@@ -81,19 +87,4 @@ void	word_to_lst(char *str, t_list **head_w)
 	add_back(head_w, lst);
 	free (copy);
 	return ;
-}
-
-int	strlen_word(char *str)
-{
-	int	len;
-
-	if (!str)
-		return (0);
-	len = 0;
-	while (*str && *str != '\0' && *str != '$' && *str != '\"')
-	{
-		++len;
-		++str;
-	}
-	return (len);
 }

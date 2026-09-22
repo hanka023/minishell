@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quotes.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 16:28:29 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/22 21:24:59 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,18 @@ int	double_quotes(char *str)
 		++str;
 	len = str - start;
 	return (len);
+}
+
+void set_status(t_list *lst)
+{
+	while (lst)
+	{
+		if( *(lst -> str) == '"')
+			lst -> type = 1;
+		else if ( *(lst -> str) == '\'')
+			lst -> type = 1;
+		else
+			lst -> type = 0;
+		lst = lst -> next;
+	}
 }
