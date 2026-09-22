@@ -39,7 +39,6 @@ size_t	map_search_idx(char **map, char *key)
 	return (i);
 }
 
-
 int	map_change(char **map, char *key, char *val)
 {
 	size_t	i;

@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:39:55 by pepcen            #+#    #+#             */
-/*   Updated: 2026/09/21 15:04:19 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/21 17:27:38 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,10 @@ int	cmd_export(void *param)
 	{
 		separate_key_val(args->argv[i], &key, &val);
 		tmp = map_add(*(args->envp), key, val);
-		if (!tmp && !map_change(*(args->envp), key, val))
-			tmp = *(args->envp);
-		*(args->envp) = tmp;
+		if (!tmp)
+			map_change(*(args->envp), key, val);
+		else
+			*(args->envp) = tmp;
 		i++;
 	}
 	return (0);

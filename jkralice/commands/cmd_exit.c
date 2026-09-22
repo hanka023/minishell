@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:52:14 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/21 15:27:33 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/22 23:20:40 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	cmd_exit(void *param)
 		exit_code = atoi(args->argv[1]);
 	else
 		exit_code = 0;
+	free(args->argv);
 	cleanup(*args->state);
 	exit(exit_code);
 }

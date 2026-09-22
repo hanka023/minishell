@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _dllist_add.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 18:34:46 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/07 20:10:11 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:10:03 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ t_dllnode	*_dllist_add(t_dllist *list, size_t idx, size_t size)
 
 t_dllnode	*_dllist_add_back(t_dllist *list, size_t size)
 {
-	t_dllnode **new_node;
+	t_dllnode	**new_node;
 
 	if (list->end)
 		new_node = &__dllnode_data(list->end)->next;
 	else
-	 	new_node = &list->start;
+		new_node = &list->start;
 	if (list->free)
 	{
 		*new_node = list->free;

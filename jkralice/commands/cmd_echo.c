@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:33:28 by pepcen            #+#    #+#             */
-/*   Updated: 2026/09/21 15:14:05 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/22 23:14:15 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,8 @@ int	cmd_echo(void *param)
 	args = (t_command_args *)param;
 	n = 0;
 	if (args->argc > 1)
-		n = (
-			str_len(args->argv[1]) == 2 && !mem_compare(args->argv[1], "-n", 2)
-			);
+		n = (str_len(args->argv[1]) == 2 && !mem_compare(args->argv[1], "-n", 2)
+				);
 	i = 1 + n;
 	while (i < (size_t)args->argc)
 	{

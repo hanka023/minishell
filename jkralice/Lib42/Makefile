@@ -57,9 +57,9 @@ SOURCES = \
 	pipeline/ppl_create_function.c	\
 	pipeline/ppl_create_process.c	\
 	pipeline/ppl_run.c				\
+	pipeline/_ppl_run.c				\
 	pipeline/ppl_wait.c				\
-	pipeline/ppl_stop.c				\
-	pipeline/ppl_kill.c				\
+	pipeline/ppl_signal.c			\
 	pipeline/ppl_close.c			\
 	pipeline/find_executable.c		\
 

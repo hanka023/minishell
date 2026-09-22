@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ppl_stop.c                                         :+:      :+:    :+:   */
+/*   ppl_signal.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/09 15:52:35 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/17 22:53:57 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:39:56 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-void	ppl_stop(t_ppl *ppl)
+void	ppl_signal(t_ppl *ppl, int sig)
 {
 	t_ppl_node	*node;
 
@@ -22,7 +22,7 @@ void	ppl_stop(t_ppl *ppl)
 	while (node)
 	{
 		if (node->_pid > 1)
-			kill(node->_pid, SIGTERM);
+			kill(node->_pid, sig);
 		node->_pid = 0;
 		node = ppl_node_next(node);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _dlist_remove.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 18:42:49 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/08 16:30:22 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:09:34 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	_dllist_remove(t_dllist *list, size_t idx)
 {
-	t_dllnode *node;
+	t_dllnode	*node;
 
 	node = _dllist_get(list, idx);
 	if (node)

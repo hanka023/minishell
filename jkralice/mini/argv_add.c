@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   str_eq.c                                           :+:      :+:    :+:   */
+/*   argv_add.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/17 17:08:14 by pepcen            #+#    #+#             */
-/*   Updated: 2026/09/22 22:14:26 by jkralice         ###   ########.fr       */
+/*   Created: 2026/09/22 20:39:54 by jkralice          #+#    #+#             */
+/*   Updated: 2026/09/22 21:59:59 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../str.h"
-#include "../memory.h"
+#include "_mini.h"
 
-int	str_eq(char *a, char *b)
+#include <stdlib.h>
+
+void	argv_add(t_intvars *var, char *str)
 {
-	size_t	len_a;
-	size_t	len_b;
+	char	**argv;
+	size_t	i;
 
-	len_a = str_len(a);
-	len_b = str_len(b);
-	if (len_a == len_b)
-		return (mem_compare(a, b, len_a) == 0);
-	return (0);
+	argv = malloc((var->argc + 2) * sizeof(char *));
+	i = 0;
+	while (i < (size_t)var->argc)
+	{
+		argv[i] = var->argv[i];
+		i++;
+	}
+	argv[i] = str;
+	argv[i + 1] = NULL;
+	free(var->argv);
+	var->argc++;
+	var->argv = argv;
 }

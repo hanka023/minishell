@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   _dllist.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/06 16:34:45 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/07 19:06:19 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:08:34 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _LIST_H
-# define _LIST_H
+#ifndef _DLLIST_H
+# define _DLLIST_H
 
 # include "../../arena.h"
 

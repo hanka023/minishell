@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ppl_wait.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:10:49 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/18 00:28:37 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:11:09 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int	ppl_wait(t_ppl *ppl)
 {
 	int			status;
 	t_ppl_node	*node;
-
 
 	status = -1;
 	node = ppl->start;
