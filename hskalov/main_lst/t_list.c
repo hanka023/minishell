@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 19:47:24 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 00:09:13 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ t_list	*new_list(char *str)
 	if (!lst)
 		return (NULL);
 	lst -> str = ft_strdup(str);
-	
-	
 	if (!lst -> str)
 	{
 		free (lst);

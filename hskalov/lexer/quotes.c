@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/22 21:24:59 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 00:07:54 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	double_quotes(char *str)
 	return (len);
 }
 
-void set_status(t_list *lst)
+void	set_status(t_list *lst)
 {
 	while (lst)
 	{
-		if( *(lst -> str) == '"')
+		if (*(lst -> str) == '"')
 			lst -> type = 1;
-		else if ( *(lst -> str) == '\'')
+		else if (*(lst -> str) == '\'')
 			lst -> type = 1;
 		else
 			lst -> type = 0;
