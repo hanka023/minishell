@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 18:25:06 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 22:32:57 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 
 int	check_pipes_str(char *str)
 {
-	int stav;
-	int expecting_command;
-	
+	int	stav;
+	int	expecting_command;
+
 	stav = 0;
 	expecting_command = 1;
 	while (*str)
@@ -27,7 +27,7 @@ int	check_pipes_str(char *str)
 		{
 			if (*str == '|')
 			{
-				if (expecting_command ==  1)
+				if (expecting_command == 1)
 					return (1);
 				expecting_command = 1;
 			}

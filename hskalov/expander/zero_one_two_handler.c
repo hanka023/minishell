@@ -6,18 +6,18 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/22 18:40:23 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 22:46:38 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
-char *list_to_str(t_list *lst)
+char	*list_to_str(t_list *lst)
 {
-	char *tmp;
-	char *copy;
-	
+	char	*tmp;
+	char	*copy;
+
 	copy = ft_strdup ("");
 	if (!copy)
 		return (NULL);
@@ -51,7 +51,7 @@ char	*zero_handler(char *str, t_env *env, t_state *state)
 	{
 		free_list(start);
 		return (NULL);
-	}	
+	}
 	free_list(start);
 	return (copy);
 }

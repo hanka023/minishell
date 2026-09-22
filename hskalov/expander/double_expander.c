@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/22 18:20:22 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 22:36:54 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ char	*zero_prepare(char *s)
 
 	l = 0;
 	i = 0;
-	if(s[l] == '$')
+	if (s[l] == '$')
 		++l;
-	while (s[l] != '\0' && s[l] != '$' &&  s[l] != '\'' && s[l] != '\"')
+	while (s[l] != '\0' && s[l] != '$' && s[l] != '\'' && s[l] != '\"')
 		++l;
 	copy = malloc (sizeof (char) *(l + 1));
 	if (!copy)
@@ -48,7 +48,7 @@ char	*word_prepare(char *str)
 
 	len = 0;
 	i = 0;
-	if(str[len] == '$')
+	if (str[len] == '$')
 		++len;
 	while (str[len] != '\0' && str[len] != '$' && str[len] != '\"')
 		++len;
@@ -69,7 +69,7 @@ void	zero_to_lst(char *str, t_list **head_w)
 {
 	t_list	*lst;
 	char	*copy;
-	
+
 	copy = zero_prepare(str);
 	lst = new_list(copy);
 	add_back(head_w, lst);

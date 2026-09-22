@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 19:37:32 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 21:40:14 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	check_quotes(char *str);
 
 /* * * * * * *   redirect.c   * * * * * * * * */
 
-int is_rd(char c);
-int is_space (char c);
+int	is_rd(char c);
+int	is_space(char c);
 int	check_redirect(char *str);
-int check_redirect_error(char *str);
+int	check_redirect_error(char *str);
 
 /* * * * * * * * * * * * * * * * * * * * * * * * */
 

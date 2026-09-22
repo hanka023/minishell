@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/22 19:47:42 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 23:02:56 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../../mini.h"
 #include "parser.h"
 
-int ft_isname (char *str)
+int	ft_isname(char *str)
 {
 	if (!str || !*str)
 		return (0);
@@ -59,7 +59,7 @@ int	expand_name(char *str, t_env *env, t_list **head_w)
 	char	*name;
 	char	*env_value;
 	int		len;
-	
+
 	len = 0;
 	copy = "";
 	if (*str == '\"')
@@ -88,26 +88,18 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	char	*start;
 
 	if (!s)
-        return (NULL);
+		return (NULL);
 	head_w = NULL;
 	str = two_trim(s);
 	if (!str)
-        return (NULL);
+		return (NULL);
 	start = str;
 	while (*str)
 	{
 		if (*str == '$')
 			len = expand_dollar(str, env, state, &head_w);
 		else
-		{
-			len = strlen_word(str);
-			if (len > 0)
-				word_to_lst(str, &head_w);
-			else 
-				len = 1;
-		}
-		if (len <= 0)
-			len = 1;
+			len = expand_no_dollar(str, &head_w);
 		str = str + len;
 	}
 	free(start);
@@ -127,12 +119,9 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state)
 	while (*str && *str != '\0' && *str != '\'' && *str != '\"')
 	{
 		if (*str == '$')
-			len = expand_dollar_zero(str, env, state, &head_w);
+			len = expand_d_zero(str, env, state, &head_w);
 		else
-		{
-			len = strlen_word_zero(str);
-			zero_to_lst(str, &head_w);
-		}
+			len = expand_no_d_zero(str, &head_w);
 		str = str + len;
 	}
 	free(start);

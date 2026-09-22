@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/22 17:59:45 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 23:44:49 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ typedef struct s_list	t_list;
 typedef struct s_env	t_env;
 typedef struct s_state	t_state;
 
-
 typedef struct s_type
 {
 	int			typ;
@@ -27,8 +26,10 @@ typedef struct s_type
 
 /* * * * * * * dollar * * * * * * * * */
 
-int 	expand_dollar(char *str, t_env *env, t_state *state, t_list **head_w);
-int 	expand_dollar_zero(char *str, t_env *env, t_state *state, t_list **head_w);
+int		expand_dollar(char *str, t_env *env, t_state *state, t_list **head_w);
+int		expand_d_zero(char *str, t_env *env, t_state *state, t_list **head_w);
+int		expand_no_dollar(char *str, t_list **head_w);
+int		expand_no_d_zero(char *str, t_list **head_w);
 
 /* * * * * * * double expander * * * * * * * * */
 
@@ -46,7 +47,7 @@ char	*find_env(char *str, t_env *env);
 
 /* * * * * * * expander_1 * * * * * * * * */
 
-int		ft_isname (char *str);
+int		ft_isname(char *str);
 int		expand_status(char *str, t_state *state, t_list **head_w);
 int		expand_name(char *str, t_env *env, t_list **head_w);
 t_list	*two_lst(char *s, t_env *env, t_state *state);
@@ -55,6 +56,7 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state);
 /* * * * * * * expander_2 * * * * * * * * */
 
 char	*expand_str(char *str, t_env *env, int *len, t_state *state);
+
 int		expand_string(t_list *lst, t_env *env, t_state *state);
 int		expander(t_list *lst, t_env *env, t_state *state);
 
