@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/22 22:35:35 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:02:24 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_redirect_error(char *str)
 	redirect = check_redirect(str);
 	if (redirect == 1)
 	{
-		printf ("Error redirect\n");
+		perror ("Error redirect\n");
 		return (1);
 	}
 	else if (redirect == 0)
