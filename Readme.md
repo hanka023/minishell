@@ -33,7 +33,7 @@ Minishell/
 ├── Makefile
 ├── main.c
 └── README.md
-
+```
 
 ## Instructions
 
@@ -55,7 +55,6 @@ https://github.com/dkolarova/Minishell/tree/main good example of project
 
 
 ### AI used 
-
 
 > AI used as advisor, for helping choose best strategy of work, for checking bugs and expalining outputs from fsanitize debugger
 
