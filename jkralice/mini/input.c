@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:11:23 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/22 21:36:06 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:37:42 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+extern int g_signum;
+
 t_list	*input(t_state *state)
 {
 	t_list	*out;
@@ -22,9 +24,12 @@ t_list	*input(t_state *state)
 	t_env	*env;
 
 	out = NULL;
-	line = readline(PROMPT);
+	if (state->exit_code == 130)
+		line = readline("");
+	else
+		line = readline(PROMPT);
 	if (!line)
-		return (NULL);
+		return ((void *)1);
 	if (line[0] == '\0')
 	{
 		free(line);

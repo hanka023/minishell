@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/22 23:51:37 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:34:15 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@
 #include "../Lib42/str.h"
 #include "../Lib42/memory.h"
 #include "../Lib42/pipeline.h"
+
+#include <readline/readline.h>
+
+extern int g_signum;
 
 static inline
 int	interpret_loop(t_state *state, t_intvars *var)
@@ -63,6 +67,14 @@ void	interpret_run(t_state *state)
 		ppl_run(state->ppl, (int [2]){0, 1});
 		state->exit_code = ppl_wait(state->ppl);
 	}
+	if (g_signum)
+	{
+		ppl_signal(state->ppl, g_signum);
+		if (g_signum == SIGINT)
+			state->exit_code = 130;
+		else if (g_signum == SIGQUIT)
+			state->exit_code = 131;
+	}
 }
 
 static inline
@@ -93,20 +105,14 @@ void	interpret(t_state *state, t_list *tokens)
 	if (tokens == NULL)
 		return ;
 	var = (t_intvars){
-		.temp = arena_scratch_claim(1, &state->arena),
-		.running = 0,
-		.argc = 0,
-		.argv = NULL,
-		.tokens = tokens,
-		.fd[0] = 0,
-		.fd[1] = 1
+		.temp = arena_scratch_claim(1, &state->arena), .running = 0,
+		.argc = 0, .argv = NULL, .tokens = tokens, .fd[0] = 0, .fd[1] = 1
 	};
 	if (interpret_loop(state, &var))
 		interpret_run(state);
-	ppl_close(state->ppl);
 	free_args(state->ppl);
+	ppl_close(state->ppl);
 	ppl_clear(state->ppl);
 	free(var.argv);
-	free_list(var.tokens);
 	arena_scratch_release(var.temp);
 }

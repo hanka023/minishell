@@ -37,7 +37,7 @@ SOURCES = \
 	jkralice/commands/find_command.c		\
 	jkralice/commands/commands_utils.c		\
 	\
-	hskalov/expander/dollar.c 				\
+	hskalov/expander/dollar.c	 			\
 	hskalov/expander/double_expander.c	 	\
 	hskalov/expander/env_utils.c	 		\
 	hskalov/expander/expander_utils.c	 	\
@@ -57,7 +57,7 @@ SOURCES = \
 	hskalov/checker/quotes.c	 			\
 	hskalov/checker/names.c	 				\
 	hskalov/checker/pipes.c	 				\
-	hskalov/checker/redirect.c	 		\
+	hskalov/checker/redirect.c		 		\
 	hskalov/lexer/my_split_utils.c	 		\
 	hskalov/lexer/my_split.c	 			\
 	hskalov/lexer/quotes.c	 				\
