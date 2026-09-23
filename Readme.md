@@ -13,15 +13,16 @@ A minimalistic version of Unix shell written in C as part of the 42 School curri
 
 
 The shell supports:
-* Prompt display and user input (`readline`)
-* Command execution with arguments (`path` resolution)
-* Environment variable expansion (`$VAR`, `$?`)
-* Built‑in commands: `echo` (with `-n`), `cd`, `pwd`, `export`, `unset`, `env`, `exit`
-* Quote handling (single and double quotes)
-* Redirections (`<`, `>`, `>>`, `<<` heredoc)
-* Pipes (`|`)
-* Signal handling (`SIGINT`, `SIGQUIT`, `EOF`)
-
+```text
+- Prompt display and user input (`readline`)
+- Command execution with arguments (`path` resolution)
+- Environment variable expansion (`$VAR`, `$?`)
+- Built‑in commands: `echo` (with `-n`), `cd`, `pwd`, `export`, `unset`, `env`, `exit`
+- Quote handling (single and double quotes)
+- Redirections (`<`, `>`, `>>`, `<<` heredoc)
+- Pipes (`|`)
+- Signal handling (`SIGINT`, `SIGQUIT`, `EOF`)
+```
 
 
 ## Project Structure
