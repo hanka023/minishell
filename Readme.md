@@ -4,6 +4,7 @@
 *This project has been created as part of the 42 curriculum by jkralice [Jachym Kralicek], haskalov [Hana Skalova]*
 
 
+
 ## Description
 
 A minimalistic version of Unix shell written in C as part of the 42 School curriculum, mimicking core `bash` functionality.
