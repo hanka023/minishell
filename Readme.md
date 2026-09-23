@@ -37,12 +37,13 @@ Minishell/
 ```
 
 ## Instructions
+```text
+Compile:   `make` (or `make re`)
+Start:     `./minishell`
+Quit:      type `exit` or press `Ctrl + D`
 
-* **Compile:** `make` (or `make re`)
-* **Start:** `./minishell`
-* **Quit:** type `exit` or press `Ctrl + D`
-* **Makefile rules:** `make clean`, `make fclean`, `make re`
-
+Makefile rules:** `make clean`, `make fclean`, `make re`
+```
 
 ## Resources
 
