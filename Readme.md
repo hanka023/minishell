@@ -29,11 +29,14 @@ The shell supports:
 
 Minishell/
 *├── parsing/
-*├── execute/
-*├── Makefile
-*├── main.c
-*└── README.md
 
+*├── execute/
+
+*├── Makefile
+
+*├── main.c
+
+*└── README.md
 
 
 ## Instructions
