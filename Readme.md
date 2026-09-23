@@ -29,6 +29,7 @@ The shell supports:
 
 Minishell/
 ├── parsing/
+
 ├── execute/
 ├── Makefile
 ├── main.c
