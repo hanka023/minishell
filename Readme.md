@@ -26,17 +26,12 @@ The shell supports:
 
 ## Project Structure
 
-
+```text
 Minishell/
-
 ├── parsing/
-
 ├── execute/
-
 ├── Makefile
-
 ├── main.c
-
 └── README.md
 
 
