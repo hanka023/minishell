@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpret_add_link.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 20:58:19 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/23 19:06:19 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 22:08:38 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	add_command(t_state *state, t_intvars *var)
 
 	command = find_command(var->argv[0]);
 	if (!command)
-		return (0);
+		return (2);
 	param = arena_push(var->temp.arena, sizeof(t_command_args));
 	if (command == cmd_exit)
 		*(t_exit_args *)param = (t_exit_args){
@@ -40,7 +40,7 @@ int	add_command(t_state *state, t_intvars *var)
 			.envp = &state->envp
 		};
 	*ppl_add_back(state->ppl) = ppl_create_function(command, param, var->fd);
-	return (1);
+	return (0);
 }
 
 static inline
@@ -54,14 +54,14 @@ int	add_process(t_state *state, t_intvars *var)
 			map_get(state->envp, "PATH")
 			);
 	if (!path)
-		return (0);
+		return (2);
 	*ppl_add_back(state->ppl) = ppl_create_process(
 		path,
 		var->argv,
 		state->envp,
 		var->fd
 		);
-	return (1);
+	return (0);
 }
 
 int	interpret_add_link(t_state *state, t_intvars *var)
@@ -71,14 +71,15 @@ int	interpret_add_link(t_state *state, t_intvars *var)
 	argv_add(var, NULL);
 	var->argc--;
 	out = add_command(state, var);
-	if (!out)
+	if (out != 0)
 		out = add_process(state, var);
-	if (!out)
+	if (out != 0)
 	{
-		write(1, ERR_MSG, sizeof(ERR_MSG));
-		write(1, "found no command: ", 18);
-		write(1, var->argv[0], str_len(var->argv[0]));
-		write(1, "!\n", 2);
+		write(STDERR_FILENO, ERR_MSG, sizeof(ERR_MSG));
+		write(STDERR_FILENO, "found no command: ", 18);
+		write(STDERR_FILENO, var->argv[0], str_len(var->argv[0]));
+		write(STDERR_FILENO, "!\n", 2);
+		free(var->argv);
 	}
 	var->argc = 0;
 	var->argv = NULL;

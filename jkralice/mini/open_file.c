@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 19:39:24 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/22 22:49:01 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 21:09:27 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ int	open_file(char *str, int flags)
 	fd = open(str, flags, 0666);
 	if (fd == -1)
 	{
-		write(1, ERR_MSG, sizeof(ERR_MSG));
-		write(1, "couldn't open file: ", 37);
-		write(1, str, str_len(str));
-		write(1, "!\n", 2);
+		write(STDERR_FILENO, ERR_MSG, sizeof(ERR_MSG));
+		write(STDERR_FILENO, "couldn't open file: ", 20);
+		write(STDERR_FILENO, str, str_len(str));
+		write(STDERR_FILENO, "!\n", 2);
 	}
 	return (fd);
 }

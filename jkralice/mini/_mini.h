@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _mini.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/22 19:37:46 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/22 23:19:32 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 21:47:04 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int		open_file(char *str, int flags);
 typedef struct s_interpret_variables
 {
 	t_arena_temp	temp;
-	int				running;
 	int				argc;
 	char			**argv;
 	t_list			*tokens;
@@ -39,14 +38,13 @@ typedef struct s_interpret_variables
 //	Does not copy!
 void	argv_add(t_intvars *var, char *str);
 
-//	interpret_handle_* functions return 1 on succes, 0 on error.
-
+//	0 on success 1 on error.
 int		interpret_handle_heredoc(t_intvars *var, t_list **list);
 int		interpret_handle_redir_in(t_intvars *var, t_list **list);
 int		interpret_handle_redir_out(t_intvars *var, t_list **list);
 int		interpret_handle_redir_append(t_intvars *var, t_list **list);
 
-//	1 on success, 0 on error.
+//	0 on success 2 on error.
 int		interpret_add_link(t_state *state, t_intvars *var);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 14:11:23 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/23 20:37:42 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 21:22:37 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_list	*input(t_state *state)
 	t_env	*env;
 
 	out = NULL;
-	if (state->exit_code == 130)
+	if (g_signum == SIGINT)
 		line = readline("");
 	else
 		line = readline(PROMPT);

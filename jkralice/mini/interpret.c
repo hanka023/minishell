@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   interpret.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/28 15:37:22 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/23 20:34:15 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 21:52:14 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,31 +27,32 @@ extern int g_signum;
 static inline
 int	interpret_loop(t_state *state, t_intvars *var)
 {
+	int		status;
 	t_list	*list;
 
-	var->running = 1;
+	status = 0;
 	list = var->tokens;
-	while (var->running && list)
+	while (status == 0 && list)
 	{
 		if (list->type == 1)
 			argv_add(var, list->str);
 		else if (str_eq(list->str, "<"))
-			var->running = interpret_handle_redir_in(var, &list);
+			status = interpret_handle_redir_in(var, &list);
 		else if (str_eq(list->str, "<<"))
-			var->running = interpret_handle_heredoc(var, &list);
+			status = interpret_handle_heredoc(var, &list);
 		else if (str_eq(list->str, ">"))
-			var->running = interpret_handle_redir_out(var, &list);
+			status = interpret_handle_redir_out(var, &list);
 		else if (str_eq(list->str, ">>"))
-			var->running = interpret_handle_redir_append(var, &list);
+			status = interpret_handle_redir_append(var, &list);
 		else if (str_eq(list->str, "|"))
-			var->running = interpret_add_link(state, var);
+			status = interpret_add_link(state, var);
 		else
 			argv_add(var, list->str);
 		list = list->next;
 	}
 	if (var->argv)
-		interpret_add_link(state, var);
-	return (var->running);
+		status = interpret_add_link(state, var);
+	return (status);
 }
 
 static inline
@@ -66,6 +67,8 @@ void	interpret_run(t_state *state)
 	{
 		ppl_run(state->ppl, (int [2]){0, 1});
 		state->exit_code = ppl_wait(state->ppl);
+		if (state->exit_code == -1)
+			state->exit_code = 123;
 	}
 	if (g_signum)
 	{
@@ -100,16 +103,22 @@ void	free_args(t_ppl *ppl)
 
 void	interpret(t_state *state, t_list *tokens)
 {
+	int			status;
 	t_intvars	var;
 
 	if (tokens == NULL)
 		return ;
 	var = (t_intvars){
-		.temp = arena_scratch_claim(1, &state->arena), .running = 0,
+		.temp = arena_scratch_claim(1, &state->arena),
 		.argc = 0, .argv = NULL, .tokens = tokens, .fd[0] = 0, .fd[1] = 1
 	};
-	if (interpret_loop(state, &var))
+	status = interpret_loop(state, &var);
+	if (status == 0)
 		interpret_run(state);
+	else if (status == 1)
+		state->exit_code = 1;
+	else if (status == 2)
+		state->exit_code = 127;
 	free_args(state->ppl);
 	ppl_close(state->ppl);
 	ppl_clear(state->ppl);

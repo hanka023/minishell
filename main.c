@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 16:53:10 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/23 20:37:21 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/23 21:42:38 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ int	main(int argc, char **argv, char **envp)
 	state.running = 1;
 	while (state.running)
 	{
-		g_signum = 0;
 		tokens = input(&state);
 		if (tokens == (void *)1)
 			break ;
+		g_signum = 0;
 		interpret(&state, tokens);
 		free_list(tokens);
 	}
