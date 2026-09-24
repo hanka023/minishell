@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   word.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 13:52:51 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/21 15:58:29 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,9 @@ int	word_to_list(char *str, t_list **head, int len)
 	}
 	copy[i] = '\0';
 	lst = new_list (copy);
+	free(copy);
 	if (!lst)
-	{
-		free (copy);
 		return (1);
-	}
 	add_back (head, lst);
 	return (0);
 }

@@ -6,13 +6,25 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 13:46:06 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 23:02:56 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "../../mini.h"
 #include "parser.h"
+
+int	ft_isname(char *str)
+{
+	if (!str || !*str)
+		return (0);
+	if (*str == '$')
+		++str;
+	if (ft_isalpha(*str) == 0 && *str != '_')
+		return (0);
+	++str;
+	return (1);
+}
 
 int	expand_status(char *str, t_state *state, t_list **head_w)
 {
@@ -75,23 +87,20 @@ t_list	*two_lst(char *s, t_env *env, t_state *state)
 	char	*str;
 	char	*start;
 
+	if (!s)
+		return (NULL);
 	head_w = NULL;
 	str = two_trim(s);
+	if (!str)
+		return (NULL);
 	start = str;
-	while (*str && *str != '\0' && *str != '\"')
+	while (*str)
 	{
-		if (*str != '$')
-		{
-			len = strlen_word(str);
-			word_to_lst(str, &head_w);
-		}
-		if (*str == '$' && *(str + 1) == '?')
-			len = expand_status(str, state, &head_w);
-		else if (*str == '$')
-			len = expand_name(str, env, &head_w);
+		if (*str == '$')
+			len = expand_dollar(str, env, state, &head_w);
+		else
+			len = expand_no_dollar(str, &head_w);
 		str = str + len;
-		if (*str == '\n')
-			++str;
 	}
 	free(start);
 	return (head_w);
@@ -109,18 +118,11 @@ t_list	*zero_lst(char *s, t_env *env, t_state *state)
 	start = str;
 	while (*str && *str != '\0' && *str != '\'' && *str != '\"')
 	{
-		if (*str != '$')
-		{
-			len = strlen_word_zero(str);
-			zero_to_lst(str, &head_w);
-		}
-		if (*str == '$' && *(str + 1) == '?')
-			len = expand_status(str, state, &head_w);
-		else if (*str == '$')
-			len = expand_name(str, env, &head_w);
+		if (*str == '$')
+			len = expand_d_zero(str, env, state, &head_w);
+		else
+			len = expand_no_d_zero(str, &head_w);
 		str = str + len;
-		if (*str == '\n')
-			++str;
 	}
 	free(start);
 	return (head_w);

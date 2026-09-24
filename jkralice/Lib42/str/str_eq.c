@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   str_eq.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 17:08:14 by pepcen            #+#    #+#             */
-/*   Updated: 2026/09/17 17:08:16 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:14:26 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../str.h"
 #include "../memory.h"
 
-int		str_eq(char *a, char *b)
+int	str_eq(char *a, char *b)
 {
 	size_t	len_a;
 	size_t	len_b;

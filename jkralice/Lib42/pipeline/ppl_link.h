@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ppl_link.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/17 16:03:23 by pepcen            #+#    #+#             */
-/*   Updated: 2026/09/17 23:50:31 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 23:35:45 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,5 @@ typedef struct s_ppl_link
 	int				fd[2];
 	pid_t			_pid;
 }	t_ppl_link;
-
 
 #endif

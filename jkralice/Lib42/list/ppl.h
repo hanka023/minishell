@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ppl.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/05 20:52:47 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/17 16:02:20 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:07:19 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 # include "../pipeline/ppl_link.h"
 
-typedef const struct s_dllist \
+typedef const struct s_dllist	\
 	t_ppl;
 
-typedef t_ppl_link \
+typedef t_ppl_link	\
 	t_ppl_node;
 
 t_ppl_node	*ppl_node_next(t_ppl_node *node);

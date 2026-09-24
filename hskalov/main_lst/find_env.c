@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 17:32:42 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:06:48 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,34 +68,6 @@ char	*find_env_value(char *str, t_env *env)
 	free (start);
 	return (NULL);
 }
-
-// char	*find_env_str(char *str, t_env *env)
-// {
-// 	char	*copy;
-// 	char	*set;
-// 	char	*start;
-
-// 	if (!str)
-// 		return (NULL);
-// 	set = " \n\t";
-// 	copy = ft_strtrim(str, set);
-// 	if (!copy)
-// 		return (NULL);
-// 	start = copy;
-// 	if (*copy == '$')
-// 		++copy;
-// 	while (env != NULL)
-// 	{
-// 		if (ft_strcmp (copy, env -> name) == 0)
-// 		{
-// 			free (start);
-// 			return (env -> str);
-// 		}
-// 		env = env -> next;
-// 	}
-// 	free (start);
-// 	return (NULL);
-// }
 
 t_env	*find_env_node(char *str, t_env *env)
 {

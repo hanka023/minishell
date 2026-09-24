@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   _dlist_get.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/04 19:03:45 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/07 21:35:53 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/22 22:09:20 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_dllnode	*_dllist_get_node_front(t_dllist *list, size_t idx)
 }
 
 static inline
-t_dllnode	*_dllist_get_node_back(t_dllist  *list, size_t idx)
+t_dllnode	*_dllist_get_node_back(t_dllist *list, size_t idx)
 {
 	t_dllnode	*out;
 	size_t		i;
@@ -40,7 +40,7 @@ t_dllnode	*_dllist_get_node_back(t_dllist  *list, size_t idx)
 
 t_dllnode	*_dllist_get(t_dllist *list, size_t idx)
 {
-	t_dllnode *out;
+	t_dllnode	*out;
 
 	if (idx >= list->size)
 		out = NULL;

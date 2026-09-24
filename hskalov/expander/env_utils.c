@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pepcen <pepcen@student.42.fr>              +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/17 23:40:03 by pepcen           ###   ########.fr       */
+/*   Updated: 2026/09/23 20:03:53 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	*copy_env(char *str, t_env *env)
 
 	if (!str || *str != '$')
 	{
-		perror("ve find_env neni str\n");
+		perror("No string in env\n");
 		return (NULL);
 	}
 	else if (*str == '$')
@@ -106,7 +106,7 @@ char	*find_env(char *str, t_env *env)
 
 	if (!str)
 	{
-		perror("ve find_env neni str\n");
+		perror("No string in find\n");
 		return (NULL);
 	}
 	set = " \n\t";

@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/26 19:41:50 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:06:44 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,9 @@ t_list	*make_lst(char *line, t_env *env, t_state *state)
 	t_list	*lst;
 	int		exp;
 
-	exp = 0;
+	exp = check_line(line, env);
+	if (exp)
+		return (NULL);
 	lst = my_split(line);
 	if (!lst)
 		return (NULL);

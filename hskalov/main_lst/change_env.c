@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 17:28:46 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:08:38 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,6 @@ int	change_env_value(t_env *env, char *old_value, char *new_value)
 	free (start);
 	return (1);
 }
-
-/* 
-	check if new name is vaid 
-	returns 0 if name is no valid
-	returns 1 if name is valid
-*/
 
 int	check_env_name(char *name)
 {

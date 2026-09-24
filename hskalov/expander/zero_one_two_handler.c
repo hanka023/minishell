@@ -6,34 +6,53 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 13:51:31 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 22:46:38 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 #include "parser.h"
 
+char	*list_to_str(t_list *lst)
+{
+	char	*tmp;
+	char	*copy;
+
+	copy = ft_strdup ("");
+	if (!copy)
+		return (NULL);
+	while (lst != NULL)
+	{
+		if (lst -> str)
+		{
+			tmp = ft_strjoin (copy, lst -> str);
+			free(copy);
+			copy = tmp;
+		}
+		lst = lst -> next;
+	}
+	return (copy);
+}
+
 char	*zero_handler(char *str, t_env *env, t_state *state)
 {
 	t_list	*zero;
 	t_list	*start;
 	char	*copy;
-	char	*tmp;
 
-	copy = "";
 	if (test_names(str, env) == 1)
-		return (NULL);
+		return (ft_strdup(""));
 	zero = zero_lst(str, env, state);
+	if (!zero)
+		return (ft_strdup(""));
 	start = zero;
-	while (zero != NULL)
+	copy = list_to_str(zero);
+	if (!copy)
 	{
-		tmp = ft_strjoin (copy, zero -> str);
-		copy = ft_strdup(tmp);
-		free(tmp);
-		zero = zero -> next;
+		free_list(start);
+		return (NULL);
 	}
-	zero = start;
-	free_list(zero);
+	free_list(start);
 	return (copy);
 }
 
@@ -65,23 +84,18 @@ char	*two_handler(char *s, t_env *env, t_state *state)
 {
 	t_list	*lst;
 	t_list	*start;
-	char	*cp;
-	char	*tmp;
+	char	*copy;
 
 	lst = two_lst(s, env, state);
+	if (!lst)
+		return (ft_strdup(""));
 	start = lst;
-	cp = ft_strdup("");
-	if (!cp)
-		return (NULL);
-	while (lst != NULL)
+	copy = list_to_str(lst);
+	if (!copy)
 	{
-		tmp = ft_strjoin(cp, lst -> str);
-		free(cp);
-		cp = ft_strdup(tmp);
-		free(tmp);
-		lst = lst -> next;
+		free_list(start);
+		return (NULL);
 	}
-	lst = start;
-	free_list(lst);
-	return (cp);
+	free_list(start);
+	return (copy);
 }

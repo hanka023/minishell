@@ -6,7 +6,7 @@
 /*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/26 17:12:51 by jkralice          #+#    #+#             */
-/*   Updated: 2026/08/29 16:59:26 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/22 21:19:41 by jkralice         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,24 @@
 #include "../Lib42/pipeline.h"
 #include <stdlib.h>
 
-extern char **environ;
-
-t_state	setup(size_t arena_size, size_t scratch_count, size_t scratch_size)
+t_state	setup(
+	char **envp,
+	size_t arena_size,
+	size_t scratch_count,
+	size_t scratch_size
+)
 {
-	char		**envp_dup;
-	t_arena		*arena;
+	t_state	out;
+	t_arena	*arena;
 
-	envp_dup = map_dup(environ);
 	arena = arena_create(arena_size);
 	arena_scratch_create(scratch_count, scratch_size);
-	return (t_state){
-		.envp = envp_dup,
+	out = (t_state){
 		.arena = arena,
-		.exit_code = 0
+		.envp = map_dup(envp),
+		.ppl = ppl_create(arena),
+		.exit_code = 0,
+		.running = 0
 	};
+	return (out);
 }

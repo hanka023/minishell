@@ -1,16 +1,21 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -lreadline -g -fsanitize=address 
+CFLAGS = -Wall -Werror -Wextra -lreadline -g -fsanitize=address
 DBGFLAGS = -g -fsanitize=address
 
 SOURCES = \
 	main.c	\
 	\
-	jkralice/mini/setup.c		\
-	jkralice/mini/cleanup.c		\
-	jkralice/mini/input.c		\
-	jkralice/mini/interpret.c	\
+	jkralice/mini/setup.c				\
+	jkralice/mini/cleanup.c				\
+	jkralice/mini/input.c				\
+	jkralice/mini/interpret.c			\
+	jkralice/mini/open_file.c			\
+	jkralice/mini/heredoc.c				\
+	jkralice/mini/argv_add.c			\
+	jkralice/mini/interpret_add_link.c	\
+	jkralice/mini/interpret_handle.c	\
 	\
 	jkralice/map/map_add.c		\
 	jkralice/map/map_change.c	\
@@ -22,15 +27,17 @@ SOURCES = \
 	jkralice/map/map_search.c	\
 	jkralice/map/map_utils.c	\
 	\
-	jkralice/commands/cd.c				\
-	jkralice/commands/echo.c			\
-	jkralice/commands/env.c				\
-	jkralice/commands/export.c			\
-	jkralice/commands/pwd.c				\
-	jkralice/commands/unset.c			\
-	jkralice/commands/commands_utils.c	\
-	jkralice/commands/_heredoc.c		\
+	jkralice/commands/cmd_cd.c				\
+	jkralice/commands/cmd_echo.c			\
+	jkralice/commands/cmd_env.c				\
+	jkralice/commands/cmd_export.c			\
+	jkralice/commands/cmd_pwd.c				\
+	jkralice/commands/cmd_unset.c			\
+	jkralice/commands/cmd_exit.c			\
+	jkralice/commands/find_command.c		\
+	jkralice/commands/commands_utils.c		\
 	\
+	hskalov/expander/dollar.c	 			\
 	hskalov/expander/double_expander.c	 	\
 	hskalov/expander/env_utils.c	 		\
 	hskalov/expander/expander_utils.c	 	\
@@ -50,8 +57,7 @@ SOURCES = \
 	hskalov/checker/quotes.c	 			\
 	hskalov/checker/names.c	 				\
 	hskalov/checker/pipes.c	 				\
-	hskalov/checker/redirect_1.c	 		\
-	hskalov/checker/redirect_2.c	 		\
+	hskalov/checker/redirect.c		 		\
 	hskalov/lexer/my_split_utils.c	 		\
 	hskalov/lexer/my_split.c	 			\
 	hskalov/lexer/quotes.c	 				\

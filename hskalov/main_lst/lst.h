@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/08/28 17:46:28 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/23 20:06:47 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_list
 	char			*str;
 	struct s_list	*prev;
 	struct s_list	*next;
-	char			type;
+	int				type;
 }	t_list;
 
 typedef struct s_env

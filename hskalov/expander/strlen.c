@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/01 13:37:42 by haskalov          #+#    #+#             */
-/*   Updated: 2026/09/21 13:50:48 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/22 22:47:12 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,6 @@ int	strlen_zero(char *str)
 	{
 		++str;
 		++len;
-	}
-	return (len);
-}
-
-int	strlen_word_zero(char *s)
-{
-	int	len;
-
-	if (!s)
-		return (0);
-	len = 0;
-	while (*s && *s != '\0' && *s != '$' && *s != '\'' && *s != '\"')
-	{
-		++len;
-		++s;
 	}
 	return (len);
 }
@@ -85,4 +70,36 @@ int	strlen_two(char *str)
 		++len;
 	}
 	return (len);
+}
+
+int	strlen_word_zero(char *s)
+{
+	int	l;
+
+	if (!s || !*s)
+		return (0);
+	l = 0;
+	if (s[l] == '$')
+		++l;
+	while (s[l] && s[l] != '\0' && s[l] != '$' && s[l] != '\'' && s[l] != '\"')
+	{
+		++l;
+	}
+	return (l);
+}
+
+int	strlen_word(char *s)
+{
+	int	l;
+
+	if (!s || !*s)
+		return (0);
+	l = 0;
+	if (s[l] == '$')
+		++l;
+	while (s[l] && s[l] != '\0' && s[l] != '$' && s[l] != '\"')
+	{
+		++l;
+	}
+	return (l);
 }

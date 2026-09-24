@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkralice <jkralice@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 14:55:56 by pepcen            #+#    #+#             */
-/*   Updated: 2026/08/28 14:27:55 by jkralice         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:14:22 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MAP_H
 
 # include "Lib42/types.h"
+
 
 //	Duplicates a NULL terminated "key=value" variable list.
 //	The list must be free'd with map_free().
