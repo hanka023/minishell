@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/21 14:52:14 by jkralice          #+#    #+#             */
-/*   Updated: 2026/09/23 22:22:25 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/24 15:36:17 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ int	str_is_num(char *str)
 	size_t	i;
 
 	i = 0;
+	if ((str[i] > '0' && str[i] < '9' )|| str[i] == '-' || str[i] == '+')
+		i++;
+	else 
+		return (0);
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != '-')
+		if ((str[i] < '0' || str[i] > '9'))
 			return (0);
 		i++;
 	}

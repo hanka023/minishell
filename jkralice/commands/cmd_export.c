@@ -6,7 +6,7 @@
 /*   By: haskalov <haskalov@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/21 14:39:55 by pepcen            #+#    #+#             */
-/*   Updated: 2026/09/23 22:19:38 by haskalov         ###   ########.fr       */
+/*   Updated: 2026/09/24 13:20:55 by haskalov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,32 @@ int	validate_identifier(char *id)
 	return (1);
 }
 
+// int	cmd_export(void *param)
+// {
+// 	t_command_args	*args;
+// 	char			**tmp;
+// 	char			*key;
+// 	char			*val;
+// 	size_t			i;
+
+// 	args = (t_command_args *)param;
+// 	i = 1;
+// 	while (i < (size_t)args->argc)
+// 	{
+// 		separate_key_val(args->argv[i], &key, &val);
+// 		if ((key && !validate_identifier(key)) || (val && !validate_identifier(val)))
+// 			return (1);
+// 		tmp = map_add(*(args->envp), key, val);
+// 		if (!tmp)
+// 			map_change(*(args->envp), key, val);
+// 		else
+// 			*(args->envp) = tmp;
+// 		i++;
+// 	}
+// 	return (0);
+// }
+
+
 int	cmd_export(void *param)
 {
 	t_command_args	*args;
@@ -48,20 +74,31 @@ int	cmd_export(void *param)
 	char			*key;
 	char			*val;
 	size_t			i;
+	int				exit_status;
 
+	exit_status = 0;
 	args = (t_command_args *)param;
 	i = 1;
 	while (i < (size_t)args->argc)
 	{
 		separate_key_val(args->argv[i], &key, &val);
-		if ((key && !validate_identifier(key)) || (val && !validate_identifier(val)))
-			return (1);
-		tmp = map_add(*(args->envp), key, val);
-		if (!tmp)
-			map_change(*(args->envp), key, val);
+//		if ((key && !validate_identifier(key)) || (val && !validate_identifier(val)))
+		if ((! key || !validate_identifier(key)))
+		{
+			write(STDERR_FILENO, "minishell: export: `", 20);
+   			write(STDERR_FILENO, args->argv[i], str_len(args->argv[i]));
+    		write(STDERR_FILENO, "': not a valid identifier\n", 26);
+			exit_status = 1; 
+		}
 		else
-			*(args->envp) = tmp;
+		{
+			tmp = map_add(*(args->envp), key, val);
+			if (!tmp)
+				map_change(*(args->envp), key, val);
+			else
+				*(args->envp) = tmp;
+		}
 		i++;
 	}
-	return (0);
+	return (exit_status);
 }
